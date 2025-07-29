@@ -1,0 +1,274 @@
+{
+  "name": "Enterprise OS Genesis Framework",
+  "short_name": "Enterprise OS",
+  "description": "Plateforme de gestion d'entreprise avec IA avancée - Analytics prédictives, workflows intelligents et assistant vocal",
+  "version": "2.0.0",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#3b82f6",
+  "background_color": "#ffffff",
+  "lang": "fr",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "finance"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-96x96.png", 
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-128x128.png",
+      "sizes": "128x128", 
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Vue bureau de Enterprise OS"
+    },
+    {
+      "src": "/screenshot-mobile.png", 
+      "sizes": "390x844",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Vue mobile de Enterprise OS"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "Accéder au tableau de bord principal",
+      "url": "/dashboard",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Synapse IA",
+      "short_name": "Synapse",
+      "description": "Assistant vocal et IA avancée",
+      "url": "/synapse",
+      "icons": [
+        {
+          "src": "/icon-192x192.png", 
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Projets",
+      "short_name": "Projets",
+      "description": "Gestion des projets et tâches",
+      "url": "/projects",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192", 
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "short_name": "Analytics", 
+      "description": "Analytics prédictives et insights IA",
+      "url": "/synapse?tab=analytics",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "protocol_handlers": [
+    {
+      "protocol": "web+enterpriseos",
+      "url": "/?action=%s"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "files",
+          "accept": [
+            "image/*",
+            "application/pdf",
+            ".doc",
+            ".docx",
+            ".xls",
+            ".xlsx"
+          ]
+        }
+      ]
+    }
+  },
+  "file_handlers": [
+    {
+      "action": "/handle-file",
+      "accept": {
+        "application/pdf": [".pdf"],
+        "application/vnd.ms-excel": [".xls"],
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
+        "application/msword": [".doc"],
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
+        "text/csv": [".csv"],
+        "application/json": [".json"]
+      },
+      "launch_type": "single-client"
+    }
+  ],
+  "permissions": [
+    "notifications",
+    "background-sync",
+    "push-messaging",
+    "storage",
+    "geolocation"
+  ],
+  "features": [
+    "CrossOriginIsolated"
+  ],
+  "web_accessible_resources": [
+    "sw.js",
+    "offline.html",
+    "icon-*.png"
+  ],
+  "content_security_policy": {
+    "connect-src": "'self' https://*.supabase.co wss://*.supabase.co https://api.openai.com wss://api.openai.com",
+    "script-src": "'self' 'unsafe-inline' 'unsafe-eval'",
+    "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src": "'self' https://fonts.gstatic.com",
+    "img-src": "'self' data: https:",
+    "media-src": "'self'",
+    "object-src": "'none'",
+    "base-uri": "'self'",
+    "frame-ancestors": "'none'"
+  },
+  "capture_links": "new-client",
+  "handle_links": "preferred",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone", 
+    "minimal-ui",
+    "browser"
+  ],
+  "note_taking": {
+    "new_note_url": "/notes/new"
+  },
+  "widgets": [
+    {
+      "name": "Métriques Enterprise",
+      "short_name": "Métriques",
+      "description": "Widget des métriques principales",
+      "tag": "enterprise-metrics",
+      "template": "enterprise-metrics-template",
+      "ms_ac_template": "adaptive-card.json",
+      "data": "/api/widget-data/metrics",
+      "type": "application/json",
+      "screenshots": [
+        {
+          "src": "/widget-screenshot.png",
+          "sizes": "256x256",
+          "label": "Widget métriques"
+        }
+      ],
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ],
+      "auth": false,
+      "update": 900000
+    }
+  ],
+  "id": "enterprise-os-genesis-framework",
+  "install_sources": [
+    {
+      "platform": "webapp",
+      "url": "https://entreprise-os.vercel.app"
+    }
+  ],
+  "iarc_rating_id": "",
+  "offline_enabled": true,
+  "offline_capable": true,
+  "background_sync": ["sync-data", "sync-analytics", "sync-workflows"],
+  "gcm_sender_id": "103953800507",
+  "serviceworker": {
+    "src": "/sw.js",
+    "scope": "/",
+    "update_via_cache": "none"
+  }
+} 
