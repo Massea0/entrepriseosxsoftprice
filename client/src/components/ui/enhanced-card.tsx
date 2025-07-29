@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
 import { ReactNode, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { animations, transitions } from '@/lib/animations';
 
 interface EnhancedCardProps {
   children: ReactNode;
@@ -33,85 +33,66 @@ export function EnhancedCard({
 }: EnhancedCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 20, 
-      scale: 0.95 
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1,
-      transition: {
-        delay,
-        duration: 0.5,
-        ease: [0.4, 0, 0.2, 1]
-      }
-    },
-    hover: {
-      y: hoverEffect === 'lift' ? -8 : 0,
-      scale: hoverEffect === 'scale' ? 1.05 : 1,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 25
-      }
-    }
-  };
-
-  const glowVariants = {
-    hidden: { opacity: 0 },
-    hover: { 
-      opacity: 1,
-      transition: { duration: 0.3 }
-    }
+  const hoverClasses = {
+    lift: 'hover:-translate-y-2',
+    scale: 'hover:scale-105',
+    glow: '',
+    shimmer: '',
+    pulse: ''
   };
 
   return (
-    <motion.div
+    <div
       className={cn(
         "relative overflow-hidden rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm",
+        animations.scaleIn,
+        transitions.smooth,
         interactive && "cursor-pointer",
+        interactive && hoverClasses[hoverEffect],
         floating && "shadow-2xl",
         gradient && `bg-gradient-to-br ${gradient}`,
         className
       )}
-      variants={cardVariants}
-      initial="hidden"
-      animate="visible"
-      whileHover={interactive ? "hover" : undefined}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      style={{ animationDelay: `${delay}ms` }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Glow Effect */}
       {hoverEffect === 'glow' && (
-        <motion.div
-          className="absolute -inset-0.5 rounded-xl opacity-0"
+        <div
+          className={cn(
+            "absolute -inset-0.5 rounded-xl",
+            transitions.default,
+            isHovered ? "opacity-100" : "opacity-0"
+          )}
           style={{
             background: `radial-gradient(circle at center, ${glowColors[glowColor]}, transparent 70%)`,
             filter: 'blur(8px)'
           }}
-          variants={glowVariants}
-          animate={isHovered ? 'hover' : 'hidden'}
         />
       )}
 
       {/* Shimmer Effect */}
-      {hoverEffect === 'shimmer' && (
-        <motion.div
-          className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent"
-          animate={isHovered ? { x: '200%' } : { x: '-100%' }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
+      {hoverEffect === 'shimmer' && isHovered && (
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[shimmer_0.6s_ease-in-out]"
+          style={{
+            animation: 'shimmer 0.6s ease-in-out',
+            '@keyframes shimmer': {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(200%)' }
+            }
+          } as React.CSSProperties}
         />
       )}
 
       {/* Pulse Effect Background */}
-      {hoverEffect === 'pulse' && (
-        <motion.div
-          className="absolute inset-0 rounded-xl bg-primary/5"
-          animate={isHovered ? { opacity: [0.1, 0.3, 0.1] } : { opacity: 0 }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+      {hoverEffect === 'pulse' && isHovered && (
+        <div
+          className={cn(
+            "absolute inset-0 rounded-xl bg-primary/5",
+            animations.pulse
+          )}
         />
       )}
 
@@ -122,6 +103,6 @@ export function EnhancedCard({
 
       {/* Bottom Gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent opacity-50" />
-    </motion.div>
+    </div>
   );
 }

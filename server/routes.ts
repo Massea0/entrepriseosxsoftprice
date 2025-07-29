@@ -13,6 +13,9 @@ import {
   insertAiAgentActionSchema 
 } from "@shared/schema";
 import { z } from "zod";
+import { voiceRecognitionService } from "./services/ai/voice-recognition-service";
+import { predictionEngine } from "./services/ai/prediction-engine";
+import { alertService } from "./services/ai/real-time-alerts";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Authentication routes
@@ -1330,6 +1333,137 @@ LIMIT 10;`,
       });
     } catch (error) {
       res.status(500).json({ error: 'Failed to get metrics' });
+    }
+  });
+
+  // Voice Recognition Routes
+  app.post('/api/ai/voice/start', async (req, res) => {
+    try {
+      const { sessionId, language, provider } = req.body;
+      
+      if (language) {
+        voiceRecognitionService.setLanguage(language);
+      }
+      
+      await voiceRecognitionService.startRecognition(sessionId || `session_${Date.now()}`);
+      
+      res.json({ 
+        success: true, 
+        sessionId, 
+        status: 'recording',
+        stats: voiceRecognitionService.getUsageStats()
+      });
+    } catch (error) {
+      console.error('Voice recognition error:', error);
+      res.status(500).json({ error: 'Failed to start voice recognition' });
+    }
+  });
+
+  app.post('/api/ai/voice/stop', async (req, res) => {
+    try {
+      const { sessionId } = req.body;
+      await voiceRecognitionService.stopRecognition(sessionId);
+      
+      res.json({ success: true, status: 'stopped' });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to stop voice recognition' });
+    }
+  });
+
+  app.get('/api/ai/voice/stats', async (req, res) => {
+    try {
+      res.json(voiceRecognitionService.getUsageStats());
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get voice stats' });
+    }
+  });
+
+  // Prediction Engine Routes
+  app.post('/api/ai/predictions/generate', async (req, res) => {
+    try {
+      const { type, targetDate, parameters, historicalData } = req.body;
+      
+      const prediction = await predictionEngine.generatePrediction({
+        type,
+        targetDate: new Date(targetDate),
+        parameters,
+        historicalData
+      });
+      
+      res.json(prediction);
+    } catch (error) {
+      console.error('Prediction error:', error);
+      res.status(500).json({ error: 'Failed to generate prediction' });
+    }
+  });
+
+  app.get('/api/ai/predictions/history', async (req, res) => {
+    try {
+      const { type, limit = 10 } = req.query;
+      const history = await predictionEngine.getPredictionHistory(
+        type as string,
+        parseInt(limit as string)
+      );
+      
+      res.json(history);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get prediction history' });
+    }
+  });
+
+  app.get('/api/ai/predictions/models', async (req, res) => {
+    try {
+      const models = ['sales', 'performance', 'risk', 'workload', 'budget'].map(type => ({
+        type,
+        info: predictionEngine.getModelInfo(type)
+      }));
+      
+      res.json(models);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get model info' });
+    }
+  });
+
+  // Real-time Alerts Routes
+  app.get('/api/ai/alerts/active', async (req, res) => {
+    try {
+      const { type } = req.query;
+      const alerts = alertService.getActiveAlerts(type as any);
+      
+      res.json(alerts);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get active alerts' });
+    }
+  });
+
+  app.post('/api/ai/alerts/resolve', async (req, res) => {
+    try {
+      const { alertId } = req.body;
+      alertService.resolveAlert(alertId);
+      
+      res.json({ success: true, alertId });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to resolve alert' });
+    }
+  });
+
+  app.get('/api/ai/alerts/stats', async (req, res) => {
+    try {
+      const stats = alertService.getAlertStats();
+      res.json(stats);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get alert stats' });
+    }
+  });
+
+  app.post('/api/ai/alerts/trigger', async (req, res) => {
+    try {
+      const alert = req.body;
+      alertService.triggerAlert(alert);
+      
+      res.json({ success: true, alert });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to trigger alert' });
     }
   });
 

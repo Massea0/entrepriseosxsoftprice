@@ -1,8 +1,8 @@
 import * as React from "react"
-import { motion, HTMLMotionProps } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { transitions, animations } from "@/lib/animations"
 
-interface GlassButtonProps extends Omit<HTMLMotionProps<"button">, "animate" | "initial" | "transition" | "children"> {
+interface GlassButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "primary" | "gradient" | "neon"
   size?: "sm" | "md" | "lg"
   children?: React.ReactNode
@@ -24,42 +24,33 @@ const GlassButton = React.forwardRef<HTMLButtonElement, GlassButtonProps>(
     }
 
     return (
-      <motion.button
+      <button
         ref={ref}
         className={cn(
           "relative rounded-lg font-medium",
           "backdrop-blur-xl backdrop-saturate-150",
           "border border-white/20 dark:border-gray-700/20",
-          "shadow-lg transition-all duration-300",
+          "shadow-lg",
+          transitions.smooth,
+          "hover:scale-105 active:scale-95",
           "disabled:opacity-50 disabled:cursor-not-allowed",
           variants[variant],
           sizes[size],
           className
         )}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 17
-        }}
         {...props}
       >
         {variant === "neon" && (
-          <motion.div
-            className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 opacity-0"
-            animate={{
-              opacity: [0, 0.5, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+          <div
+            className={cn(
+              "absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500",
+              animations.pulse,
+              "opacity-50"
+            )}
           />
         )}
         <span className="relative z-10">{children}</span>
-      </motion.button>
+      </button>
     )
   }
 )
