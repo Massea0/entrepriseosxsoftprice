@@ -1,0 +1,132 @@
+{
+  "timestamp": "2025-07-29T22:53:52.972Z",
+  "supabaseUrl": "https://qlqgyrfqiflnqknbtycw.supabase.co",
+  "tables": [],
+  "edgeFunctions": [
+    "ai-business-analyzer",
+    "ai-predictive-analytics",
+    "ai-intelligent-alerts",
+    "ai-workflow-orchestrator",
+    "ai-sales-agent",
+    "ai-support-assistant",
+    "ai-work-organizer",
+    "ai-recommendations-engine",
+    "ai-performance-optimizer",
+    "ai-financial-predictions",
+    "enhance-task",
+    "bulk-create-tasks",
+    "project-planner-ai",
+    "task-assigner-ai",
+    "smart-task-assignment",
+    "voice-ai-assistant",
+    "gemini-live-voice",
+    "gemini-live-voice-enhanced",
+    "elevenlabs-voice",
+    "send-notification-email",
+    "send-sms-notification",
+    "third-party-integrations",
+    "gdpr-compliance",
+    "setup-test-data",
+    "mobile-api",
+    "projects-api",
+    "tasks-api",
+    "task-mermaid-generator"
+  ],
+  "errors": [
+    {
+      "table": "companies",
+      "error": ""
+    },
+    {
+      "table": "invoices",
+      "error": ""
+    },
+    {
+      "table": "devis",
+      "error": ""
+    },
+    {
+      "table": "contracts",
+      "error": ""
+    },
+    {
+      "table": "projects",
+      "error": ""
+    },
+    {
+      "table": "tasks",
+      "error": ""
+    },
+    {
+      "table": "employees",
+      "error": ""
+    },
+    {
+      "table": "departments",
+      "error": ""
+    },
+    {
+      "table": "positions",
+      "error": ""
+    },
+    {
+      "table": "leave_types",
+      "error": ""
+    },
+    {
+      "table": "leave_requests",
+      "error": ""
+    },
+    {
+      "table": "leave_balances",
+      "error": ""
+    },
+    {
+      "table": "users",
+      "error": ""
+    },
+    {
+      "table": "profiles",
+      "error": ""
+    },
+    {
+      "table": "ai_agents",
+      "error": ""
+    },
+    {
+      "table": "ai_agent_actions",
+      "error": ""
+    },
+    {
+      "table": "ai_agent_memory",
+      "error": ""
+    },
+    {
+      "table": "ai_insights",
+      "error": ""
+    },
+    {
+      "table": "ai_predictions",
+      "error": ""
+    },
+    {
+      "table": "workflows",
+      "error": ""
+    },
+    {
+      "table": "notifications",
+      "error": ""
+    },
+    {
+      "table": "integrations",
+      "error": ""
+    }
+  ],
+  "summary": {
+    "existingTables": 0,
+    "missingTables": 0,
+    "totalRecords": 0,
+    "edgeFunctions": 28,
+    "errors": 22
+  }
+}
