@@ -25,8 +25,173 @@ import { Avatar, AvatarGroup, AvatarWithText } from '@/components/ui/avatar'
 import { Container, Grid, Stack, Divider } from '@/components/layout'
 import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2, Home, Users, Settings, BarChart3, Package, ShoppingCart, Info, AlertCircle, Zap, Star, TrendingUp, Activity } from 'lucide-react'
 import '@/styles/globals.css'
+import { 
+  Table, 
+  TableContainer, 
+  TableHeader, 
+  TableBody, 
+  TableFooter,
+  TableRow, 
+  TableHead, 
+  TableCell,
+  DataTable,
+  type ColumnDefinition 
+} from '@/components/ui/table'
+
+// Sample data for tables
+interface Employee {
+  id: number
+  name: string
+  email: string
+  role: string
+  department: string
+  status: 'active' | 'inactive' | 'pending'
+  salary: number
+  joinDate: string
+  avatar?: string
+}
+
+const sampleEmployees: Employee[] = [
+  {
+    id: 1,
+    name: 'Alice Martin',
+    email: 'alice.martin@company.com',
+    role: 'Senior Developer',
+    department: 'Engineering',
+    status: 'active',
+    salary: 75000,
+    joinDate: '2023-01-15',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=150'
+  },
+  {
+    id: 2,
+    name: 'Bob Johnson',
+    email: 'bob.johnson@company.com',
+    role: 'Product Manager',
+    department: 'Product',
+    status: 'active',
+    salary: 85000,
+    joinDate: '2022-08-22'
+  },
+  {
+    id: 3,
+    name: 'Carol Davis',
+    email: 'carol.davis@company.com',
+    role: 'UX Designer',
+    department: 'Design',
+    status: 'pending',
+    salary: 65000,
+    joinDate: '2024-01-10',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150'
+  },
+  {
+    id: 4,
+    name: 'David Wilson',
+    email: 'david.wilson@company.com',
+    role: 'Sales Manager',
+    department: 'Sales',
+    status: 'active',
+    salary: 70000,
+    joinDate: '2021-11-05'
+  },
+  {
+    id: 5,
+    name: 'Eva Brown',
+    email: 'eva.brown@company.com',
+    role: 'Marketing Specialist',
+    department: 'Marketing',
+    status: 'inactive',
+    salary: 55000,
+    joinDate: '2023-06-18',
+    avatar: 'https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?w=150'
+  }
+]
 
 const App = () => {
+  const [selectedEmployees, setSelectedEmployees] = React.useState<Set<string | number>>(new Set())
+  const [loading, setLoading] = React.useState(false)
+
+  // Column definitions for DataTable
+  const employeeColumns: ColumnDefinition<Employee>[] = [
+    {
+      key: 'name',
+      title: 'Employé',
+      sortable: true,
+      render: (value, row) => (
+        <div className="flex items-center gap-3">
+          <Avatar size="sm" name={row.name} src={row.avatar} />
+          <div>
+            <div className="font-medium">{value}</div>
+            <div className="text-sm text-muted-foreground">{row.email}</div>
+          </div>
+        </div>
+      )
+    },
+    {
+      key: 'role',
+      title: 'Poste',
+      sortable: true
+    },
+    {
+      key: 'department',
+      title: 'Département',
+      sortable: true,
+      render: (value) => (
+        <Badge variant="outline">{value}</Badge>
+      )
+    },
+    {
+      key: 'status',
+      title: 'Statut',
+      sortable: true,
+      render: (value) => (
+        <StatusBadge
+          status={value === 'active' ? 'online' : value === 'pending' ? 'away' : 'offline'}
+          variant={value === 'active' ? 'success' : value === 'pending' ? 'warning' : 'secondary'}
+        >
+          {value === 'active' ? 'Actif' : value === 'pending' ? 'En attente' : 'Inactif'}
+        </StatusBadge>
+      )
+    },
+    {
+      key: 'salary',
+      title: 'Salaire',
+      sortable: true,
+      align: 'right',
+      render: (value) => `${value.toLocaleString('fr-FR')} €`
+    },
+    {
+      key: 'joinDate',
+      title: 'Date d\'embauche',
+      sortable: true,
+      render: (value) => new Date(value).toLocaleDateString('fr-FR')
+    },
+    {
+      key: 'actions',
+      title: 'Actions',
+      align: 'center',
+      width: 120,
+      render: (_, row) => (
+        <div className="flex items-center gap-1">
+          <Button variant="ghost" size="sm">
+            <EyeIcon className="h-4 w-4" />
+          </Button>
+          <Button variant="ghost" size="sm">
+            <EditIcon className="h-4 w-4" />
+          </Button>
+          <Button variant="ghost" size="sm">
+            <TrashIcon className="h-4 w-4" />
+          </Button>
+        </div>
+      )
+    }
+  ]
+
+  const simulateLoading = () => {
+    setLoading(true)
+    setTimeout(() => setLoading(false), 2000)
+  }
+
   return (
     <ThemeProvider>
       <ToasterWithInit position="bottom-right" duration={5000}>
@@ -1347,6 +1512,195 @@ const App = () => {
                     </Card>
                   </Grid>
                 </div>
+              </section>
+
+              {/* Data Tables Section */}
+              <section className="space-y-8">
+                <div className="space-y-2">
+                  <Typography variant="h2">Tables & DataTables</Typography>
+                  <Typography variant="body2" color="muted">
+                    Composants pour l'affichage de données tabulaires avec tri, filtres et sélection
+                  </Typography>
+                </div>
+
+                {/* Basic Table */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Table Basique</CardTitle>
+                    <CardDescription>Table simple avec variantes et styles</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    {/* Default Table */}
+                    <div>
+                      <Typography variant="h6" className="mb-3">Table par défaut</Typography>
+                      <TableContainer>
+                        <Table hover>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Nom</TableHead>
+                              <TableHead>Email</TableHead>
+                              <TableHead>Rôle</TableHead>
+                              <TableHead align="right">Salaire</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {sampleEmployees.slice(0, 3).map((employee) => (
+                              <TableRow key={employee.id}>
+                                <TableCell className="font-medium">{employee.name}</TableCell>
+                                <TableCell>{employee.email}</TableCell>
+                                <TableCell>{employee.role}</TableCell>
+                                <TableCell align="right">{employee.salary.toLocaleString('fr-FR')} €</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                    </div>
+
+                    {/* Striped Table */}
+                    <div>
+                      <Typography variant="h6" className="mb-3">Table avec rayures</Typography>
+                      <TableContainer>
+                        <Table variant="striped" size="sm">
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Département</TableHead>
+                              <TableHead>Employés</TableHead>
+                              <TableHead align="right">Budget</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            <TableRow>
+                              <TableCell>Engineering</TableCell>
+                              <TableCell>12</TableCell>
+                              <TableCell align="right">450 000 €</TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell>Marketing</TableCell>
+                              <TableCell>8</TableCell>
+                              <TableCell align="right">200 000 €</TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell>Sales</TableCell>
+                              <TableCell>15</TableCell>
+                              <TableCell align="right">350 000 €</TableCell>
+                            </TableRow>
+                          </TableBody>
+                          <TableFooter>
+                            <TableRow>
+                              <TableCell className="font-medium">Total</TableCell>
+                              <TableCell className="font-medium">35</TableCell>
+                              <TableCell align="right" className="font-medium">1 000 000 €</TableCell>
+                            </TableRow>
+                          </TableFooter>
+                        </Table>
+                      </TableContainer>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Advanced DataTable */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>DataTable Avancée</CardTitle>
+                    <CardDescription>Table avec tri, recherche, sélection et actions</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <DataTable
+                      data={sampleEmployees}
+                      columns={employeeColumns}
+                      loading={loading}
+                      selectable
+                      selectedRows={selectedEmployees}
+                      onSelectionChange={setSelectedEmployees}
+                      filterable
+                      exportable
+                      onExport={(format) => toast.success(`Export ${format.toUpperCase()} déclenché`)}
+                      onRowClick={(row) => toast.info(`Ligne cliquée: ${row.name}`)}
+                    />
+                    
+                    <div className="flex gap-2 mt-4">
+                      <Button onClick={simulateLoading} disabled={loading}>
+                        {loading ? 'Chargement...' : 'Simuler chargement'}
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        onClick={() => setSelectedEmployees(new Set())}
+                        disabled={selectedEmployees.size === 0}
+                      >
+                        Désélectionner tout
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Empty State DataTable */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>État vide</CardTitle>
+                    <CardDescription>DataTable sans données</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <DataTable
+                      data={[]}
+                      columns={employeeColumns.slice(0, 4)}
+                      filterable
+                      empty={
+                        <div className="space-y-2">
+                          <UsersIcon className="h-8 w-8 mx-auto opacity-50" />
+                          <div className="text-sm">Aucun employé trouvé</div>
+                          <Button size="sm" className="mt-2">Ajouter un employé</Button>
+                        </div>
+                      }
+                    />
+                  </CardContent>
+                </Card>
+
+                {/* Compact DataTable */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Table Compacte</CardTitle>
+                    <CardDescription>Version condensée pour plus de densité</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <DataTable
+                      data={sampleEmployees}
+                      columns={[
+                        {
+                          key: 'name',
+                          title: 'Nom',
+                          sortable: true,
+                          render: (value, row) => (
+                            <div className="flex items-center gap-2">
+                              <Avatar size="xs" name={row.name} src={row.avatar} />
+                              <span className="font-medium">{value}</span>
+                            </div>
+                          )
+                        },
+                        { key: 'role', title: 'Poste', sortable: true },
+                        { 
+                          key: 'department', 
+                          title: 'Département', 
+                          render: (value) => <Badge variant="outline" className="text-xs">{value}</Badge>
+                        },
+                        { 
+                          key: 'status', 
+                          title: 'Statut',
+                          render: (value) => (
+                            <div className={`inline-flex h-2 w-2 rounded-full ${
+                              value === 'active' ? 'bg-green-500' : 
+                              value === 'pending' ? 'bg-yellow-500' : 
+                              'bg-gray-400'
+                            }`} />
+                          )
+                        }
+                      ]}
+                      size="sm"
+                      maxHeight={300}
+                      hover
+                    />
+                  </CardContent>
+                </Card>
               </section>
 
               {/* Demo Section */}
