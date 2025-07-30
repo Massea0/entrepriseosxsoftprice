@@ -35,7 +35,8 @@ import {
   WaveformVisualizer,
   StaggeredList,
   StaggeredItem,
-  MagneticButton
+  MagneticButton,
+  SimpleCard as EnhancedCard
 } from '@/components/ui/simple-animations';
 
 // Sample data for demonstrations

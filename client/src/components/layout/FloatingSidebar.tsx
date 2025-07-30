@@ -444,7 +444,7 @@ export default function FloatingSidebar() {
             const showSeparator = item.isSection && prevItem && !prevItem.isSection;
 
             return (
-              <React.Fragment key={item.path}>
+              <React.Fragment key={`${item.title}-${item.path}-${index}`}>
                 {showSeparator && (
                   <Separator className="bg-white/10 my-3" />
                                 )}
