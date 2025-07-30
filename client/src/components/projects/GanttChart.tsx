@@ -1,271 +1,291 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-// import { supabase } // Migrated from Supabase to Express API
-import { useToast } from '@/hooks/use-toast';
-import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
-import { format, differenceInDays, parseISO } from 'date-fns';
+import { useMemo } from 'react';
+import { format, eachDayOfInterval, isWithinInterval, differenceInDays } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
-interface GanttTask {
+interface Task {
   id: string;
   title: string;
-  due_date: string;
-  assignee?: {
-    first_name: string;
-    last_name: string;
-  };
-  status: string;
-  priority: string;
-}
-
-interface GanttProject {
-  id: string;
-  name: string;
   start_date: string;
   end_date: string;
-  tasks: GanttTask[];
+  status: string;
+  priority: string;
+  assigned_to?: string;
+  assignee?: {
+    full_name: string;
+    avatar_url?: string;
+  };
+  progress: number;
+  dependencies: string[];
 }
 
-const TASK_STATUSES = {
-  'todo': { label: 'À faire', color: 'bg-slate-500' },
-  'in_progress': { label: 'En cours', color: 'bg-blue-500' },
-  'review': { label: 'En révision', color: 'bg-purple-500' },
-  'done': { label: 'Terminé', color: 'bg-green-500' }
-};
+interface GanttChartProps {
+  project: {
+    start_date: string;
+    end_date: string;
+    tasks: Task[];
+  };
+}
 
-const PRIORITIES = {
-  'low': { label: 'Faible', color: 'border-blue-300' },
-  'medium': { label: 'Moyenne', color: 'border-yellow-300' },
-  'high': { label: 'Élevée', color: 'border-red-300' }
-};
+export function GanttChart({ project }: GanttChartProps) {
+  // Calculer la période du projet
+  const projectDates = useMemo(() => {
+    const start = new Date(project.start_date);
+    const end = new Date(project.end_date);
+    return eachDayOfInterval({ start, end });
+  }, [project.start_date, project.end_date]);
 
-export const GanttChart = ({ projectId }: { projectId?: string }) => {
-  const [projects, setProjects] = useState<GanttProject[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [timelineStart, setTimelineStart] = useState<Date>(new Date());
-  const [timelineEnd, setTimelineEnd] = useState<Date>(new Date());
-  const { toast } = useToast();
-
-  useEffect(() => {
-    loadGanttData();
-  }, [projectId]);
-
-  const loadGanttData = async () => {
-    try {
-      setLoading(true);
-      
-      let projectsQuery = supabase
-        .from('projects')
-        .select(`
-          *,
-          tasks(
-            *,
-            assignee:assignee_id(first_name, last_name)
-          )
-        `)
-        .not('start_date', 'is', null)
-        .not('end_date', 'is', null);
-
-      if (projectId) {
-        projectsQuery = projectsQuery.eq('id', projectId);
+  // Grouper les jours par semaine
+  const weeks = useMemo(() => {
+    const grouped: Date[][] = [];
+    let currentWeek: Date[] = [];
+    
+    projectDates.forEach((date, index) => {
+      currentWeek.push(date);
+      if (date.getDay() === 0 || index === projectDates.length - 1) {
+        grouped.push(currentWeek);
+        currentWeek = [];
       }
+    });
+    
+    return grouped;
+  }, [projectDates]);
 
-      const { data: projectsData, error } = await projectsQuery;
+  // Calculer la position et la largeur d'une tâche
+  const getTaskPosition = (task: Task) => {
+    const projectStart = new Date(project.start_date);
+    const taskStart = new Date(task.start_date);
+    const taskEnd = new Date(task.end_date);
+    
+    const startOffset = differenceInDays(taskStart, projectStart);
+    const duration = differenceInDays(taskEnd, taskStart) + 1;
+    
+    const leftPercentage = (startOffset / projectDates.length) * 100;
+    const widthPercentage = (duration / projectDates.length) * 100;
+    
+    return { left: `${leftPercentage}%`, width: `${widthPercentage}%` };
+  };
 
-      if (error) throw error;
-
-      const ganttProjects = (projectsData || []).map(project => ({
-        ...project,
-        tasks: (project.tasks || []).filter(task => 
-          task.due_date && task.status !== 'done'
-        ).map(task => ({
-          id: task.id,
-          title: task.title,
-          due_date: task.due_date,
-          assignee: task.assignee,
-          status: task.status,
-          priority: task.priority
-        }))
-      }));
-
-      setProjects(ganttProjects);
-
-      // Calculate timeline range
-      if (ganttProjects.length > 0) {
-        const allDates = ganttProjects.flatMap(p => [
-          new Date(p.start_date),
-          new Date(p.end_date),
-          ...p.tasks.map(t => new Date(t.due_date))
-        ]).filter(d => !isNaN(d.getTime()));
-
-        if (allDates.length > 0) {
-          const minDate = new Date(Math.min(...allDates.map(d => d.getTime())));
-          const maxDate = new Date(Math.max(...allDates.map(d => d.getTime())));
-          
-          // Add buffer
-          minDate.setDate(minDate.getDate() - 7);
-          maxDate.setDate(maxDate.getDate() + 7);
-          
-          setTimelineStart(minDate);
-          setTimelineEnd(maxDate);
-        }
-      }
-
-    } catch (error) {
-      console.error('Error loading Gantt data:', error);
-      toast({
-        variant: "destructive",
-        title: "Erreur",
-        description: "Erreur lors du chargement des données Gantt"
-      });
-    } finally {
-      setLoading(false);
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'todo': return 'bg-gray-200';
+      case 'in_progress': return 'bg-blue-500';
+      case 'review': return 'bg-yellow-500';
+      case 'done': return 'bg-green-500';
+      default: return 'bg-gray-200';
     }
   };
 
-  const calculatePosition = (date: string) => {
-    const taskDate = parseISO(date);
-    const totalDays = differenceInDays(timelineEnd, timelineStart);
-    const daysFromStart = differenceInDays(taskDate, timelineStart);
-    return Math.max(0, Math.min(100, (daysFromStart / totalDays) * 100));
-  };
-
-  const calculateWidth = (startDate: string, endDate: string) => {
-    const start = parseISO(startDate);
-    const end = parseISO(endDate);
-    const taskDays = differenceInDays(end, start);
-    const totalDays = differenceInDays(timelineEnd, timelineStart);
-    return Math.max(2, (taskDays / totalDays) * 100);
-  };
-
-  const generateTimelineHeaders = () => {
-    const headers = [];
-    const currentDate = new Date(timelineStart);
-    
-    while (currentDate <= timelineEnd) {
-      headers.push(new Date(currentDate));
-      currentDate.setDate(currentDate.getDate() + 7); // Weekly headers
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'low': return 'text-gray-600';
+      case 'medium': return 'text-yellow-600';
+      case 'high': return 'text-orange-600';
+      case 'critical': return 'text-red-600';
+      default: return 'text-gray-600';
     }
-    
-    return headers;
   };
-
-  if (loading) {
-    return (
-      <Card>
-        <CardContent className="flex items-center justify-center h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-        </CardContent>
-      </Card>
-    );
-  }
 
   return (
-    <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Calendar className="h-5 w-5" />
-            Diagramme de Gantt
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          {projects.length === 0 ? (
-            <div className="text-center py-12 text-muted-foreground">
-              <Calendar className="h-12 w-12 mx-auto mb-4 opacity-50" />
-              <p>Aucun projet avec dates définies</p>
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              {/* Timeline Header */}
-              <div className="mb-4">
-                <div className="flex border-b pb-2">
-                  <div className="w-64 flex-shrink-0 font-medium">Projets/Tâches</div>
-                  <div className="flex-1 relative">
-                    <div className="flex justify-between text-xs text-muted-foreground">
-                      {generateTimelineHeaders().map((date, index) => (
-                        <div key={index} className="text-center">
-                          {format(date, 'dd MMM', { locale: fr })}
-                        </div>
-                      ))}
+    <TooltipProvider>
+      <div className="overflow-x-auto">
+        <div className="min-w-[1200px]">
+          {/* Header avec les dates */}
+          <div className="border-b">
+            <div className="grid grid-cols-[300px_1fr] gap-4">
+              <div className="p-4 font-semibold">Tâches</div>
+              <div className="relative">
+                {/* Mois */}
+                <div className="flex border-b">
+                  {weeks.map((week, weekIndex) => {
+                    const firstDay = week[0];
+                    const monthName = format(firstDay, 'MMMM yyyy', { locale: fr });
+                    return (
+                      <div
+                        key={weekIndex}
+                        className="flex-1 text-center py-2 text-sm font-medium border-r"
+                        style={{ minWidth: `${(week.length / projectDates.length) * 100}%` }}
+                      >
+                        {weekIndex === 0 || firstDay.getDate() <= 7 ? monthName : ''}
+                      </div>
+                    );
+                  })}
+                </div>
+                
+                {/* Jours */}
+                <div className="flex">
+                  {projectDates.map((date, index) => (
+                    <div
+                      key={index}
+                      className={cn(
+                        "flex-1 text-center py-1 text-xs border-r",
+                        date.getDay() === 0 || date.getDay() === 6 ? "bg-gray-50" : ""
+                      )}
+                      style={{ minWidth: `${100 / projectDates.length}%` }}
+                    >
+                      {format(date, 'd')}
                     </div>
-                  </div>
+                  ))}
                 </div>
               </div>
+            </div>
+          </div>
 
-              {/* Projects and Tasks */}
-              <div className="space-y-6">
-                {projects.map((project) => (
-                  <div key={project.id} className="space-y-2">
-                    {/* Project Row */}
-                    <div className="flex items-center">
-                      <div className="w-64 flex-shrink-0">
-                        <div className="font-semibold text-sm">{project.name}</div>
-                        <div className="text-xs text-muted-foreground">
-                          {format(parseISO(project.start_date), 'dd MMM', { locale: fr })} - 
-                          {format(parseISO(project.end_date), 'dd MMM', { locale: fr })}
-                        </div>
-                      </div>
-                      <div className="flex-1 relative h-8 bg-muted/30 rounded">
+          {/* Tâches */}
+          <div className="divide-y">
+            {project.tasks.map((task, taskIndex) => {
+              const position = getTaskPosition(task);
+              
+              return (
+                <div key={task.id} className="grid grid-cols-[300px_1fr] gap-4 h-16">
+                  {/* Nom de la tâche */}
+                  <div className="p-4 flex items-center justify-between">
+                    <div className="flex items-center gap-2 flex-1">
+                      <span className={cn("text-sm font-medium truncate", getPriorityColor(task.priority))}>
+                        {task.title}
+                      </span>
+                    </div>
+                    {task.assignee && (
+                      <Avatar className="h-6 w-6">
+                        <AvatarImage src={task.assignee.avatar_url} />
+                        <AvatarFallback className="text-xs">
+                          {task.assignee.full_name.split(' ').map(n => n[0]).join('')}
+                        </AvatarFallback>
+                      </Avatar>
+                    )}
+                  </div>
+
+                  {/* Barre de Gantt */}
+                  <div className="relative p-2">
+                    {/* Grille de fond */}
+                    <div className="absolute inset-0 flex">
+                      {projectDates.map((date, index) => (
                         <div
-                          className="absolute top-1 bottom-1 bg-primary rounded"
-                          style={{
-                            left: `${calculatePosition(project.start_date)}%`,
-                            width: `${calculateWidth(project.start_date, project.end_date)}%`
-                          }}
+                          key={index}
+                          className={cn(
+                            "flex-1 border-r border-gray-100",
+                            date.getDay() === 0 || date.getDay() === 6 ? "bg-gray-50" : ""
+                          )}
+                          style={{ minWidth: `${100 / projectDates.length}%` }}
                         />
-                      </div>
+                      ))}
                     </div>
 
-                    {/* Tasks Rows */}
-                    {project.tasks.map((task) => (
-                      <div key={task.id} className="flex items-center ml-4">
-                        <div className="w-60 flex-shrink-0">
-                          <div className="flex items-center gap-2">
-                            <ArrowRight className="h-3 w-3 text-muted-foreground" />
-                            <span className="text-sm">{task.title}</span>
-                            <Badge 
-                              variant="outline" 
-                              className={`text-xs ${PRIORITIES[task.priority as keyof typeof PRIORITIES]?.color}`}
-                            >
-                              {PRIORITIES[task.priority as keyof typeof PRIORITIES]?.label}
-                            </Badge>
-                          </div>
-                          <div className="flex items-center gap-2 ml-5 mt-1">
-                            {task.assignee && (
-                              <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                                <User className="h-3 w-3" />
-                                {task.assignee.first_name} {task.assignee.last_name}
-                              </div>
-                            )}
-                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                              <Clock className="h-3 w-3" />
-                              {format(parseISO(task.due_date), 'dd MMM', { locale: fr })}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex-1 relative h-6 bg-muted/20 rounded">
+                    {/* Barre de tâche */}
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div
+                          className="absolute top-3 h-8 rounded cursor-pointer transition-all hover:shadow-md"
+                          style={{
+                            ...position,
+                            backgroundColor: task.progress === 100 ? '#10b981' : '#3b82f6',
+                            opacity: task.status === 'done' ? 0.8 : 1
+                          }}
+                        >
+                          {/* Barre de progression */}
                           <div
-                            className={`absolute top-0.5 bottom-0.5 rounded ${
-                              TASK_STATUSES[task.status as keyof typeof TASK_STATUSES]?.color || 'bg-slate-500'
-                            }`}
-                            style={{
-                              left: `${calculatePosition(task.due_date)}%`,
-                              width: `${Math.max(2, calculateWidth(task.due_date, task.due_date))}%`
-                            }}
+                            className="h-full bg-black/20 rounded transition-all"
+                            style={{ width: `${task.progress}%` }}
                           />
+                          
+                          {/* Texte sur la barre */}
+                          <div className="absolute inset-0 flex items-center px-2">
+                            <span className="text-xs text-white font-medium truncate">
+                              {task.progress}%
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <div className="space-y-1">
+                          <p className="font-semibold">{task.title}</p>
+                          <p className="text-sm">
+                            {format(new Date(task.start_date), 'dd MMM', { locale: fr })} - 
+                            {format(new Date(task.end_date), 'dd MMM', { locale: fr })}
+                          </p>
+                          <p className="text-sm">Progression: {task.progress}%</p>
+                          {task.assignee && (
+                            <p className="text-sm">Assigné à: {task.assignee.full_name}</p>
+                          )}
+                        </div>
+                      </TooltipContent>
+                    </Tooltip>
+
+                    {/* Lignes de dépendance */}
+                    {task.dependencies.map((depId) => {
+                      const depIndex = project.tasks.findIndex(t => t.id === depId);
+                      if (depIndex === -1 || depIndex >= taskIndex) return null;
+                      
+                      return (
+                        <svg
+                          key={depId}
+                          className="absolute pointer-events-none"
+                          style={{
+                            top: `-${(taskIndex - depIndex) * 64 - 20}px`,
+                            left: position.left,
+                            height: `${(taskIndex - depIndex) * 64}px`,
+                            width: '20px'
+                          }}
+                        >
+                          <path
+                            d={`M 10 0 L 10 ${(taskIndex - depIndex) * 64 - 20} L 20 ${(taskIndex - depIndex) * 64 - 20}`}
+                            stroke="#94a3b8"
+                            strokeWidth="2"
+                            fill="none"
+                            markerEnd="url(#arrowhead)"
+                          />
+                          <defs>
+                            <marker
+                              id="arrowhead"
+                              markerWidth="10"
+                              markerHeight="7"
+                              refX="9"
+                              refY="3.5"
+                              orient="auto"
+                            >
+                              <polygon
+                                points="0 0, 10 3.5, 0 7"
+                                fill="#94a3b8"
+                              />
+                            </marker>
+                          </defs>
+                        </svg>
+                      );
+                    })}
                   </div>
-                ))}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Légende */}
+          <div className="p-4 border-t bg-gray-50">
+            <div className="flex items-center gap-6 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-blue-500 rounded" />
+                <span>En cours</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-green-500 rounded" />
+                <span>Terminé</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-gray-200 rounded" />
+                <span>À faire</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg width="40" height="20">
+                  <path d="M 0 10 L 30 10" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead)" />
+                </svg>
+                <span>Dépendance</span>
               </div>
             </div>
-          )}
-        </CardContent>
-      </Card>
-    </div>
+          </div>
+        </div>
+      </div>
+    </TooltipProvider>
   );
-};
+}

@@ -1536,6 +1536,125 @@ LIMIT 10;`,
     }
   });
 
+  // =====================================
+  // ONBOARDING ROUTES
+  // =====================================
+  
+  // Submit onboarding
+  app.post('/api/onboarding/submit', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      
+      const { data, error } = await supabase
+        .from('onboarding_submissions')
+        .insert(req.body)
+        .select()
+        .single();
+      
+      if (error) throw error;
+      res.json(data);
+    } catch (error) {
+      console.error('Error submitting onboarding:', error);
+      res.status(500).json({ error: 'Failed to submit onboarding' });
+    }
+  });
+
+  // Get onboarding submission
+  app.get('/api/onboarding/submissions/:id', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      
+      const { data, error } = await supabase
+        .from('onboarding_submissions')
+        .select('*')
+        .eq('id', req.params.id)
+        .single();
+      
+      if (error) throw error;
+      if (!data) {
+        return res.status(404).json({ error: 'Submission not found' });
+      }
+      res.json(data);
+    } catch (error) {
+      console.error('Error fetching submission:', error);
+      res.status(500).json({ error: 'Failed to fetch submission' });
+    }
+  });
+
+  // Generate AI company context
+  app.post('/api/ai/generate-company-context', async (req, res) => {
+    try {
+      const { submission_id } = req.body;
+      const { supabase } = await import('./supabase-admin.mjs');
+      
+      // Get submission data
+      const { data: submission, error: fetchError } = await supabase
+        .from('onboarding_submissions')
+        .select('*')
+        .eq('id', submission_id)
+        .single();
+      
+      if (fetchError || !submission) {
+        return res.status(404).json({ error: 'Submission not found' });
+      }
+
+      // Generate AI context
+      const context = {
+        submission_id,
+        company_profile: {
+          summary: `${submission.company_name} est une entreprise du secteur ${submission.industry || 'non spécifié'} avec une approche ${submission.work_methodology || 'standard'}.`,
+          strengths: ['Innovation', 'Agilité', 'Orientation client'],
+          opportunities: ['Transformation digitale', 'Optimisation des processus', 'Expansion marché']
+        },
+        industry_insights: {
+          trends: ['Digitalisation croissante', 'Focus sur l\'expérience client', 'Automatisation des processus'],
+          challenges: ['Concurrence accrue', 'Évolution rapide des technologies', 'Adaptation aux changements']
+        },
+        recommended_features: [
+          'Gestion de projet avancée avec IA',
+          'Analytics prédictifs pour anticiper',
+          'Automatisation intelligente des workflows',
+          'Tableaux de bord personnalisés temps réel'
+        ],
+        recommended_workflows: [
+          'Workflow de validation automatisée',
+          'Pipeline de vente intelligent',
+          'Processus de recrutement optimisé'
+        ],
+        ai_strategy: {
+          phase1: 'Automatisation des tâches répétitives',
+          phase2: 'Analytics et insights prédictifs',
+          phase3: 'IA conversationnelle et assistance'
+        },
+        implementation_roadmap: [
+          { phase: 1, duration: '1-2 mois', focus: 'Setup initial et formation' },
+          { phase: 2, duration: '2-3 mois', focus: 'Déploiement modules core' },
+          { phase: 3, duration: '3-6 mois', focus: 'Optimisation et IA avancée' }
+        ],
+        success_metrics: [
+          'Réduction du temps de traitement de 40%',
+          'Augmentation de la productivité de 30%',
+          'ROI positif sous 6 mois'
+        ],
+        operational_context: `Contexte opérationnel adapté pour ${submission.company_size || 'PME'} avec focus sur ${submission.primary_goals?.[0] || 'efficacité'}`,
+        cultural_context: `Culture basée sur ${submission.company_values?.join(', ') || 'innovation et excellence'}`,
+        technical_context: `Stack technique actuel : ${submission.current_tools?.join(', ') || 'à définir'}`
+      };
+
+      // Save AI context
+      const { error: saveError } = await supabase
+        .from('ai_company_contexts')
+        .insert(context);
+
+      if (saveError) throw saveError;
+
+      res.json({ success: true, context });
+    } catch (error) {
+      console.error('Error generating AI context:', error);
+      res.status(500).json({ error: 'Failed to generate AI context' });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

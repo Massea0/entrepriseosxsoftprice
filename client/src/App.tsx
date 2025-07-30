@@ -98,6 +98,13 @@ const AIPredictions = lazy(() => import("./pages/ai/predictions"));
 const AIAutoAssign = lazy(() => import("./pages/ai/auto-assign"));
 const AIVoice = lazy(() => import("./pages/ai/voice"));
 
+// Onboarding pages
+const OnboardingFlow = lazy(() => import("./pages/onboarding/OnboardingFlow"));
+const OnboardingSuccess = lazy(() => import("./pages/onboarding/OnboardingSuccess"));
+
+// Landing page
+const Landing = lazy(() => import("./pages/Landing"));
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -113,8 +120,31 @@ function App() {
                 <>
                   <Routes>
                 {/* Public routes */}
+                <Route path="/landing" element={
+                  <Suspense fallback={<div className="flex items-center justify-center h-screen">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                  </div>}>
+                    <Landing />
+                  </Suspense>
+                } />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                
+                {/* Onboarding routes (public) */}
+                <Route path="/onboarding" element={
+                  <Suspense fallback={<div className="flex items-center justify-center h-screen">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                  </div>}>
+                    <OnboardingFlow />
+                  </Suspense>
+                } />
+                <Route path="/onboarding/success/:id" element={
+                  <Suspense fallback={<div className="flex items-center justify-center h-screen">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                  </div>}>
+                    <OnboardingSuccess />
+                  </Suspense>
+                } />
                 
                 {/* Protected routes with layout */}
                 <Route path="/" element={
