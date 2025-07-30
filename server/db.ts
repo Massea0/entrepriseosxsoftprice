@@ -20,6 +20,16 @@ export const supabase = createClient(
     auth: {
       persistSession: false,
       autoRefreshToken: false
+    },
+    realtime: {
+      params: {
+        eventsPerSecond: 0
+      }
+    },
+    global: {
+      headers: {
+        'X-Client-Info': 'enterprise-os/1.0'
+      }
     }
   }
 );

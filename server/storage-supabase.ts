@@ -149,13 +149,55 @@ export class SupabaseStorage implements IStorage {
   }
 
   async validateUser(email: string, password: string): Promise<User | null> {
-    const user = await this.getUserByEmail(email);
-    if (!user) return null;
-    
-    const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) return null;
-    
-    return user;
+    try {
+      // Use Supabase Auth for validation
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+      
+      if (error || !data.user) {
+        console.error("Auth error:", error);
+        return null;
+      }
+      
+      // Get user profile from profiles table
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', data.user.id)
+        .single();
+      
+      if (profileError) {
+        console.error("Profile error:", profileError);
+        // Create a user object from auth data if profile doesn't exist
+        return {
+          id: data.user.id,
+          email: data.user.email!,
+          password: '', // Don't expose password
+          firstName: data.user.user_metadata?.first_name || '',
+          lastName: data.user.user_metadata?.last_name || '',
+          role: data.user.app_metadata?.role || 'client',
+          isActive: data.user.app_metadata?.is_active ?? true,
+          createdAt: new Date(data.user.created_at)
+        } as User;
+      }
+      
+      // Return user data from profile
+      return {
+        id: profile.id,
+        email: data.user.email!,
+        password: '', // Don't expose password
+        firstName: profile.first_name || data.user.user_metadata?.first_name || '',
+        lastName: profile.last_name || data.user.user_metadata?.last_name || '',
+        role: profile.role || data.user.app_metadata?.role || 'client',
+        isActive: profile.is_active ?? data.user.app_metadata?.is_active ?? true,
+        createdAt: profile.created_at ? new Date(profile.created_at) : new Date(data.user.created_at)
+      } as User;
+    } catch (error) {
+      console.error("Validate user error:", error);
+      return null;
+    }
   }
 
   // Company methods
