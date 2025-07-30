@@ -215,18 +215,7 @@ const generateCandidates = (jobId, jobTitle, count) => {
 
 async function seedData() {
   try {
-    // First check if tables exist
-    console.log(chalk.yellow('Checking tables...'));
-    const { data: tables, error: tableError } = await supabase
-      .from('job_postings')
-      .select('id')
-      .limit(1);
-      
-    if (tableError) {
-      console.error(chalk.red('Table check error:'), tableError.message);
-    }
-
-    // Insert job postings
+    // Insert job postings directly (tables exist with service role key)
     console.log(chalk.yellow('Creating job postings...'));
     const { data: jobs, error: jobError } = await supabase
       .from('job_postings')
@@ -235,10 +224,9 @@ async function seedData() {
 
     if (jobError) {
       console.error(chalk.red('Error creating job postings:'));
-      console.error('Error details:', jobError);
-      console.error('Error message:', jobError?.message);
-      console.error('Error code:', jobError?.code);
-      console.error('Error details:', jobError?.details);
+      console.error(chalk.red('Message:'), jobError.message || 'Unknown error');
+      console.error(chalk.red('Code:'), jobError.code || 'No code');
+      console.error(chalk.red('Details:'), JSON.stringify(jobError.details || jobError, null, 2));
       return;
     }
 
@@ -260,7 +248,8 @@ async function seedData() {
         .insert(candidates);
 
       if (appError) {
-        console.error(chalk.red(`Error creating applications for ${job.title}:`), appError);
+        console.error(chalk.red(`Error creating applications for ${job.title}:`));
+        console.error(chalk.red('Details:'), appError.message || JSON.stringify(appError));
         continue;
       }
 
