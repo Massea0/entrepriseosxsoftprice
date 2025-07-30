@@ -31,7 +31,6 @@ import {
   Mic,
   Workflow,
   Shield,
-  Link,
   DollarSign,
   FolderKanban,
   FileCheck
