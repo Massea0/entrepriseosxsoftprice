@@ -521,7 +521,7 @@ export default function TaskComments({ taskId, currentUserId }: TaskCommentsProp
           <CardTitle>Commentaires</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="animate-pulse space-y-4">
+          <div className=" space-y-4">
             {[1, 2, 3].map(i => (
               <div key={i} className="flex gap-3">
                 <div className="h-8 w-8 bg-muted rounded-full" />

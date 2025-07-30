@@ -103,7 +103,7 @@ export default function LoginPage() {
               className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
             >
               {isLoading ? (
-                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                <Loader2 className="h-4 w-4  mr-2" />
               ) : (
                 <LogIn className="h-4 w-4 mr-2" />
               )}

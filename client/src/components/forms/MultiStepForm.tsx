@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
@@ -78,7 +77,7 @@ export function MultiStepForm({
                 onClick={() => goToStep(index)}
                 disabled={index > Math.max(...completedSteps) + 1}
                 className={cn(
-                  "flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors duration-200",
+                  "flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors",
                   index === currentStep
                     ? "bg-primary border-primary text-primary-foreground"
                     : completedSteps.has(index)
@@ -95,7 +94,7 @@ export function MultiStepForm({
               {index < steps.length - 1 && (
                 <div
                   className={cn(
-                    "flex-1 h-0.5 mx-2 transition-colors duration-200",
+                    "flex-1 h-0.5 mx-2 transition-colors",
                     completedSteps.has(index)
                       ? "bg-primary"
                       : "bg-muted-foreground/30"
@@ -116,22 +115,13 @@ export function MultiStepForm({
       </div>
 
       {/* Step Content */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentStep}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.2 }}
-          className="min-h-[400px]"
-        >
-          <StepComponent
-            data={formData}
-            onChange={handleStepData}
-            onNext={handleNext}
-          />
-        </motion.div>
-      </AnimatePresence>
+      <div className="min-h-[400px]">
+        <StepComponent
+          data={formData}
+          onChange={handleStepData}
+          onNext={handleNext}
+        />
+      </div>
 
       {/* Navigation */}
       <div className="flex items-center justify-between mt-8 pt-6 border-t">

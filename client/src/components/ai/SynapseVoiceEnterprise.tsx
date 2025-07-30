@@ -75,7 +75,7 @@ export default function SynapseVoiceEnterprise() {
         </div>
         <div className="flex gap-2">
           {isGeminiSpeaking && (
-            <Badge variant="default" className="animate-pulse">
+            <Badge variant="default" >
               <Volume2 className="mr-1 h-3 w-3" />
               Synapse Parle...
             </Badge>

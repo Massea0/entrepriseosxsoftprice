@@ -448,7 +448,7 @@ export const ConventionalOrgChart: React.FC = () => {
       <CardContent>
         {loading ? (
           <div className="flex items-center justify-center p-12">
-            <div className="animate-pulse flex flex-col items-center gap-4">
+            <div className=" flex flex-col items-center gap-4">
               <Building2 className="h-12 w-12 text-gray-400" />
               <div className="text-gray-500">Chargement de l'organigramme...</div>
             </div>

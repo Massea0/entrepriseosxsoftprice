@@ -254,8 +254,8 @@ export default function ClientSupport() {
       <div className="relative z-10 max-w-7xl mx-auto p-6 space-y-8">
         
         {/* Hero Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-2xl">
             <div className="p-8">
               <div className="flex items-center gap-4">
                 <LiquidContainer className="p-3 bg-white/10 backdrop-blur-sm rounded-xl">
@@ -299,8 +299,8 @@ export default function ClientSupport() {
         {/* Actions Rapides */}
         <StaggeredList className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StaggeredItem index={0}>
-            <HoverZone effect="lift">
-              <EnhancedCard variant="glow" className="p-6 text-center">
+            <HoverZone>
+              <EnhancedCard  className="p-6 text-center">
                 <LiquidContainer className="h-16 w-16 mx-auto mb-4">
                   <MessageSquare className="h-10 w-10 text-blue-600" />
                 </LiquidContainer>
@@ -316,8 +316,8 @@ export default function ClientSupport() {
           </StaggeredItem>
 
           <StaggeredItem index={1}>
-            <HoverZone effect="lift">
-              <EnhancedCard variant="glow" className="p-6 text-center">
+            <HoverZone>
+              <EnhancedCard  className="p-6 text-center">
                 <LiquidContainer className="h-16 w-16 mx-auto mb-4">
                   <Phone className="h-10 w-10 text-green-600" />
                 </LiquidContainer>
@@ -333,8 +333,8 @@ export default function ClientSupport() {
         </StaggeredItem>
 
           <StaggeredItem index={2}>
-            <HoverZone effect="lift">
-              <EnhancedCard variant="glow" className="p-6 text-center">
+            <HoverZone>
+              <EnhancedCard  className="p-6 text-center">
                 <LiquidContainer className="h-16 w-16 mx-auto mb-4">
                   <Video className="h-10 w-10 text-purple-600" />
                 </LiquidContainer>

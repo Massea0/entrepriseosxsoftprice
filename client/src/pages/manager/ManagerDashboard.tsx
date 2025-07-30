@@ -197,8 +197,8 @@ export default function ManagerDashboard() {
           className="space-y-8"
         >
           {/* Header Révolutionnaire */}
-          <HoverZone effect="glow">
-            <EnhancedCard variant="shimmer" className="bg-gradient-to-br from-indigo-600 to-purple-700 text-white shadow-2xl">
+          <HoverZone>
+            <EnhancedCard  className="bg-gradient-to-br from-indigo-600 to-purple-700 text-white shadow-2xl">
               <div className="p-8">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-6">
@@ -252,8 +252,8 @@ export default function ManagerDashboard() {
           </StaggeredList>
 
           {/* Actions rapides avec HoverZone */}
-          <HoverZone effect="lift">
-            <EnhancedCard variant="glow" className="p-6">
+          <HoverZone>
+            <EnhancedCard  className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -263,7 +263,7 @@ export default function ManagerDashboard() {
                     Accès direct aux fonctionnalités clés
                   </p>
                 </div>
-                <Activity className="h-6 w-6 text-indigo-600 animate-pulse" />
+                <Activity className="h-6 w-6 text-indigo-600 " />
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -298,7 +298,7 @@ export default function ManagerDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {secondaryMetrics.map((metric, index) => (
               <HoverZone key={index} effect="rotate">
-                <EnhancedCard variant="lift" className="p-6">
+                <EnhancedCard  className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -323,8 +323,8 @@ export default function ManagerDashboard() {
           </div>
 
           {/* Section Performance avec graphique animé */}
-          <HoverZone effect="glow">
-            <EnhancedCard variant="shimmer" className="p-6">
+          <HoverZone>
+            <EnhancedCard  className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white">

@@ -378,7 +378,7 @@ const SpaceShipOnboarding: React.FC = () => {
                       disabled={!data.missionControl.website || isAnalyzing}
                       variant="outline"
                     >
-                      {isAnalyzing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Globe className="h-4 w-4" />}
+                      {isAnalyzing ? <Loader2 className="h-4 w-4 " /> : <Globe className="h-4 w-4" />}
                       Analyser
                     </Button>
                   </div>
@@ -400,7 +400,7 @@ const SpaceShipOnboarding: React.FC = () => {
                       disabled={!data.missionControl.linkedinUrl || isAnalyzing}
                       variant="outline"
                     >
-                      {isAnalyzing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Link2 className="h-4 w-4" />}
+                      {isAnalyzing ? <Loader2 className="h-4 w-4 " /> : <Link2 className="h-4 w-4" />}
                       Analyser
                     </Button>
                   </div>
@@ -927,7 +927,7 @@ const SpaceShipOnboarding: React.FC = () => {
         {[...Array(100)].map((_, i) => (
           <div
             key={i}
-            className="absolute bg-white rounded-full animate-pulse"
+            className="absolute bg-white rounded-full "
             style={{
               width: Math.random() * 3 + 'px',
               height: Math.random() * 3 + 'px',

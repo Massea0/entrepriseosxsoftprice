@@ -358,7 +358,7 @@ const SalesAgent: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div>
         <span className="ml-2">Initialisation SalesAgent...</span>
       </div>
     );
@@ -483,7 +483,7 @@ const SalesAgent: React.FC = () => {
                           disabled={processingLead === lead.id}
                         >
                           {processingLead === lead.id ? (
-                            <Clock className="w-4 h-4 animate-spin" />
+                            <Clock className="w-4 h-4 " />
                           ) : (
                             <Brain className="w-4 h-4" />
                           )}
@@ -497,7 +497,7 @@ const SalesAgent: React.FC = () => {
                           disabled={processingLead === lead.id}
                         >
                           {processingLead === lead.id ? (
-                            <Clock className="w-4 h-4 animate-spin" />
+                            <Clock className="w-4 h-4 " />
                           ) : (
                             <FileText className="w-4 h-4" />
                           )}
@@ -512,7 +512,7 @@ const SalesAgent: React.FC = () => {
                           disabled={processingLead === lead.id}
                         >
                           {processingLead === lead.id ? (
-                            <Clock className="w-4 h-4 animate-spin" />
+                            <Clock className="w-4 h-4 " />
                           ) : (
                             <MessageSquare className="w-4 h-4" />
                           )}

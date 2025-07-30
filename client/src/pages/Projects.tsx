@@ -305,7 +305,7 @@ export default function Projects() {
     return (
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+          <div className=" rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Chargement des projets...</p>
         </div>
       </div>
@@ -321,8 +321,8 @@ export default function Projects() {
 
       <div className="relative z-10 p-6 space-y-8">
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-2xl">
             <CardHeader className="relative">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-4">
@@ -376,7 +376,7 @@ export default function Projects() {
         </StaggeredList>
 
         {/* Filtres et Recherche Révolutionnaires */}
-        <HoverZone effect="lift">
+        <HoverZone>
           <EnhancedCard variant="glass">
             <CardContent className="flex flex-col lg:flex-row gap-4 items-center justify-between p-6">
               <div className="flex-1 max-w-md">
@@ -437,7 +437,7 @@ export default function Projects() {
         </HoverZone>
 
         {/* Liste des Projets Révolutionnaire */}
-        <HoverZone effect="glow">
+        <HoverZone>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="all">Tous</TabsTrigger>
@@ -525,7 +525,7 @@ export default function Projects() {
               </StaggeredList>
 
               {filteredProjects.length === 0 && (
-                <HoverZone effect="pulse">
+                <HoverZone>
                   <EnhancedCard variant="glass" className="text-center py-12">
                     <CardContent>
                       <Target className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
@@ -544,8 +544,8 @@ export default function Projects() {
         </HoverZone>
 
         {/* Actions Rapides Finales */}
-        <HoverZone effect="pulse">
-          <EnhancedCard variant="lift" className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950">
             <CardHeader>
               <TypewriterText
                 text="⚡ Actions Rapides Projets"

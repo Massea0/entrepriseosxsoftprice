@@ -326,12 +326,12 @@ export const VoiceInterface: React.FC<VoiceInterfaceProps> = ({
           <div className="flex items-center justify-center mb-4">
             {isProcessing ? (
               <div className="flex items-center gap-2 text-blue-600">
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="h-4 w-4 " />
                 <span className="text-sm">Traitement IA...</span>
               </div>
             ) : isListening ? (
               <div className="flex items-center gap-2 text-green-600">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <div className="w-2 h-2 bg-green-500 rounded-full " />
                 <span className="text-sm">À l'écoute...</span>
               </div>
             ) : isSpeaking ? (

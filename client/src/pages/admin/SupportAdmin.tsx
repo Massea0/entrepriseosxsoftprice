@@ -217,7 +217,7 @@ export default function SupportAdmin() {
             <Brain className="h-4 w-4 mr-2" />
             Analyse IA Globale
           </Button>
-          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 animate-pulse">
+          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 ">
             <Activity className="h-3 w-3 mr-1" />
             Système Actif
           </Badge>
@@ -319,7 +319,7 @@ export default function SupportAdmin() {
             <CardContent>
               {loading ? (
                 <div className="text-center py-8">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                  <div className=" rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
                 </div>
               ) : filteredTickets.length === 0 ? (
                 <div className="text-center py-8 text-muted-foreground">

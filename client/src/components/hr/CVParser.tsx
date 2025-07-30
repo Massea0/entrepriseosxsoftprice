@@ -297,7 +297,7 @@ const CVParser: React.FC = () => {
               >
                 <Progress value={processingProgress} className="h-2" />
                 <div className="flex items-center justify-center gap-2">
-                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <Loader2 className="h-4 w-4 " />
                   <span className="text-sm text-gray-600">
                     {processingSteps.find(s => s.step === processingStep)?.label}
                   </span>

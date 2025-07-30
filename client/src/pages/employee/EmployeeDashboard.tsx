@@ -15,8 +15,7 @@ import {
   StaggeredItem,
   HoverZone,
   MagneticButton
-} from '@/components/ui/EnhancedAnimations';
-import { EnhancedCard } from '@/components/ui/enhanced-card';
+} from '@/components/ui/simple-animations';
 import { AnimatedMetricCard } from '@/components/ui/animated-metric-card';
 
 import {
@@ -244,7 +243,7 @@ export default function EmployeeDashboard() {
 
       <div className="relative z-10 p-6 space-y-8">
         {/* Hero Header Révolutionnaire */}
-        <HoverZone effect="glow" className="text-center space-y-6">
+        <HoverZone  className="text-center space-y-6">
           <TypewriterText
             text={`👋 Bonjour ${user?.firstName || user?.email?.split('@')[0]} !`}
             className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
@@ -296,7 +295,7 @@ export default function EmployeeDashboard() {
         {/* Contenu Principal */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Tâches Révolutionnaires */}
-          <HoverZone effect="lift">
+          <HoverZone>
             <EnhancedCard className="h-full">
               <CardHeader>
                 <TypewriterText
@@ -347,7 +346,7 @@ export default function EmployeeDashboard() {
           </HoverZone>
 
           {/* Événements Révolutionnaires */}
-          <HoverZone effect="lift">
+          <HoverZone>
             <EnhancedCard className="h-full">
               <CardHeader>
                 <TypewriterText
@@ -384,7 +383,7 @@ export default function EmployeeDashboard() {
         </div>
 
         {/* Performance Section Révolutionnaire */}
-        <HoverZone effect="glow">
+        <HoverZone>
           <EnhancedCard className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950">
             <CardHeader>
               <TypewriterText
@@ -431,7 +430,7 @@ export default function EmployeeDashboard() {
         </HoverZone>
 
         {/* Actions Rapides Finales */}
-        <HoverZone effect="lift">
+        <HoverZone>
           <EnhancedCard className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950">
             <CardHeader>
               <TypewriterText

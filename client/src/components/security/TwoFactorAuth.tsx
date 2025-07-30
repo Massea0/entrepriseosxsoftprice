@@ -252,7 +252,7 @@ export function TwoFactorAuth() {
                 </div>
                 <Button onClick={initiate2FASetup} disabled={isLoading} className="w-full">
                   {isLoading ? (
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    <div className=" rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                   ) : null}
                   Activer l'Authentification à Deux Facteurs
                 </Button>
@@ -393,7 +393,7 @@ export function TwoFactorAuth() {
               </Button>
               <Button onClick={verify2FACode} disabled={isLoading} className="flex-1">
                 {isLoading ? (
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  <div className=" rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                 ) : null}
                 Vérifier et Activer
               </Button>

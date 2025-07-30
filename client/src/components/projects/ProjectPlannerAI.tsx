@@ -440,7 +440,7 @@ export const ProjectPlannerAI: React.FC<ProjectPlannerProps> = ({
             >
               {isGenerating ? (
                 <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                  <div className=" rounded-full h-4 w-4 border-b-2 border-white mr-2" />
                   Synapse en cours de génération...
                 </>
               ) : (

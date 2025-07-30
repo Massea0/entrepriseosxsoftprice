@@ -194,7 +194,7 @@ export default function AIInsights() {
       <div className="container mx-auto p-6">
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
-            <Brain className="h-12 w-12 mx-auto mb-4 text-purple-600 animate-pulse" />
+            <Brain className="h-12 w-12 mx-auto mb-4 text-purple-600 " />
             <p className="text-muted-foreground">Analyse des données en cours...</p>
           </div>
         </div>

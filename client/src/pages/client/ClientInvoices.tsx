@@ -223,8 +223,8 @@ export default function ClientInvoices() {
 
       <div className="relative z-10 p-6 space-y-8">
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-2xl">
             <div className="p-8">
               <div className="flex items-center gap-4">
                 <LiquidContainer className="p-3 bg-white/10 backdrop-blur-sm rounded-xl">
@@ -272,8 +272,8 @@ export default function ClientInvoices() {
         </StaggeredList>
 
         {/* Filtres et Recherche Révolutionnaires */}
-        <HoverZone effect="lift">
-          <EnhancedCard variant="glow">
+        <HoverZone>
+          <EnhancedCard>
             <CardContent className="flex flex-col lg:flex-row gap-4 items-center justify-between p-6">
               <div className="flex-1 max-w-md">
                 <div className="relative">
@@ -302,7 +302,7 @@ export default function ClientInvoices() {
         </HoverZone>
 
         {/* Factures Révolutionnaires */}
-        <HoverZone effect="glow">
+        <HoverZone>
           <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
             <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="all">Toutes</TabsTrigger>
@@ -387,7 +387,7 @@ export default function ClientInvoices() {
               </StaggeredList>
 
               {filteredInvoices.length === 0 && (
-                <HoverZone effect="pulse">
+                <HoverZone>
                   <EnhancedCard variant="glass" className="text-center py-12">
                     <CardContent>
                       <FileText className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
@@ -406,8 +406,8 @@ export default function ClientInvoices() {
         </HoverZone>
 
         {/* Actions Rapides Finales */}
-        <HoverZone effect="pulse">
-          <EnhancedCard variant="lift" className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950">
             <CardHeader>
               <TypewriterText
                 text="⚡ Actions Rapides Factures"

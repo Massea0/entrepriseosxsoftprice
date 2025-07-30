@@ -29,8 +29,8 @@ const ComponentLoader = ({ name }: { name: string }) => (
   <div className="flex items-center justify-center h-full">
     <div className="space-y-4 text-center">
       <div className="relative">
-        <div className="h-16 w-16 border-4 border-purple-500/20 rounded-full animate-pulse" />
-        <div className="absolute inset-0 h-16 w-16 border-4 border-t-purple-500 rounded-full animate-spin" />
+        <div className="h-16 w-16 border-4 border-purple-500/20 rounded-full " />
+        <div className="absolute inset-0 h-16 w-16 border-4 border-t-purple-500 rounded-full " />
       </div>
       <p className="text-sm text-muted-foreground">Chargement {name}...</p>
     </div>

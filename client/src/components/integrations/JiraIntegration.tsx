@@ -420,7 +420,7 @@ export const JiraIntegration = memo(function JiraIntegration({
               className="w-full"
             >
               {isLoading ? (
-                <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                <RefreshCw className="h-4 w-4 mr-2 " />
               ) : (
                 <CheckSquare className="h-4 w-4 mr-2" />
               )}

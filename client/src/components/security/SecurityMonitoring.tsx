@@ -187,7 +187,7 @@ export function SecurityMonitoring() {
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <div className={`w-3 h-3 rounded-full ${isMonitoring ? 'bg-green-500' : 'bg-red-500'} animate-pulse`}></div>
+          <div className={`w-3 h-3 rounded-full ${isMonitoring ? 'bg-green-500' : 'bg-red-500'} `}></div>
           <span className="text-sm">{isMonitoring ? 'En ligne' : 'Hors ligne'}</span>
           <Button onClick={toggleMonitoring} variant={isMonitoring ? "destructive" : "default"}>
             {isMonitoring ? 'Arrêter' : 'Démarrer'}

@@ -415,7 +415,7 @@ export const RealTimeCollaboration = memo(function RealTimeCollaboration({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
+                    <div className="w-3 h-3 bg-red-500 rounded-full " />
                     <span className="text-sm font-medium">Appel vidéo en cours</span>
                   </div>
                   <Badge variant="outline">

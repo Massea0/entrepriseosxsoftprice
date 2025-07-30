@@ -281,7 +281,7 @@ export default function TicketView({ ticketId, onClose }: TicketViewProps) {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <div className=" rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
   }
@@ -410,7 +410,7 @@ export default function TicketView({ ticketId, onClose }: TicketViewProps) {
                     className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white border-0 hover:from-purple-600 hover:to-indigo-600"
                   >
                     {generatingResponse ? (
-                      <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-2" />
+                      <div className=" rounded-full h-3 w-3 border-b-2 border-white mr-2" />
                     ) : (
                       <Bot className="h-3 w-3 mr-2" />
                     )}
@@ -430,7 +430,7 @@ export default function TicketView({ ticketId, onClose }: TicketViewProps) {
                     className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
                   >
                     {sendingMessage ? (
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                      <div className=" rounded-full h-4 w-4 border-b-2 border-white" />
                     ) : (
                       <Send className="h-4 w-4" />
                     )}

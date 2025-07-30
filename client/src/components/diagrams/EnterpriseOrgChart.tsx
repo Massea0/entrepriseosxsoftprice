@@ -289,7 +289,7 @@ export const ReactFlowOrgChart: React.FC = () => {
     return (
       <Card className="w-full h-96">
         <CardContent className="flex items-center justify-center h-full">
-          <div className="animate-pulse flex flex-col items-center gap-4">
+          <div className=" flex flex-col items-center gap-4">
             <Users className="h-12 w-12 text-gray-400" />
             <div className="text-gray-500">Chargement de l'organigramme...</div>
           </div>

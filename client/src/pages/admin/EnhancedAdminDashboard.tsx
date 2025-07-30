@@ -36,8 +36,7 @@ import {
   StaggeredList,
   StaggeredItem,
   MagneticButton
-} from '@/components/ui/EnhancedAnimations';
-import { EnhancedCard } from '@/components/ui/enhanced-card';
+} from '@/components/ui/simple-animations';
 
 // Sample data for demonstrations
 const performanceData = [
@@ -271,7 +270,7 @@ export default function EnhancedAdminDashboard() {
           >
             {selectedDemo === 'overview' && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <HoverZone effect="lift">
+                <HoverZone>
                   <LiquidContainer className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-6 border border-white/20 dark:border-gray-700/20">
                     <div className="flex items-center space-x-3 mb-4">
                       <div className="p-2 bg-blue-500 rounded-lg">
@@ -286,7 +285,7 @@ export default function EnhancedAdminDashboard() {
                   </LiquidContainer>
                 </HoverZone>
 
-                <HoverZone effect="glow">
+                <HoverZone>
                   <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-6 border border-white/20 dark:border-gray-700/20">
                     <div className="flex items-center space-x-3 mb-4">
                       <div className="p-2 bg-green-500 rounded-lg">
@@ -346,7 +345,7 @@ export default function EnhancedAdminDashboard() {
                     transition={{ delay: 0.1 }}
                   >
                     <Link to="/ai/workflow-designer" className="block">
-                      <HoverZone effect="lift">
+                      <HoverZone>
                         <LiquidContainer className="bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 backdrop-blur-md rounded-xl p-6 border border-purple-200/50 dark:border-purple-700/30 hover:shadow-xl transition-all duration-300">
                           <div className="flex items-center space-x-3 mb-4">
                             <div className="p-3 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-lg">
@@ -378,7 +377,7 @@ export default function EnhancedAdminDashboard() {
                     transition={{ delay: 0.2 }}
                   >
                     <Link to="/ai/predictive-dashboard" className="block">
-                      <HoverZone effect="glow">
+                      <HoverZone>
                         <LiquidContainer className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 backdrop-blur-md rounded-xl p-6 border border-blue-200/50 dark:border-blue-700/30 hover:shadow-xl transition-all duration-300">
                           <div className="flex items-center space-x-3 mb-4">
                             <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg">
@@ -621,7 +620,7 @@ export default function EnhancedAdminDashboard() {
               { icon: Maximize, title: 'Widgets Dynamiques', desc: 'Composants redimensionnables' }
             ].map((feature, index) => (
               <StaggeredItem key={index}>
-                <HoverZone effect="lift">
+                <HoverZone>
                   <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-xl p-6 border border-white/20 dark:border-gray-700/20">
                     <feature.icon className="w-8 h-8 text-blue-500 mx-auto mb-3" />
                     <h3 className="font-semibold mb-2">{feature.title}</h3>

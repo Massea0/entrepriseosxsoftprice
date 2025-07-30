@@ -809,7 +809,7 @@ INSTRUCTIONS:
               </div>
               <Badge variant={connectionStatus === 'connected' ? 'default' : 'secondary'}>
                 {connectionStatus === 'connected' && <CheckCircle className="h-3 w-3 mr-1" />}
-                {connectionStatus === 'connecting' && <Loader2 className="h-3 w-3 mr-1 animate-spin" />}
+                {connectionStatus === 'connecting' && <Loader2 className="h-3 w-3 mr-1 " />}
                 {connectionStatus === 'error' && <AlertCircle className="h-3 w-3 mr-1" />}
                 {connectionStatus === 'disconnected' && <AlertCircle className="h-3 w-3 mr-1" />}
                 {connectionStatus === 'connected' ? 'Connecté' : 
@@ -978,7 +978,7 @@ INSTRUCTIONS:
               <CardContent className="space-y-2">
                 {toolCalls.slice(-5).map((toolCall, index) => (
                   <div key={toolCall.id || index} className="flex items-center gap-2 text-sm p-2 bg-gray-50 rounded">
-                    {toolCall.status === 'executing' && <Loader2 className="h-3 w-3 animate-spin text-blue-500" />}
+                    {toolCall.status === 'executing' && <Loader2 className="h-3 w-3  text-blue-500" />}
                     {toolCall.status === 'completed' && <CheckCircle className="h-3 w-3 text-green-500" />}
                     {toolCall.status === 'failed' && <AlertCircle className="h-3 w-3 text-red-500" />}
                     <span className="font-medium">{toolCall.name}</span>

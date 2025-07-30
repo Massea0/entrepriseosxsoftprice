@@ -91,7 +91,7 @@ export const HRDashboard: React.FC = () => {
   if (loading) {
     return (
       <div className="p-6 space-y-6">
-        <div className="animate-pulse">
+        <div >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             {[1, 2, 3].map(i => (
               <div key={i} className="h-32 bg-gray-200 rounded-lg"></div>

@@ -176,8 +176,8 @@ export default function HRDashboardPage() {
 
       <div className="relative z-10">
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-br from-violet-600 to-purple-700 text-white shadow-2xl rounded-none">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-br from-violet-600 to-purple-700 text-white shadow-2xl rounded-none">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-6">
@@ -227,9 +227,9 @@ export default function HRDashboardPage() {
                 const Icon = module.icon;
                 return (
                   <StaggeredItem key={module.id} index={index}>
-                    <HoverZone effect="lift">
+                    <HoverZone>
                       <EnhancedCard 
-                        variant="glow"
+                        
                         className="cursor-pointer relative overflow-hidden h-full"
                         onClick={() => setActiveTab(module.id)}
                       >
@@ -254,7 +254,7 @@ export default function HRDashboardPage() {
                         <CardContent>
                           <div className="grid grid-cols-2 gap-4">
                             {module.stats.map((stat, statIndex) => (
-                              <HoverZone key={statIndex} effect="glow">
+                              <HoverZone key={statIndex} >
                                 <div className="p-3 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
                                   <p className="text-sm text-muted-foreground">{stat.label}</p>
                                   <div className="flex items-baseline gap-2 mt-1">
@@ -280,8 +280,8 @@ export default function HRDashboardPage() {
             </StaggeredList>
 
             {/* Call to Action avec design révolutionnaire */}
-            <HoverZone effect="glow">
-              <EnhancedCard variant="pulse" className="mt-8 bg-gradient-to-r from-purple-600 to-pink-600 text-white border-0">
+            <HoverZone>
+              <EnhancedCard  className="mt-8 bg-gradient-to-r from-purple-600 to-pink-600 text-white border-0">
                 <CardContent className="p-8">
                   <div className="flex items-center justify-between">
                     <div>

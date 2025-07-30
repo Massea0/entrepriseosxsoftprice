@@ -399,7 +399,7 @@ export const SlackIntegration = memo(function SlackIntegration({
               className="w-full"
             >
               {isLoading ? (
-                <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                <RefreshCw className="h-4 w-4 mr-2 " />
               ) : (
                 <MessageSquare className="h-4 w-4 mr-2" />
               )}
@@ -640,7 +640,7 @@ export const SlackIntegration = memo(function SlackIntegration({
                     size="sm"
                   >
                     {isSending ? (
-                      <RefreshCw className="h-4 w-4 animate-spin" />
+                      <RefreshCw className="h-4 w-4 " />
                     ) : (
                       <Send className="h-4 w-4" />
                     )}

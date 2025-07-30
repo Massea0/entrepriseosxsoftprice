@@ -121,7 +121,7 @@ export default function PWAStatus({ className }: PWAStatusProps) {
               >
                 {isUpdating ? (
                   <>
-                    <RefreshCw className="h-3 w-3 mr-1 animate-spin" />
+                    <RefreshCw className="h-3 w-3 mr-1 " />
                     Mise à jour...
                   </>
                 ) : (

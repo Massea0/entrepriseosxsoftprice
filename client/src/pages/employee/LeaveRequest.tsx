@@ -205,7 +205,7 @@ export default function LeaveRequest() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className=" rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
       </div>
     );
   }
@@ -219,8 +219,8 @@ export default function LeaveRequest() {
 
       <div className="relative z-10 max-w-7xl mx-auto p-6 space-y-8">
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-2xl">
             <div className="p-6">
               <div className="flex items-center gap-4">
                 <LiquidContainer className="p-3 bg-white/10 backdrop-blur-sm rounded-xl">
@@ -243,8 +243,8 @@ export default function LeaveRequest() {
         </HoverZone>
 
         {/* Soldes de congés */}
-        <HoverZone effect="lift">
-          <EnhancedCard variant="glow">
+        <HoverZone>
+          <EnhancedCard>
             <div className="p-6">
               <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <GlowText>Mes Soldes de Congés</GlowText>

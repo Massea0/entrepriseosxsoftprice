@@ -237,6 +237,15 @@ export class RealTimeAlertService extends EventEmitter {
 
   // Créer une alerte
   private createAlert(rule: AlertRule, data: any): Alert {
+    // Vérifier que le template existe
+    if (!rule.template) {
+      console.error(`Rule ${rule.id} has no template defined`);
+      rule.template = {
+        title: rule.name || 'Alerte',
+        message: 'Une condition a été déclenchée'
+      };
+    }
+
     const alert: Alert = {
       id: `alert_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       type: rule.type,

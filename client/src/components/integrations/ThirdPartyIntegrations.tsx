@@ -393,7 +393,7 @@ const ThirdPartyIntegrations: React.FC = () => {
             Tester tout
           </Button>
           <Button onClick={loadIntegrations} variant="outline" disabled={isLoading}>
-            <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? '' : ''}`} />
             Actualiser
           </Button>
         </div>

@@ -187,7 +187,7 @@ export const SynapseInsights: React.FC<SynapseInsightsProps> = ({
       <div className="flex items-center justify-between gap-3 p-4 bg-gradient-to-r from-purple-50 via-blue-50 to-indigo-50 rounded-xl border border-purple-200 shadow-sm">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg shadow-sm">
-            <Brain className="h-4 w-4 text-white animate-pulse" />
+            <Brain className="h-4 w-4 text-white " />
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
@@ -228,7 +228,7 @@ export const SynapseInsights: React.FC<SynapseInsightsProps> = ({
           >
             {isAnalyzing ? (
               <>
-                <Activity className="h-3 w-3 animate-spin mr-1" />
+                <Activity className="h-3 w-3  mr-1" />
                 Analyse...
               </>
             ) : (
@@ -266,7 +266,7 @@ export const SynapseInsights: React.FC<SynapseInsightsProps> = ({
           <div className="flex items-center gap-3">
             {insights.length > 0 && (
               <div className="flex items-center gap-2 px-3 py-1 bg-white/50 dark:bg-gray-700/50 rounded-full">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full "></div>
                 <span className="text-xs font-medium text-green-700">
                   {insights.length} insight{insights.length > 1 ? 's' : ''} actif{insights.length > 1 ? 's' : ''}
                 </span>
@@ -280,7 +280,7 @@ export const SynapseInsights: React.FC<SynapseInsightsProps> = ({
             >
               {isAnalyzing ? (
                 <>
-                  <Activity className="h-4 w-4 animate-spin mr-2" />
+                  <Activity className="h-4 w-4  mr-2" />
                   Analyse...
                 </>
               ) : (
@@ -298,7 +298,7 @@ export const SynapseInsights: React.FC<SynapseInsightsProps> = ({
         {loading ? (
           <div className="space-y-4">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="animate-pulse">
+              <div key={i} >
                 <div className="h-20 bg-gradient-to-r from-white/60 to-white/40 rounded-xl"></div>
               </div>
             ))}
@@ -380,7 +380,7 @@ export const SynapseInsights: React.FC<SynapseInsightsProps> = ({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 text-sm text-purple-700">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full "></div>
                 <Activity className="h-4 w-4" />
                 <span className="font-medium">Système IA actif</span>
               </div>

@@ -314,7 +314,7 @@ const AIAgentsManagement: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <RefreshCw className="w-8 h-8 animate-spin" />
+        <RefreshCw className="w-8 h-8 " />
         <span className="ml-2">Chargement des agents IA...</span>
       </div>
     );

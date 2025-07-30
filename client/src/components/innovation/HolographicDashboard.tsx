@@ -261,7 +261,7 @@ export const HolographicDashboard: React.FC<HolographicDashboardProps> = ({
             animate={{ scale: 1 }}
             className="flex items-center gap-1"
           >
-            <Orbit className="h-3 w-3 text-blue-400 animate-spin" />
+            <Orbit className="h-3 w-3 text-blue-400 " />
             <span className="text-xs text-blue-400">Interactive</span>
           </motion.div>
         )}

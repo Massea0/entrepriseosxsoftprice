@@ -257,7 +257,7 @@ export const PerformanceOptimizer = memo(function PerformanceOptimizer({
             >
               <RefreshCw className={cn(
                 "h-4 w-4 mr-2",
-                isOptimizing && "animate-spin"
+                isOptimizing && ""
               )} />
               Refresh
             </Button>

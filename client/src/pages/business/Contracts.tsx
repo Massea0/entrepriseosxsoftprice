@@ -311,7 +311,7 @@ export default function Contracts() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <div className=" rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
   }
@@ -325,8 +325,8 @@ export default function Contracts() {
 
       <div className="relative z-10 max-w-7xl mx-auto p-6 space-y-8">
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-2xl">
             <div className="p-8">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">

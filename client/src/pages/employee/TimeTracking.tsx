@@ -242,8 +242,8 @@ export default function TimeTracking() {
       <div className="relative z-10 max-w-7xl mx-auto p-6 space-y-8">
         
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-2xl">
             <div className="p-6">
               <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                 <div className="flex items-center gap-4">
@@ -312,11 +312,11 @@ export default function TimeTracking() {
             
             {/* Minuteur actif */}
             {currentEntry && (
-              <HoverZone effect="glow">
-                <EnhancedCard variant="pulse" className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950">
+              <HoverZone>
+                <EnhancedCard  className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-green-800 dark:text-green-200">
-                    <Timer className="h-5 w-5 animate-pulse" />
+                    <Timer className="h-5 w-5 " />
                     En cours
                   </CardTitle>
                 </CardHeader>
@@ -352,8 +352,8 @@ export default function TimeTracking() {
             )}
 
             {/* Formulaire de saisie */}
-            <HoverZone effect="lift">
-              <EnhancedCard variant="glow">
+            <HoverZone>
+              <EnhancedCard>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Play className="h-5 w-5" />
@@ -447,8 +447,8 @@ export default function TimeTracking() {
 
           {/* Historique des temps */}
           <div className="lg:col-span-2 space-y-6">
-            <HoverZone effect="lift">
-              <EnhancedCard variant="glow" className="h-full">
+            <HoverZone>
+              <EnhancedCard  className="h-full">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                     <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg text-white">

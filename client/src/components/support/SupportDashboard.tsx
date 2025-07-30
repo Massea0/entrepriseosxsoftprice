@@ -175,7 +175,7 @@ export default function SupportDashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <div className=" rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
   }
@@ -193,7 +193,7 @@ export default function SupportDashboard() {
           </p>
         </div>
         <div className="flex items-center gap-4">
-          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 animate-pulse">
+          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 ">
             <Activity className="h-3 w-3 mr-1" />
             IA Active
           </Badge>

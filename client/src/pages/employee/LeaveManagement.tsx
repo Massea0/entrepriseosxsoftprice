@@ -138,8 +138,8 @@ export default function LeaveManagement() {
       
       <div className="relative z-10 max-w-7xl mx-auto p-6 space-y-8">
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-2xl">
             <div className="p-6">
               <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                 <div className="flex items-center gap-4">
@@ -195,8 +195,8 @@ export default function LeaveManagement() {
         </StaggeredList>
 
         {/* Demandes de Congés */}
-        <HoverZone effect="lift">
-          <EnhancedCard variant="glow">
+        <HoverZone>
+          <EnhancedCard>
             <CardHeader>
               <CardTitle className="flex items-center gap-3">
                 <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg text-white">
@@ -220,7 +220,7 @@ export default function LeaveManagement() {
                   const leaveType = leaveTypes?.find(lt => lt.id === request.leaveTypeId);
                   return (
                     <StaggeredItem key={request.id}>
-                      <HoverZone effect="lift">
+                      <HoverZone>
                         <div className="flex items-center justify-between p-4 rounded-lg border bg-card hover:shadow-md transition-all">
                           <div className="flex items-center space-x-4">
                             <div 

@@ -184,7 +184,7 @@ export default function CompanyContextSettings() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-600" />
+        <Loader2 className="h-8 w-8  text-purple-600" />
       </div>
     );
   }
@@ -205,7 +205,7 @@ export default function CompanyContextSettings() {
           className="gap-2"
         >
           {saving ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
+            <Loader2 className="h-4 w-4 " />
           ) : (
             <Save className="h-4 w-4" />
           )}

@@ -240,7 +240,7 @@ export default function AIAssistantExtended({
           <h4 className="font-semibold text-sm">Insights Temps Réel</h4>
           {isAnalyzing ? (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Clock className="h-4 w-4 animate-pulse" />
+              <Clock className="h-4 w-4 " />
               Analyse en cours...
             </div>
           ) : (

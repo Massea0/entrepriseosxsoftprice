@@ -168,7 +168,7 @@ function Register() {
           
           <StaggeredList className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <StaggeredItem>
-              <HoverZone effect="glow">
+              <HoverZone>
                 <div 
                   className={`p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
                     registrationData.role === 'client' 
@@ -188,7 +188,7 @@ function Register() {
               </HoverZone>
             </StaggeredItem>
             <StaggeredItem>
-              <HoverZone effect="glow">
+              <HoverZone>
                 <div 
                   className={`p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
                     registrationData.role === 'employee' 
@@ -208,7 +208,7 @@ function Register() {
               </HoverZone>
             </StaggeredItem>
             <StaggeredItem>
-              <HoverZone effect="glow">
+              <HoverZone>
                 <div 
                   className={`p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
                     registrationData.role === 'manager' 
@@ -228,7 +228,7 @@ function Register() {
               </HoverZone>
             </StaggeredItem>
             <StaggeredItem>
-              <HoverZone effect="glow">
+              <HoverZone>
                 <div 
                   className={`p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
                     registrationData.role === 'admin' 
@@ -264,7 +264,7 @@ function Register() {
             </GlowText>
           </div>
           
-          <EnhancedCard className="p-6" hoverEffect="glow" glowColor="green">
+          <EnhancedCard className="p-6"  >
             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
               <User className="h-5 w-5" />
               Récapitulatif de votre compte
@@ -376,7 +376,7 @@ function Register() {
         </div>
 
         {/* Formulaire Multi-Étapes Révolutionnaire */}
-        <EnhancedCard className="backdrop-blur-md bg-white/90 dark:bg-gray-800/90" hoverEffect="lift" glowColor="purple">
+        <EnhancedCard className="backdrop-blur-md bg-white/90 dark:bg-gray-800/90"  >
           <div className="p-8">
             <MultiStepForm
               steps={revolutionarySteps}

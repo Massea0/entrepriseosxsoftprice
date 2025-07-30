@@ -326,7 +326,7 @@ export const GitLabIntegration = memo(function GitLabIntegration({
               className="w-full"
             >
               {isLoading ? (
-                <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                <RefreshCw className="h-4 w-4 mr-2 " />
               ) : (
                 <GitBranch className="h-4 w-4 mr-2" />
               )}
@@ -561,7 +561,7 @@ export const GitLabIntegration = memo(function GitLabIntegration({
                       <div className="flex items-center gap-3">
                         <StatusIcon className={cn(
                           "h-5 w-5",
-                          pipeline.status === 'running' && "animate-spin"
+                          pipeline.status === 'running' && ""
                         )} />
                         <div>
                           <div className="flex items-center gap-2">

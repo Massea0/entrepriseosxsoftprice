@@ -39,7 +39,7 @@ export {
   StaggeredList,
   StaggeredItem,
   MagneticButton
-} from '@/components/ui/EnhancedAnimations';
+} from '@/components/ui/simple-animations';
 
 // =============================================================================
 // 🃏 ADVANCED CARD COMPONENTS

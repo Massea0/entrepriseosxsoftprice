@@ -18,7 +18,7 @@ export const animations = {
   bounce: 'animate-bounce',
   
   // Pulse
-  pulse: 'animate-pulse',
+  pulse: '',
   
   // Float
   float: 'animate-float',

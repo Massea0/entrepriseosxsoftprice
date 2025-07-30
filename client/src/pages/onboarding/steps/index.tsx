@@ -162,7 +162,7 @@ export function ReviewStep({ data, onNext, onPrev, isSubmitting }: StepProps) {
         >
           {isSubmitting ? (
             <>
-              <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full mr-2" />
+              <div className=" h-4 w-4 border-2 border-white border-t-transparent rounded-full mr-2" />
               Soumission...
             </>
           ) : (

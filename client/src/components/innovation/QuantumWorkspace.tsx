@@ -213,7 +213,7 @@ export const QuantumWorkspace: React.FC<QuantumWorkspaceProps> = ({
         <Layers3 className="h-3 w-3 text-blue-400" />
         <span className="text-gray-300">Mode:</span>
         <span className="text-blue-400 capitalize">{currentVariant}</span>
-        {isActive && <Activity className="h-3 w-3 text-green-400 animate-pulse" />}
+        {isActive && <Activity className="h-3 w-3 text-green-400 " />}
       </motion.div>
 
       {/* Contenu principal */}

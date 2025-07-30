@@ -328,7 +328,7 @@ export default function PayrollBenefits() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 flex items-center justify-center">
         <div className="text-center space-y-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <div className=" rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
           <p className="text-muted-foreground">Chargement des données de paie...</p>
         </div>
       </div>
@@ -345,8 +345,8 @@ export default function PayrollBenefits() {
       <div className="relative z-10 max-w-7xl mx-auto p-6 space-y-8">
         
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-2xl">
             <div className="p-6">
               <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                 <div className="flex items-center gap-4">
@@ -417,8 +417,8 @@ export default function PayrollBenefits() {
             
             {/* Salaire actuel */}
             {payslips[0] && (
-              <HoverZone effect="glow">
-                <EnhancedCard variant="shimmer">
+              <HoverZone>
+                <EnhancedCard>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3">
                       <div className="p-2 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg text-white">
@@ -430,7 +430,7 @@ export default function PayrollBenefits() {
                   <CardContent>
                     <StaggeredList className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                       <StaggeredItem index={0}>
-                        <HoverZone effect="lift">
+                        <HoverZone>
                           <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900 rounded-lg">
                             <div className="text-2xl font-bold text-blue-600">
                               {formatCurrency(payslips[0].baseSalary)}
@@ -440,7 +440,7 @@ export default function PayrollBenefits() {
                         </HoverZone>
                       </StaggeredItem>
                       <StaggeredItem index={1}>
-                        <HoverZone effect="lift">
+                        <HoverZone>
                           <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950 dark:to-green-900 rounded-lg">
                             <div className="text-2xl font-bold text-green-600">
                               {formatCurrency(payslips[0].overtime + payslips[0].bonuses)}
@@ -450,7 +450,7 @@ export default function PayrollBenefits() {
                         </HoverZone>
                       </StaggeredItem>
                       <StaggeredItem index={2}>
-                        <HoverZone effect="lift">
+                        <HoverZone>
                           <div className="text-center p-4 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-950 dark:to-red-900 rounded-lg">
                             <div className="text-2xl font-bold text-red-600">
                               -{formatCurrency(payslips[0].deductions)}
@@ -460,7 +460,7 @@ export default function PayrollBenefits() {
                         </HoverZone>
                       </StaggeredItem>
                       <StaggeredItem index={3}>
-                        <HoverZone effect="lift">
+                        <HoverZone>
                           <div className="text-center p-4 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950 dark:to-emerald-900 rounded-lg">
                             <div className="text-2xl font-bold text-emerald-600">
                               {formatCurrency(payslips[0].netSalary)}
@@ -476,8 +476,8 @@ export default function PayrollBenefits() {
             )}
 
             {/* Historique des bulletins */}
-            <HoverZone effect="lift">
-              <EnhancedCard variant="glow">
+            <HoverZone>
+              <EnhancedCard>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                     <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg text-white">
@@ -536,8 +536,8 @@ export default function PayrollBenefits() {
           </TabsContent>
 
           <TabsContent value="benefits" className="space-y-6">
-            <HoverZone effect="lift">
-              <EnhancedCard variant="glow">
+            <HoverZone>
+              <EnhancedCard>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                     <div className="p-2 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg text-white">
@@ -601,8 +601,8 @@ export default function PayrollBenefits() {
           </TabsContent>
 
           <TabsContent value="expenses" className="space-y-6">
-            <HoverZone effect="lift">
-              <EnhancedCard variant="glow">
+            <HoverZone>
+              <EnhancedCard>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                     <div className="p-2 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg text-white">

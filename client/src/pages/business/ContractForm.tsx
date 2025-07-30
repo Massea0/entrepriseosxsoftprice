@@ -25,8 +25,7 @@ import {
   MorphingBlob, 
   TypewriterText, 
   GlowText
-} from '@/components/ui/EnhancedAnimations';
-import { EnhancedCard } from '@/components/ui/enhanced-card';
+} from '@/components/ui/simple-animations';
 import { MultiStepForm } from '@/components/ui/MultiStepForm';
 import { EnhancedInput } from '@/components/ui/EnhancedInput';
 
@@ -571,7 +570,7 @@ export default function ContractForm() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black flex items-center justify-center relative overflow-hidden">
         <FloatingParticles />
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400"></div>
+        <div className=" rounded-full h-12 w-12 border-b-2 border-purple-400"></div>
       </div>
     );
   }

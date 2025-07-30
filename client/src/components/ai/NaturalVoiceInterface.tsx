@@ -398,7 +398,7 @@ export const NaturalVoiceInterface: React.FC<NaturalVoiceInterfaceProps> = ({
                 </>
               ) : connectionStatus === 'connecting' ? (
                 <>
-                  <RefreshCw className="h-3 w-3 mr-1 animate-spin" />
+                  <RefreshCw className="h-3 w-3 mr-1 " />
                   Connexion...
                 </>
               ) : (
@@ -490,7 +490,7 @@ export const NaturalVoiceInterface: React.FC<NaturalVoiceInterfaceProps> = ({
         <div className="text-center text-sm text-gray-600">
           {isProcessing ? (
             <span className="flex items-center justify-center gap-2">
-              <RefreshCw className="h-4 w-4 animate-spin" />
+              <RefreshCw className="h-4 w-4 " />
               Traitement en cours...
             </span>
           ) : isSpeaking ? (

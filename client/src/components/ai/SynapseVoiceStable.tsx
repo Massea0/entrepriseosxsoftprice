@@ -222,7 +222,7 @@ export const SynapseVoiceStable: React.FC = () => {
   const getStatusIcon = () => {
     switch (connectionStatus) {
       case 'connected': return <CheckCircle className="h-4 w-4 text-green-500" />;
-      case 'connecting': return <Loader2 className="h-4 w-4 text-blue-500 animate-spin" />;
+      case 'connecting': return <Loader2 className="h-4 w-4 text-blue-500 " />;
       case 'error': return <XCircle className="h-4 w-4 text-red-500" />;
       default: return <WifiOff className="h-4 w-4 text-gray-500" />;
     }

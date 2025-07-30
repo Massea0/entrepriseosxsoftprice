@@ -132,7 +132,7 @@ function App() {
                 {/* Public routes */}
                 <Route path="/landing" element={
                   <Suspense fallback={<div className="flex items-center justify-center h-screen">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                    <div className=" rounded-full h-12 w-12 border-b-2 border-primary"></div>
                   </div>}>
                     <Landing />
                   </Suspense>
@@ -143,14 +143,14 @@ function App() {
                 {/* Onboarding routes (public) */}
                 <Route path="/onboarding" element={
                   <Suspense fallback={<div className="flex items-center justify-center h-screen">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                    <div className=" rounded-full h-12 w-12 border-b-2 border-primary"></div>
                   </div>}>
                     <OnboardingFlow />
                   </Suspense>
                 } />
                 <Route path="/onboarding/success/:id" element={
                   <Suspense fallback={<div className="flex items-center justify-center h-screen">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                    <div className=" rounded-full h-12 w-12 border-b-2 border-primary"></div>
                   </div>}>
                     <OnboardingSuccess />
                   </Suspense>
@@ -176,7 +176,7 @@ function App() {
                 <Route path="/work-dashboard" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <WorkDashboard />
                       </Suspense>
                     </AppLayout>
@@ -186,7 +186,7 @@ function App() {
                 <Route path="/synapse" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <SynapsePage />
                       </Suspense>
                     </AppLayout>
@@ -196,7 +196,7 @@ function App() {
                 <Route path="/projects" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin', 'manager', 'employee']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Projects />
                       </Suspense>
                     </AppLayout>
@@ -206,7 +206,7 @@ function App() {
                 <Route path="/projects/list" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ProjectsList />
                       </Suspense>
                     </AppLayout>
@@ -216,7 +216,7 @@ function App() {
                 <Route path="/projects/:id" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ProjectDetail />
                       </Suspense>
                     </AppLayout>
@@ -226,7 +226,7 @@ function App() {
                 <Route path="/projects/kanban" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ProjectsKanban />
                       </Suspense>
                     </AppLayout>
@@ -236,7 +236,7 @@ function App() {
                 <Route path="/projects/timeline" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ProjectsTimeline />
                       </Suspense>
                     </AppLayout>
@@ -246,7 +246,7 @@ function App() {
                 <Route path="/projects/new" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ProjectForm />
                       </Suspense>
                     </AppLayout>
@@ -256,7 +256,7 @@ function App() {
                 <Route path="/projects/my-tasks" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <MyTasks />
                       </Suspense>
                     </AppLayout>
@@ -266,7 +266,7 @@ function App() {
                 <Route path="/projects/:id/planning" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ProjectPlanning />
                       </Suspense>
                     </AppLayout>
@@ -276,7 +276,7 @@ function App() {
                 <Route path="/tasks/:id" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <TaskDetailGitLab />
                       </Suspense>
                     </AppLayout>
@@ -287,7 +287,7 @@ function App() {
                 <Route path="/hr" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <HRDashboard />
                       </Suspense>
                     </AppLayout>
@@ -297,7 +297,7 @@ function App() {
                 <Route path="/hr/employees" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Employees />
                       </Suspense>
                     </AppLayout>
@@ -307,7 +307,7 @@ function App() {
                 <Route path="/hr/employees/:id" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <EmployeeDetail />
                       </Suspense>
                     </AppLayout>
@@ -317,7 +317,7 @@ function App() {
                 <Route path="/hr/departments" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Departments />
                       </Suspense>
                     </AppLayout>
@@ -327,7 +327,7 @@ function App() {
                 <Route path="/hr/organization" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Organization />
                       </Suspense>
                     </AppLayout>
@@ -337,7 +337,7 @@ function App() {
                 <Route path="/hr/recruitment" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Recruitment />
                       </Suspense>
                     </AppLayout>
@@ -347,7 +347,7 @@ function App() {
                 <Route path="/hr/recruitment/pipeline" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <RecruitmentPipeline />
                       </Suspense>
                     </AppLayout>
@@ -357,7 +357,7 @@ function App() {
                 <Route path="/hr/recruitment/new" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <NewJobPosting />
                       </Suspense>
                     </AppLayout>
@@ -368,7 +368,7 @@ function App() {
                 <Route path="/business/dashboard" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin', 'manager']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <BusinessDashboard />
                       </Suspense>
                     </AppLayout>
@@ -378,7 +378,7 @@ function App() {
                 <Route path="/business/quotes" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Quotes />
                       </Suspense>
                     </AppLayout>
@@ -388,7 +388,7 @@ function App() {
                 <Route path="/business/quotes/new" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <QuoteForm />
                       </Suspense>
                     </AppLayout>
@@ -398,7 +398,7 @@ function App() {
                 <Route path="/business/quotes/:id" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <QuoteDetail />
                       </Suspense>
                     </AppLayout>
@@ -408,7 +408,7 @@ function App() {
                 <Route path="/business/quotes/:id/edit" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <QuoteForm />
                       </Suspense>
                     </AppLayout>
@@ -418,7 +418,7 @@ function App() {
                 <Route path="/business/invoices" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Invoices />
                       </Suspense>
                     </AppLayout>
@@ -428,7 +428,7 @@ function App() {
                 <Route path="/business/invoices/new" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <InvoiceForm />
                       </Suspense>
                     </AppLayout>
@@ -438,7 +438,7 @@ function App() {
                 <Route path="/business/invoices/:id" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <InvoiceDetail />
                       </Suspense>
                     </AppLayout>
@@ -448,7 +448,7 @@ function App() {
                 <Route path="/business/invoices/:id/edit" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <InvoiceForm />
                       </Suspense>
                     </AppLayout>
@@ -458,7 +458,7 @@ function App() {
                 <Route path="/business/clients" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Clients />
                       </Suspense>
                     </AppLayout>
@@ -468,7 +468,7 @@ function App() {
                 <Route path="/business/clients/new" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ClientForm />
                       </Suspense>
                     </AppLayout>
@@ -478,7 +478,7 @@ function App() {
                 <Route path="/business/clients/:id" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Clients />
                       </Suspense>
                     </AppLayout>
@@ -488,7 +488,7 @@ function App() {
                 <Route path="/business/clients/:id/edit" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ClientForm />
                       </Suspense>
                     </AppLayout>
@@ -498,7 +498,7 @@ function App() {
                 <Route path="/business/contracts" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Contracts />
                       </Suspense>
                     </AppLayout>
@@ -508,7 +508,7 @@ function App() {
                 <Route path="/business/contracts/new" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ContractForm />
                       </Suspense>
                     </AppLayout>
@@ -518,7 +518,7 @@ function App() {
                 <Route path="/business/contracts/:id" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ContractDetail />
                       </Suspense>
                     </AppLayout>
@@ -528,7 +528,7 @@ function App() {
                 <Route path="/business/contracts/:id/edit" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ContractForm />
                       </Suspense>
                     </AppLayout>
@@ -539,7 +539,7 @@ function App() {
                 <Route path="/admin" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <PracticalAdminDashboard />
                       </Suspense>
                     </AppLayout>
@@ -549,7 +549,7 @@ function App() {
                 <Route path="/admin/dashboard" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <EnhancedAdminDashboard />
                       </Suspense>
                     </AppLayout>
@@ -559,7 +559,7 @@ function App() {
                 <Route path="/admin/enhanced" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <PracticalAdminDashboard />
                       </Suspense>
                     </AppLayout>
@@ -569,7 +569,7 @@ function App() {
                 <Route path="/admin/config" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ConfigDashboard />
                       </Suspense>
                     </AppLayout>
@@ -580,7 +580,7 @@ function App() {
                 <Route path="/admin/old-dashboard" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <AdminDashboard />
                       </Suspense>
                     </AppLayout>
@@ -590,7 +590,7 @@ function App() {
                 <Route path="/admin/quantum" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <QuantumAdminDashboard />
                       </Suspense>
                     </AppLayout>
@@ -600,7 +600,7 @@ function App() {
                 <Route path="/admin/overview" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <AdminOverview />
                       </Suspense>
                     </AppLayout>
@@ -610,7 +610,7 @@ function App() {
                 <Route path="/admin/performance" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <PerformanceDashboard />
                       </Suspense>
                     </AppLayout>
@@ -620,7 +620,7 @@ function App() {
                 <Route path="/admin/integrations" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <IntegrationsHub />
                       </Suspense>
                     </AppLayout>
@@ -630,7 +630,7 @@ function App() {
                 <Route path="/admin/support" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <SupportAdmin />
                       </Suspense>
                     </AppLayout>
@@ -640,7 +640,7 @@ function App() {
                 <Route path="/admin/workflows" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <WorkflowAdmin />
                       </Suspense>
                     </AppLayout>
@@ -650,7 +650,7 @@ function App() {
                 <Route path="/admin/security" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <SecurityAdmin />
                       </Suspense>
                     </AppLayout>
@@ -660,7 +660,7 @@ function App() {
                 <Route path="/admin/users" element={
                   <ProtectedRoute requiredRole={['super_admin', 'admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <UserManagement />
                       </Suspense>
                     </AppLayout>
@@ -670,7 +670,7 @@ function App() {
                 <Route path="/admin/debug-sidebar" element={
                   <ProtectedRoute requiredRole={['super_admin', 'admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <DebugSidebar />
                       </Suspense>
                     </AppLayout>
@@ -681,7 +681,7 @@ function App() {
                 <Route path="/ai/workflow-designer" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <WorkflowDesigner />
                       </Suspense>
                     </AppLayout>
@@ -691,7 +691,7 @@ function App() {
                 <Route path="/ai/predictive-dashboard" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin', 'manager']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <PredictiveDashboard />
                       </Suspense>
                     </AppLayout>
@@ -701,7 +701,7 @@ function App() {
                 <Route path="/ai/natural-language" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin', 'manager']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <NaturalLanguageInterface />
                       </Suspense>
                     </AppLayout>
@@ -711,7 +711,7 @@ function App() {
                 <Route path="/support/tickets" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <SupportAdmin />
                       </Suspense>
                     </AppLayout>
@@ -733,7 +733,7 @@ function App() {
                 <Route path="/manager/dashboard" element={
                   <ProtectedRoute requiredRole="manager">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ManagerDashboard />
                       </Suspense>
                     </AppLayout>
@@ -743,7 +743,7 @@ function App() {
                 <Route path="/manager/team" element={
                   <ProtectedRoute requiredRole="manager">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <TeamManagement />
                       </Suspense>
                     </AppLayout>
@@ -753,7 +753,7 @@ function App() {
                 <Route path="/manager/assignments" element={
                   <ProtectedRoute requiredRole="manager">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ProjectAssignments />
                       </Suspense>
                     </AppLayout>
@@ -763,7 +763,7 @@ function App() {
                 <Route path="/manager/approvals" element={
                   <ProtectedRoute requiredRole="manager">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <TeamApprovals />
                       </Suspense>
                     </AppLayout>
@@ -773,7 +773,7 @@ function App() {
                 <Route path="/manager/performance" element={
                   <ProtectedRoute requiredRole="manager">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <TeamPerformance />
                       </Suspense>
                     </AppLayout>
@@ -783,7 +783,7 @@ function App() {
                 <Route path="/manager/schedule" element={
                   <ProtectedRoute requiredRole="manager">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <TeamSchedule />
                       </Suspense>
                     </AppLayout>
@@ -793,7 +793,7 @@ function App() {
                 <Route path="/manager/reports" element={
                   <ProtectedRoute requiredRole="manager">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <TeamReports />
                       </Suspense>
                     </AppLayout>
@@ -804,7 +804,7 @@ function App() {
                 <Route path="/client/dashboard" element={
                   <ProtectedRoute requiredRole="client">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ClientDashboard />
                       </Suspense>
                     </AppLayout>
@@ -814,7 +814,7 @@ function App() {
                 <Route path="/client/projects" element={
                   <ProtectedRoute requiredRole="client">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ClientProjects />
                       </Suspense>
                     </AppLayout>
@@ -824,7 +824,7 @@ function App() {
                 <Route path="/client/invoices" element={
                   <ProtectedRoute requiredRole="client">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ClientInvoices />
                       </Suspense>
                     </AppLayout>
@@ -835,7 +835,7 @@ function App() {
                 <Route path="/employee/dashboard" element={
                   <ProtectedRoute requiredRole="employee">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <EmployeeDashboard />
                       </Suspense>
                     </AppLayout>
@@ -845,7 +845,7 @@ function App() {
                 <Route path="/employee/profile" element={
                   <ProtectedRoute requiredRole="employee">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <EmployeeProfile />
                       </Suspense>
                     </AppLayout>
@@ -855,7 +855,7 @@ function App() {
                 <Route path="/employee/assignments" element={
                   <ProtectedRoute requiredRole="employee">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <EmployeeAssignments />
                       </Suspense>
                     </AppLayout>
@@ -865,7 +865,7 @@ function App() {
                 <Route path="/employee/leave" element={
                   <ProtectedRoute requiredRole="employee">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <LeaveManagement />
                       </Suspense>
                     </AppLayout>
@@ -875,7 +875,7 @@ function App() {
                 <Route path="/employee/leave-request" element={
                   <ProtectedRoute requiredRole="employee">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <LeaveRequest />
                       </Suspense>
                     </AppLayout>
@@ -885,7 +885,7 @@ function App() {
                 <Route path="/employee/time" element={
                   <ProtectedRoute requiredRole="employee">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <TimeTracking />
                       </Suspense>
                     </AppLayout>
@@ -895,7 +895,7 @@ function App() {
                 <Route path="/employee/sick-leave" element={
                   <ProtectedRoute requiredRole="employee">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <SickLeaveManagement />
                       </Suspense>
                     </AppLayout>
@@ -905,7 +905,7 @@ function App() {
                 <Route path="/employee/performance" element={
                   <ProtectedRoute requiredRole="employee">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <PerformanceReviews />
                       </Suspense>
                     </AppLayout>
@@ -915,7 +915,7 @@ function App() {
                 <Route path="/employee/payroll" element={
                   <ProtectedRoute requiredRole="employee">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <PayrollBenefits />
                       </Suspense>
                     </AppLayout>
@@ -925,7 +925,7 @@ function App() {
                 <Route path="/employee/training" element={
                   <ProtectedRoute requiredRole="employee">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Training />
                       </Suspense>
                     </AppLayout>
@@ -935,7 +935,7 @@ function App() {
                 <Route path="/employee/communication" element={
                   <ProtectedRoute requiredRole="employee">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Communication />
                       </Suspense>
                     </AppLayout>
@@ -946,7 +946,7 @@ function App() {
                 <Route path="/ai/insights" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <AIInsights />
                       </Suspense>
                     </AppLayout>
@@ -956,7 +956,7 @@ function App() {
                 <Route path="/ai/predictions" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <AIPredictions />
                       </Suspense>
                     </AppLayout>
@@ -966,7 +966,7 @@ function App() {
                 <Route path="/ai/auto-assign" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <AIAutoAssign />
                       </Suspense>
                     </AppLayout>
@@ -976,7 +976,7 @@ function App() {
                 <Route path="/ai/voice" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <AIVoice />
                       </Suspense>
                     </AppLayout>
@@ -987,7 +987,7 @@ function App() {
                 <Route path="/invoices" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <InvoicesPage />
                       </Suspense>
                     </AppLayout>
@@ -997,7 +997,7 @@ function App() {
                 <Route path="/invoices/new" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <InvoiceForm />
                       </Suspense>
                     </AppLayout>
@@ -1007,7 +1007,7 @@ function App() {
                 <Route path="/invoices/:id" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <InvoiceDetail />
                       </Suspense>
                     </AppLayout>
@@ -1017,7 +1017,7 @@ function App() {
                 <Route path="/quotes" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <QuotesPage />
                       </Suspense>
                     </AppLayout>
@@ -1027,7 +1027,7 @@ function App() {
                 <Route path="/quotes/new" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <QuoteForm />
                       </Suspense>
                     </AppLayout>
@@ -1037,7 +1037,7 @@ function App() {
                 <Route path="/quotes/:id" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <QuoteDetail />
                       </Suspense>
                     </AppLayout>
@@ -1047,7 +1047,7 @@ function App() {
                 <Route path="/contracts" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Contracts />
                       </Suspense>
                     </AppLayout>
@@ -1057,7 +1057,7 @@ function App() {
                 <Route path="/payments" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <PaymentsPage />
                       </Suspense>
                     </AppLayout>
@@ -1067,7 +1067,7 @@ function App() {
                 <Route path="/financial-reports" element={
                   <ProtectedRoute requiredRole={['admin', 'super_admin']}>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <FinancialReports />
                       </Suspense>
                     </AppLayout>
@@ -1078,7 +1078,7 @@ function App() {
                 <Route path="/settings" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Settings />
                       </Suspense>
                     </AppLayout>
@@ -1089,7 +1089,7 @@ function App() {
                 <Route path="/client/dashboard" element={
                   <ProtectedRoute requiredRole="client">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ClientDashboard />
                       </Suspense>
                     </AppLayout>
@@ -1099,7 +1099,7 @@ function App() {
                 <Route path="/client/projects" element={
                   <ProtectedRoute requiredRole="client">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ClientProjects />
                       </Suspense>
                     </AppLayout>
@@ -1109,7 +1109,7 @@ function App() {
                 <Route path="/client/invoices" element={
                   <ProtectedRoute requiredRole="client">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ClientInvoices />
                       </Suspense>
                     </AppLayout>
@@ -1119,7 +1119,7 @@ function App() {
                 <Route path="/client/support" element={
                   <ProtectedRoute requiredRole="client">
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ClientSupport />
                       </Suspense>
                     </AppLayout>
@@ -1130,7 +1130,7 @@ function App() {
                 <Route path="/notification-test" element={
                   <ProtectedRoute>
                     <AppLayout>
-                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <NotificationTestPage />
                       </Suspense>
                     </AppLayout>

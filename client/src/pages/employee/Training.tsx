@@ -139,8 +139,8 @@ export default function Training() {
 
       <div className="relative z-10 p-6 space-y-8">
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-2xl">
             <div className="p-6">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-4">

@@ -77,7 +77,7 @@ export function SecurityDashboard() {
         </div>
         <Button onClick={runSecurityAudit} disabled={isLoading}>
           {isLoading ? (
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary mr-2"></div>
+            <div className=" rounded-full h-4 w-4 border-b-2 border-primary mr-2"></div>
           ) : (
             <Shield className="h-4 w-4 mr-2" />
           )}

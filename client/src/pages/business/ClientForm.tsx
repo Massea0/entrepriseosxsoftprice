@@ -286,7 +286,7 @@ export default function ClientForm() {
               <Button type="submit" disabled={saving}>
                 {saving ? (
                   <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    <div className=" rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                     Sauvegarde...
                   </>
                 ) : (

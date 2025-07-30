@@ -155,7 +155,7 @@ export function WorkOrganizer({ projectId }: WorkOrganizerProps) {
             <Button onClick={handleAnalyze} disabled={isLoading}>
               {isLoading ? (
                 <>
-                  <Clock className="h-4 w-4 mr-2 animate-spin" />
+                  <Clock className="h-4 w-4 mr-2 " />
                   Analyse en cours...
                 </>
               ) : (

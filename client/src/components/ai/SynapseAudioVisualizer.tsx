@@ -345,17 +345,17 @@ export const SynapseAudioVisualizer: React.FC<AudioVisualizerProps> = ({
         {/* Indicateurs d'état */}
         <div className="flex justify-between mt-3 text-xs">
           <div className={`flex items-center gap-1 ${isListening ? 'text-green-400' : 'text-gray-500'}`}>
-            <div className={`w-2 h-2 rounded-full ${isListening ? 'bg-green-400 animate-pulse' : 'bg-gray-500'}`} />
+            <div className={`w-2 h-2 rounded-full ${isListening ? 'bg-green-400 ' : 'bg-gray-500'}`} />
             <span>Microphone</span>
           </div>
           
           <div className={`flex items-center gap-1 ${isSpeaking ? 'text-blue-400' : 'text-gray-500'}`}>
-            <div className={`w-2 h-2 rounded-full ${isSpeaking ? 'bg-blue-400 animate-pulse' : 'bg-gray-500'}`} />
+            <div className={`w-2 h-2 rounded-full ${isSpeaking ? 'bg-blue-400 ' : 'bg-gray-500'}`} />
             <span>Sortie audio</span>
           </div>
           
           <div className={`flex items-center gap-1 ${metrics.isSpeech ? 'text-green-400' : 'text-gray-500'}`}>
-            <div className={`w-2 h-2 rounded-full ${metrics.isSpeech ? 'bg-green-400 animate-pulse' : 'bg-gray-500'}`} />
+            <div className={`w-2 h-2 rounded-full ${metrics.isSpeech ? 'bg-green-400 ' : 'bg-gray-500'}`} />
             <span>Parole détectée</span>
           </div>
         </div>

@@ -181,7 +181,7 @@ export function DynamicWidget({
         >
           <CardTitle className="text-sm font-medium flex items-center gap-2">
             {isLoading && (
-              <RefreshCw className="h-4 w-4 animate-spin text-muted-foreground" />
+              <RefreshCw className="h-4 w-4  text-muted-foreground" />
             )}
             {title}
           </CardTitle>
@@ -198,7 +198,7 @@ export function DynamicWidget({
               >
                 <RefreshCw className={cn(
                   "h-4 w-4",
-                  isLoading && "animate-spin"
+                  isLoading && ""
                 )} />
               </Button>
             )}

@@ -233,7 +233,7 @@ const WorkflowOrchestrator: React.FC = () => {
   // Icônes par statut
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'running': return <Loader className="h-4 w-4 animate-spin" />;
+      case 'running': return <Loader className="h-4 w-4 " />;
       case 'completed': return <CheckCircle className="h-4 w-4" />;
       case 'failed': return <X className="h-4 w-4" />;
       case 'paused': return <Pause className="h-4 w-4" />;
@@ -551,7 +551,7 @@ const WorkflowOrchestrator: React.FC = () => {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+          <div className=" rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
           <p className="mt-4 text-gray-600">Chargement de l'orchestrateur...</p>
         </div>
       </div>
@@ -1188,7 +1188,7 @@ const WorkflowBuilder: React.FC<{
           disabled={!name || !description || isCreating}
           className="w-full"
         >
-          {isCreating ? <Loader className="h-4 w-4 mr-2 animate-spin" /> : <Plus className="h-4 w-4 mr-2" />}
+          {isCreating ? <Loader className="h-4 w-4 mr-2 " /> : <Plus className="h-4 w-4 mr-2" />}
           Créer Workflow
         </Button>
       </CardContent>

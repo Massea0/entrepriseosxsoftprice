@@ -273,7 +273,7 @@ export default function BusinessDashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <div className=" rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
   }
@@ -289,8 +289,8 @@ export default function BusinessDashboard() {
 
       <div className="relative z-10 space-y-8 p-6">
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white shadow-2xl">
             <div className="p-8">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-6">
@@ -338,7 +338,7 @@ export default function BusinessDashboard() {
         </HoverZone>
 
         {/* Synapse Insights avec effet */}
-        <HoverZone effect="lift">
+        <HoverZone>
           <SynapseInsights context="business-dashboard" />
         </HoverZone>
 
@@ -404,8 +404,8 @@ export default function BusinessDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
           {/* Évolution mensuelle */}
-          <HoverZone effect="lift">
-            <EnhancedCard variant="glow" className="h-full">
+          <HoverZone>
+            <EnhancedCard  className="h-full">
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg text-white">
@@ -423,11 +423,11 @@ export default function BusinessDashboard() {
                 <StaggeredList className="space-y-4">
                   {monthlyData.map((month, index) => (
                     <StaggeredItem key={month.month} index={index}>
-                      <HoverZone effect="glow" className="p-3 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+                      <HoverZone  className="p-3 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
                         <div className="space-y-2">
                           <div className="flex items-center justify-between text-sm">
                             <span className="font-medium flex items-center gap-2">
-                              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                              <div className="w-2 h-2 bg-blue-500 rounded-full " />
                               {month.month}
                             </span>
                             <span className="text-green-600 font-semibold">
@@ -463,7 +463,7 @@ export default function BusinessDashboard() {
 
           {/* Détails par module */}
           <HoverZone effect="rotate">
-            <EnhancedCard variant="shimmer" className="h-full">
+            <EnhancedCard  className="h-full">
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg text-white">
@@ -552,8 +552,8 @@ export default function BusinessDashboard() {
         </div>
 
         {/* Activité récente */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="lift" className="col-span-2">
+        <HoverZone>
+          <EnhancedCard  className="col-span-2">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg text-white">
@@ -573,7 +573,7 @@ export default function BusinessDashboard() {
                   const Icon = getActivityIcon(activity.type);
                   return (
                     <StaggeredItem key={activity.id} index={index}>
-                      <HoverZone effect="lift" className="flex items-center gap-4 p-3 border rounded-lg hover:bg-muted/50">
+                      <HoverZone  className="flex items-center gap-4 p-3 border rounded-lg hover:bg-muted/50">
                   <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                     <Icon className="h-5 w-5 text-primary" />
                   </div>
@@ -624,8 +624,8 @@ export default function BusinessDashboard() {
       </HoverZone>
 
         {/* Actions rapides avec design révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="pulse" className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <LiquidContainer className="p-2 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg text-white">

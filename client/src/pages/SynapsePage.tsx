@@ -57,7 +57,7 @@ export default function SynapsePage() {
           <div className="relative text-center space-y-6">
             <div className="flex items-center justify-center gap-4 mb-6">
               <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl shadow-xl">
-                <Mic className="h-16 w-16 text-white animate-pulse" />
+                <Mic className="h-16 w-16 text-white " />
               </div>
               <div className="text-left">
                 <h1 className="text-5xl font-bold mb-2">
@@ -117,7 +117,7 @@ export default function SynapsePage() {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full "></div>
                     <span className="text-sm font-medium">Moteur vocal</span>
                   </div>
                   <Badge className="bg-green-100 text-green-700 border-green-200 dark:bg-green-950 dark:text-green-300 dark:border-green-800">Actif</Badge>
@@ -125,7 +125,7 @@ export default function SynapsePage() {
                 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                    <div className="w-3 h-3 bg-blue-500 rounded-full "></div>
                     <span className="text-sm font-medium">Base de données</span>
                   </div>
                   <Badge className="bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-950 dark:text-blue-300 dark:border-blue-800">Connectée</Badge>
@@ -133,7 +133,7 @@ export default function SynapsePage() {
                 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
+                    <div className="w-3 h-3 bg-purple-500 rounded-full "></div>
                     <span className="text-sm font-medium">Analyse contextuelle</span>
                   </div>
                   <Badge className="bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-950 dark:text-purple-300 dark:border-purple-800">En cours</Badge>
@@ -317,17 +317,17 @@ export default function SynapsePage() {
               
               <div className="flex items-center justify-center gap-6 text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full "></div>
                   <span>🎤 Microphone requis</span>
                 </div>
                 <div className="w-px h-4 bg-white/30"></div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-blue-400 rounded-full "></div>
                   <span>🔊 Audio recommandé</span>
                 </div>
                 <div className="w-px h-4 bg-white/30"></div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-purple-400 rounded-full "></div>
                   <span>🌐 Connexion stable</span>
                 </div>
               </div>

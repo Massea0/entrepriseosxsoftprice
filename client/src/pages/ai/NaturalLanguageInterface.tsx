@@ -270,7 +270,7 @@ LIMIT 10;`,
             {voiceState.isListening && (
               <div className="p-4 bg-red-50 dark:bg-red-950/20 rounded-lg border border-red-200">
                 <div className="flex items-center gap-2">
-                  <Mic className="h-4 w-4 text-red-500 animate-pulse" />
+                  <Mic className="h-4 w-4 text-red-500 " />
                   <span className="text-sm font-medium text-red-700 dark:text-red-300">
                     Écoute en cours... Parlez maintenant
                   </span>
@@ -303,7 +303,7 @@ LIMIT 10;`,
                 >
                   {isProcessing ? (
                     <>
-                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      <Loader2 className="h-4 w-4 mr-2 " />
                       Traitement...
                     </>
                   ) : (

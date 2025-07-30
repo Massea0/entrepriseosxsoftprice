@@ -210,7 +210,7 @@ export const HoverZone: React.FC<HoverZoneProps> = ({
       case 'lift':
         return isHovered ? 'transform -translate-y-1' : '';
       case 'pulse':
-        return isHovered ? 'animate-pulse' : '';
+        return isHovered ? '' : '';
       default:
         return '';
     }
@@ -312,7 +312,7 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
       case 'glow':
         return 'bg-white shadow-lg border border-gray-200 shadow-blue-500/10';
       case 'pulse':
-        return 'bg-white border border-gray-200 animate-pulse';
+        return 'bg-white border border-gray-200 ';
       case 'lift':
         return 'bg-white border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition-all';
       default:

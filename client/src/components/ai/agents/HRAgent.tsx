@@ -489,7 +489,7 @@ const HRAgent: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <div className=" rounded-full h-8 w-8 border-b-2 border-primary"></div>
         <span className="ml-2">Initialisation HRAgent...</span>
       </div>
     );
@@ -623,7 +623,7 @@ const HRAgent: React.FC = () => {
                             disabled={processingId === candidate.id}
                           >
                             {processingId === candidate.id ? (
-                              <Clock className="w-4 h-4 animate-spin" />
+                              <Clock className="w-4 h-4 " />
                             ) : (
                               <Brain className="w-4 h-4" />
                             )}
@@ -742,7 +742,7 @@ const HRAgent: React.FC = () => {
                           disabled={processingId === employee.id}
                         >
                           {processingId === employee.id ? (
-                            <Clock className="w-4 h-4 animate-spin" />
+                            <Clock className="w-4 h-4 " />
                           ) : (
                             <BarChart3 className="w-4 h-4" />
                           )}
@@ -825,7 +825,7 @@ const HRAgent: React.FC = () => {
                       disabled={processingId === team.team_name}
                     >
                       {processingId === team.team_name ? (
-                        <Clock className="w-4 h-4 animate-spin" />
+                        <Clock className="w-4 h-4 " />
                       ) : (
                         <Zap className="w-4 h-4" />
                       )}

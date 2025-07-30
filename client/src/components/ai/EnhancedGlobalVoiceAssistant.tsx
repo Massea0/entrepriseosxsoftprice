@@ -64,7 +64,7 @@ export const EnhancedGlobalVoiceAssistant: React.FC<EnhancedGlobalVoiceAssistant
           </Button>
           
           {/* Indicateur d'activité vocal */}
-          <div className="absolute -top-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-white animate-pulse" />
+          <div className="absolute -top-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-white " />
           
           {/* Badge vocal */}
           <Badge className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-xs bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-700 shadow-lg">

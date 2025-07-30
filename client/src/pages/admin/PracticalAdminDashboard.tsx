@@ -200,12 +200,12 @@ export default function PracticalAdminDashboard() {
               className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent"
               speed={80}
             />
-            <div className="animate-spin h-8 w-8 border-4 border-purple-200 border-t-purple-600 rounded-full mx-auto"></div>
+            <div className=" h-8 w-8 border-4 border-purple-200 border-t-purple-600 rounded-full mx-auto"></div>
           </div>
           <StaggeredList className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[1, 2, 3, 4].map(i => (
               <StaggeredItem key={i}>
-                <EnhancedCard className="animate-pulse">
+                <EnhancedCard>
                   <div className="p-6">
                     <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
                     <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded"></div>
@@ -308,18 +308,18 @@ export default function PracticalAdminDashboard() {
         {/* Secondary Metrics avec Enhanced Cards */}
         <StaggeredList className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StaggeredItem>
-            <EnhancedCard className="animate-fadeInUp">
+            <EnhancedCard>
               <div className="p-6">
                 <div className="flex items-center mb-4">
                   <Users className="h-5 w-5 mr-2" />
                   <GlowText className="text-base font-semibold">Équipe</GlowText>
                 </div>
                 <div className="space-y-3">
-                  <HoverZone effect="lift" className="flex justify-between p-2 rounded">
+                  <HoverZone  className="flex justify-between p-2 rounded">
                     <span className="text-sm">Employés</span>
                     <Badge variant="secondary">{stats.totalEmployees}</Badge>
                   </HoverZone>
-                  <HoverZone effect="glow" className="flex justify-between p-2 rounded">
+                  <HoverZone  className="flex justify-between p-2 rounded">
                     <span className="text-sm">Départements</span>
                     <Badge variant="secondary">4</Badge>
                   </HoverZone>
@@ -331,18 +331,18 @@ export default function PracticalAdminDashboard() {
           </StaggeredItem>
 
           <StaggeredItem>
-            <EnhancedCard className="animate-fadeInUp">
+            <EnhancedCard>
               <div className="p-6">
                 <div className="flex items-center mb-4">
                   <BarChart3 className="h-5 w-5 mr-2" />
                   <GlowText className="text-base font-semibold">Activité</GlowText>
                 </div>
                 <div className="space-y-3">
-                  <HoverZone effect="lift" className="flex justify-between p-2 rounded">
+                  <HoverZone  className="flex justify-between p-2 rounded">
                     <span className="text-sm">Factures émises</span>
                     <Badge variant="outline">{stats.totalInvoices}</Badge>
                   </HoverZone>
-                  <HoverZone effect="glow" className="flex justify-between p-2 rounded">
+                  <HoverZone  className="flex justify-between p-2 rounded">
                     <span className="text-sm">Devis créés</span>
                     <Badge variant="outline">{stats.totalQuotes}</Badge>
                   </HoverZone>
@@ -354,7 +354,7 @@ export default function PracticalAdminDashboard() {
           </StaggeredItem>
 
           <StaggeredItem>
-            <EnhancedCard className="animate-fadeInUp">
+            <EnhancedCard>
               <div className="p-6">
                 <div className="flex items-center mb-4">
                   <Activity className="h-5 w-5 mr-2" />
@@ -380,7 +380,7 @@ export default function PracticalAdminDashboard() {
         </StaggeredList>
 
         {/* Recent Activity avec Enhanced Card */}
-        <EnhancedCard className="animate-fadeInUp">
+        <EnhancedCard>
           <div className="p-6">
             <div className="flex items-center mb-6">
               <Clock className="h-5 w-5 mr-2" />
@@ -392,7 +392,7 @@ export default function PracticalAdminDashboard() {
                   const IconComponent = getActivityIcon(activity.type);
                   return (
                     <StaggeredItem key={activity.id}>
-                      <HoverZone effect="lift" className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                      <HoverZone  className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
                         <IconComponent className={`h-4 w-4 ${getStatusColor(activity.status)}`} />
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium truncate">{activity.description}</p>

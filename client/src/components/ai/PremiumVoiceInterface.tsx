@@ -467,7 +467,7 @@ export const PremiumVoiceInterface: React.FC<PremiumVoiceInterfaceProps> = ({
           <div className="flex items-center justify-center py-4">
             {isProcessing ? (
               <div className="flex items-center gap-2 text-blue-600">
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="h-4 w-4 " />
                 <span className="text-sm">Traitement IA...</span>
               </div>
             ) : isListening ? (
@@ -480,7 +480,7 @@ export const PremiumVoiceInterface: React.FC<PremiumVoiceInterfaceProps> = ({
               </div>
             ) : isSpeaking ? (
               <div className="flex items-center gap-2 text-purple-600">
-                <Volume2 className="h-4 w-4 animate-pulse" />
+                <Volume2 className="h-4 w-4 " />
                 <span className="text-sm">
                   {voiceConfig.service === 'elevenlabs' ? 'Voix ultra-réaliste...' : 'En train de parler...'}
                 </span>

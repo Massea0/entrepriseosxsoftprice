@@ -28,9 +28,9 @@ import {
   StaggeredList,
   StaggeredItem,
   HoverZone,
-  MagneticButton
-} from '@/components/ui/EnhancedAnimations';
-import { EnhancedCard } from '@/components/ui/enhanced-card';
+  MagneticButton,
+  EnhancedCard
+} from '@/components/ui/simple-animations';
 import { AnimatedMetricCard } from '@/components/ui/animated-metric-card';
 
 export default function ClientDashboard() {
@@ -138,7 +138,7 @@ export default function ClientDashboard() {
         </div>
 
         {/* Métriques Révolutionnaires */}
-        <EnhancedCard className="animate-fadeInUp" hoverEffect="glow" glowColor="blue">
+        <EnhancedCard 
           <div className="p-6">
             <div className="flex items-center gap-2 mb-4">
               <Activity className="h-5 w-5" />
@@ -146,8 +146,8 @@ export default function ClientDashboard() {
             </div>
             <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <StaggeredItem>
-                <HoverZone effect="glow" className="flex items-center gap-3 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
-                  <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                <HoverZone  className="flex items-center gap-3 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
                   <div>
                     <p className="font-medium text-sm">Projets Actifs</p>
                     <p className="text-xs text-muted-foreground">{stats.activeProjects} en cours</p>
@@ -155,8 +155,8 @@ export default function ClientDashboard() {
                 </HoverZone>
               </StaggeredItem>
               <StaggeredItem>
-                <HoverZone effect="lift" className="flex items-center gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <HoverZone  className="flex items-center gap-3 p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
+                  <div className="w-3 h-3 bg-green-500 rounded-full "></div>
                   <div>
                     <p className="font-medium text-sm">Factures</p>
                     <p className="text-xs text-muted-foreground">{stats.pendingInvoices} en attente</p>
@@ -164,8 +164,8 @@ export default function ClientDashboard() {
                 </HoverZone>
               </StaggeredItem>
               <StaggeredItem>
-                <HoverZone effect="glow" className="flex items-center gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg">
-                  <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
+                <HoverZone  className="flex items-center gap-3 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg">
+                  <div className="w-3 h-3 bg-purple-500 rounded-full "></div>
                   <div>
                     <p className="font-medium text-sm">Budget Total</p>
                     <p className="text-xs text-muted-foreground">€{stats.totalBudget.toLocaleString()}</p>
@@ -173,8 +173,8 @@ export default function ClientDashboard() {
                 </HoverZone>
               </StaggeredItem>
               <StaggeredItem>
-                <HoverZone effect="glow" className="flex items-center gap-3 p-3 bg-orange-50 dark:bg-orange-950/20 rounded-lg">
-                  <div className="w-3 h-3 bg-orange-500 rounded-full animate-pulse"></div>
+                <HoverZone  className="flex items-center gap-3 p-3 bg-orange-50 dark:bg-orange-950/20 rounded-lg">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full "></div>
                   <div>
                     <p className="font-medium text-sm">Satisfaction</p>
                     <p className="text-xs text-muted-foreground">{stats.satisfaction}%</p>
@@ -235,7 +235,7 @@ export default function ClientDashboard() {
 
         {/* Projets Actifs */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <EnhancedCard className="animate-fadeInUp" hoverEffect="shimmer" glowColor="purple">
+          <EnhancedCard>
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Building2 className="h-5 w-5" />
@@ -244,7 +244,7 @@ export default function ClientDashboard() {
               <div className="space-y-4">
                 {projects.map((project, index) => (
                   <StaggeredItem key={project.id}>
-                    <HoverZone effect="lift" className="p-4 border rounded-lg">
+                    <HoverZone  className="p-4 border rounded-lg">
                       <div className="flex justify-between items-start mb-2">
                         <h4 className="font-medium">{project.name}</h4>
                         <Badge className={
@@ -273,7 +273,7 @@ export default function ClientDashboard() {
           </EnhancedCard>
 
           {/* Activité Récente */}
-          <EnhancedCard className="animate-fadeInUp" hoverEffect="pulse" glowColor="green">
+          <EnhancedCard>
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Activity className="h-5 w-5" />
@@ -282,7 +282,7 @@ export default function ClientDashboard() {
               <div className="space-y-3">
                 {recentActivity.map((activity, index) => (
                   <StaggeredItem key={activity.id}>
-                    <HoverZone effect="glow" className="p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
+                    <HoverZone  className="p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                       <div className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                         <div className="flex-1">
@@ -307,7 +307,7 @@ export default function ClientDashboard() {
         </div>
 
         {/* Actions Rapides */}
-        <EnhancedCard className="animate-fadeInUp" hoverEffect="shimmer" glowColor="orange">
+        <EnhancedCard>
           <div className="p-6">
             <div className="flex items-center gap-2 mb-4">
               <Zap className="h-5 w-5" />

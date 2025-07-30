@@ -294,7 +294,7 @@ export const SimpleVoiceAssistant: React.FC<SimpleVoiceAssistantProps> = ({
           >
             {isProcessing ? (
               <>
-                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                <Loader2 className="h-4 w-4 mr-2 " />
                 Traitement...
               </>
             ) : isListening ? (
@@ -322,7 +322,7 @@ export const SimpleVoiceAssistant: React.FC<SimpleVoiceAssistantProps> = ({
         {/* État visuel */}
         {isListening && (
           <div className="flex items-center justify-center gap-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-blue-500 rounded-full "></div>
             <span className="text-sm text-blue-700 font-medium">
               🎤 En écoute...
             </span>

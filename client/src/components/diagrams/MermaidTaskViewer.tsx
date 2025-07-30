@@ -153,7 +153,7 @@ export default function MermaidTaskViewer({ taskId, taskTitle }: MermaidTaskView
               className="flex items-center gap-2"
             >
               {loading ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="h-4 w-4 " />
               ) : hasGenerated ? (
                 <RefreshCw className="h-4 w-4" />
               ) : (

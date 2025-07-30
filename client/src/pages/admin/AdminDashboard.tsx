@@ -117,12 +117,12 @@ export default function AdminDashboard() {
               className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent"
               speed={80}
             />
-            <div className="animate-spin h-8 w-8 border-4 border-purple-200 border-t-purple-600 rounded-full mx-auto"></div>
+            <div className=" h-8 w-8 border-4 border-purple-200 border-t-purple-600 rounded-full mx-auto"></div>
           </div>
           <StaggeredList className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[1, 2, 3, 4].map(i => (
               <StaggeredItem key={i}>
-                <EnhancedCard variant="shimmer" className="animate-pulse">
+                <EnhancedCard>
                   <div className="p-6">
                     <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
                     <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded"></div>
@@ -215,7 +215,7 @@ export default function AdminDashboard() {
         {/* Contenu Principal avec Enhanced Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Performance */}
-          <EnhancedCard variant="glow" className="animate-fadeInUp">
+          <EnhancedCard>
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <BarChart3 className="h-5 w-5" />
@@ -250,11 +250,11 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 pt-4 border-t">
-                  <HoverZone effect="glow" className="text-center p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
+                  <HoverZone  className="text-center p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
                     <div className="text-lg font-bold text-green-600">12/15</div>
                     <div className="text-xs text-muted-foreground">Objectifs atteints</div>
                   </HoverZone>
-                  <HoverZone effect="lift" className="text-center p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+                  <HoverZone  className="text-center p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
                     <div className="text-lg font-bold text-blue-600">+32%</div>
                     <div className="text-xs text-muted-foreground">Croissance</div>
                   </HoverZone>
@@ -264,7 +264,7 @@ export default function AdminDashboard() {
           </EnhancedCard>
 
           {/* Activité Récente */}
-          <EnhancedCard variant="shimmer" className="animate-fadeInUp">
+          <EnhancedCard>
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Activity className="h-5 w-5" />
@@ -275,7 +275,7 @@ export default function AdminDashboard() {
               </p>
               <StaggeredList className="space-y-3">
                 <StaggeredItem>
-                  <HoverZone effect="lift" className="flex items-center gap-4 p-4 rounded-lg border bg-red-50 dark:bg-red-950/20">
+                  <HoverZone  className="flex items-center gap-4 p-4 rounded-lg border bg-red-50 dark:bg-red-950/20">
                     <div className="p-2 rounded-lg text-red-600">
                       <AlertTriangle className="h-4 w-4" />
                     </div>
@@ -290,7 +290,7 @@ export default function AdminDashboard() {
                 </StaggeredItem>
                 
                 <StaggeredItem>
-                  <HoverZone effect="glow" className="flex items-center gap-4 p-4 rounded-lg border bg-green-50 dark:bg-green-950/20">
+                  <HoverZone  className="flex items-center gap-4 p-4 rounded-lg border bg-green-50 dark:bg-green-950/20">
                     <div className="p-2 rounded-lg text-green-600">
                       <CheckCircle2 className="h-4 w-4" />
                     </div>
@@ -305,7 +305,7 @@ export default function AdminDashboard() {
                 </StaggeredItem>
                 
                 <StaggeredItem>
-                  <HoverZone effect="lift" className="flex items-center gap-4 p-4 rounded-lg border bg-blue-50 dark:bg-blue-950/20">
+                  <HoverZone  className="flex items-center gap-4 p-4 rounded-lg border bg-blue-50 dark:bg-blue-950/20">
                     <div className="p-2 rounded-lg text-blue-600">
                       <Users className="h-4 w-4" />
                     </div>
@@ -324,7 +324,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Actions Rapides */}
-        <EnhancedCard variant="pulse" className="animate-fadeInUp">
+        <EnhancedCard>
           <div className="p-6">
             <GlowText className="text-lg font-semibold mb-2">Actions Rapides</GlowText>
             <p className="text-muted-foreground mb-6">

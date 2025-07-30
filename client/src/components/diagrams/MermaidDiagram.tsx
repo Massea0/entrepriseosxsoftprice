@@ -255,7 +255,7 @@ export const MermaidDiagram: React.FC<MermaidDiagramProps> = ({
                 onClick={renderDiagram}
                 disabled={isLoading}
               >
-                <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
+                <RefreshCw className={`h-4 w-4 ${isLoading ? '' : ''}`} />
               </Button>
               <Button
                 variant="outline"
@@ -316,7 +316,7 @@ export const MermaidDiagram: React.FC<MermaidDiagramProps> = ({
           </div>
         ) : isLoading ? (
           <div className="border rounded-lg p-8 text-center">
-            <div className="animate-pulse">
+            <div >
               <div className="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-full mx-auto mb-4"></div>
               <div className="text-sm text-muted-foreground">Génération du diagramme...</div>
             </div>

@@ -233,7 +233,7 @@ export default function SickLeaveManagement() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 flex items-center justify-center">
         <div className="text-center space-y-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <div className=" rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
           <p className="text-muted-foreground">Chargement des arrêts maladie...</p>
         </div>
       </div>
@@ -250,8 +250,8 @@ export default function SickLeaveManagement() {
       <div className="relative z-10 max-w-7xl mx-auto p-6 space-y-8">
         
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-r from-red-500 to-pink-600 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-red-500 to-pink-600 text-white shadow-2xl">
             <div className="p-6">
               <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                 <div className="flex items-center gap-4">
@@ -323,8 +323,8 @@ export default function SickLeaveManagement() {
             <StaggeredList className="space-y-6">
               {sickLeaves.map((leave, index) => (
                 <StaggeredItem key={leave.id} index={index}>
-                  <HoverZone effect="lift">
-                    <EnhancedCard variant="glow">
+                  <HoverZone>
+                    <EnhancedCard>
                       <CardContent className="p-6">
                   <div className="space-y-4">
                     
@@ -439,8 +439,8 @@ export default function SickLeaveManagement() {
       </StaggeredList>
 
       {sickLeaves.length === 0 && (
-        <HoverZone effect="lift">
-          <EnhancedCard variant="glow">
+        <HoverZone>
+          <EnhancedCard>
                 <CardContent className="p-12 text-center">
                   <Heart className="h-12 w-12 mx-auto mb-4 opacity-50" />
                   <h3 className="text-lg font-medium mb-2">Aucun arrêt maladie</h3>
@@ -452,8 +452,8 @@ export default function SickLeaveManagement() {
           </TabsContent>
 
           <TabsContent value="declare" className="space-y-6">
-            <HoverZone effect="lift">
-              <EnhancedCard variant="shimmer">
+            <HoverZone>
+              <EnhancedCard>
                 <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Plus className="h-5 w-5" />

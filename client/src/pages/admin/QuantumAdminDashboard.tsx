@@ -107,7 +107,7 @@ const QuantumAdminDashboard = () => {
         {/* Quantum Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {metrics.map((metric, index) => (
-            <Suspense key={metric.title} fallback={<div className="h-32 bg-white/5 rounded-lg animate-pulse" />}>
+            <Suspense key={metric.title} fallback={<div className="h-32 bg-white/5 rounded-lg " />}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -227,7 +227,7 @@ const QuantumAdminDashboard = () => {
         >
           <div className="flex items-center gap-4 text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+              <div className="w-2 h-2 bg-green-500 rounded-full " />
               <span className="text-gray-300">Quantum State: Active</span>
             </div>
             <div className="w-px h-4 bg-gray-600" />

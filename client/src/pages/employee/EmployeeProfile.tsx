@@ -138,8 +138,8 @@ export default function EmployeeProfile() {
       <div className="relative z-10 max-w-4xl mx-auto p-6 space-y-8">
         
         {/* Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl">
             <div className="p-6">
               <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                 <div className="flex items-center gap-6">
@@ -171,7 +171,7 @@ export default function EmployeeProfile() {
                   className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20"
                 >
                   {loading ? (
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    <div className=" rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                   ) : isEditing ? (
                     <Save className="h-4 w-4 mr-2" />
                   ) : (
@@ -209,8 +209,8 @@ export default function EmployeeProfile() {
           <TabsContent value="personal" className="space-y-6">
             <StaggeredList className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <StaggeredItem index={0}>
-                <HoverZone effect="lift">
-                  <EnhancedCard variant="glow" className="h-full">
+                <HoverZone>
+                  <EnhancedCard  className="h-full">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-3">
                         <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg text-white">
@@ -276,8 +276,8 @@ export default function EmployeeProfile() {
               </StaggeredItem>
 
               <StaggeredItem index={1}>
-                <HoverZone effect="lift">
-                  <EnhancedCard variant="glow" className="h-full">
+                <HoverZone>
+                  <EnhancedCard  className="h-full">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Shield className="h-5 w-5" />

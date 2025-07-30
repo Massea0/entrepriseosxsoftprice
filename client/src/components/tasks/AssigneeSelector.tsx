@@ -423,7 +423,7 @@ export default function AssigneeSelector({
         {suggesting && (
           <div className="border-t p-3">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Brain className="h-4 w-4 animate-pulse" />
+              <Brain className="h-4 w-4 " />
               <span>Analyse des suggestions IA...</span>
             </div>
           </div>

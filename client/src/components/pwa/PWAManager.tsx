@@ -639,7 +639,7 @@ const PWAManager: React.FC = () => {
                 </p>
               </div>
               {syncStatus.isRunning ? (
-                <RefreshCw className="h-5 w-5 animate-spin text-blue-500" />
+                <RefreshCw className="h-5 w-5  text-blue-500" />
               ) : (
                 <Button onClick={triggerSync} disabled={!pwaState.isOnline} size="sm">
                   <RefreshCw className="h-4 w-4 mr-2" />

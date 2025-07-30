@@ -404,7 +404,7 @@ export const AIOrchestrator: React.FC = () => {
                     </Badge>
                     <div className={cn("flex items-center gap-1", getStatusColor(task.status))}>
                       {task.status === 'completed' && <CheckCircle2 className="h-4 w-4" />}
-                      {task.status === 'running' && <Activity className="h-4 w-4 animate-pulse" />}
+                      {task.status === 'running' && <Activity className="h-4 w-4 " />}
                       {task.status === 'failed' && <AlertTriangle className="h-4 w-4" />}
                       {task.status === 'queued' && <Clock className="h-4 w-4" />}
                       <span className="text-sm capitalize">{task.status}</span>

@@ -15,10 +15,10 @@ import './App.css';
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-black">
     <div className="relative">
-      <div className="h-32 w-32 border-4 border-purple-500/20 rounded-full animate-pulse" />
-      <div className="absolute inset-0 h-32 w-32 border-4 border-t-purple-500 rounded-full animate-spin" />
-      <div className="absolute inset-4 h-24 w-24 border-4 border-r-pink-500 rounded-full animate-spin-slow" />
-      <div className="absolute inset-8 h-16 w-16 border-4 border-b-blue-500 rounded-full animate-spin-reverse" />
+      <div className="h-32 w-32 border-4 border-purple-500/20 rounded-full " />
+      <div className="absolute inset-0 h-32 w-32 border-4 border-t-purple-500 rounded-full " />
+      <div className="absolute inset-4 h-24 w-24 border-4 border-r-pink-500 rounded-full -slow" />
+      <div className="absolute inset-8 h-16 w-16 border-4 border-b-blue-500 rounded-full -reverse" />
     </div>
   </div>
 );

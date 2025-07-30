@@ -357,7 +357,7 @@ export const ProjectForm = ({
           <Button type="submit" disabled={aiGeneration.loading}>
             {aiGeneration.loading ? (
               <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                <div className=" rounded-full h-4 w-4 border-b-2 border-white mr-2" />
                 IA en cours...
               </>
             ) : (

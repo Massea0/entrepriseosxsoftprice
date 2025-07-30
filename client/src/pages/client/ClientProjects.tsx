@@ -207,8 +207,8 @@ export default function ClientProjects() {
       <div className="relative z-10 max-w-7xl mx-auto p-6 space-y-8">
         
         {/* Hero Header Révolutionnaire */}
-        <HoverZone effect="glow">
-          <EnhancedCard variant="shimmer" className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-2xl">
+        <HoverZone>
+          <EnhancedCard  className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-2xl">
             <div className="p-8">
               <div className="flex items-center gap-4">
                 <LiquidContainer className="p-3 bg-white/10 backdrop-blur-sm rounded-xl">
@@ -250,8 +250,8 @@ export default function ClientProjects() {
         </StaggeredList>
 
         {/* Filtres et Recherche */}
-        <HoverZone effect="lift">
-          <EnhancedCard variant="glow">
+        <HoverZone>
+          <EnhancedCard>
             <div className="flex flex-col lg:flex-row gap-4 items-center justify-between p-6">
               <div className="flex-1 max-w-md">
                 <div className="relative">
@@ -293,9 +293,9 @@ export default function ClientProjects() {
             <StaggeredList className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredProjects.map((project, index) => (
                 <StaggeredItem key={project.id} index={index}>
-                  <HoverZone effect="lift">
+                  <HoverZone>
                     <EnhancedCard
-                      variant="glow"
+                      
                       className="overflow-hidden"
                     >
                   <div className="p-6 space-y-4">
