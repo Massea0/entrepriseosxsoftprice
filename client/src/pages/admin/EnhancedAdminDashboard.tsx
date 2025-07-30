@@ -35,7 +35,6 @@ import {
   WaveformVisualizer,
   StaggeredList,
   StaggeredItem,
-  MagneticButton,
   SimpleCard as EnhancedCard
 } from '@/components/ui/simple-animations';
 
@@ -238,24 +237,22 @@ export default function EnhancedAdminDashboard() {
             { id: 'widgets', label: 'Widgets', icon: Cpu }
           ].map((demo) => (
             <StaggeredItem key={demo.id}>
-              <MagneticButton>
-                <motion.button
-                  onClick={() => setSelectedDemo(demo.id)}
-                  className={`
-                    flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all duration-300
-                    ${selectedDemo === demo.id 
-                      ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/30' 
-                      : 'bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800'
-                    }
-                    backdrop-blur-md border border-white/20 dark:border-gray-700/20
-                  `}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <demo.icon className="w-4 h-4" />
-                  <span>{demo.label}</span>
-                </motion.button>
-              </MagneticButton>
+              <motion.button
+                onClick={() => setSelectedDemo(demo.id)}
+                className={`
+                  flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all duration-300
+                  ${selectedDemo === demo.id 
+                    ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/30' 
+                    : 'bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800'
+                  }
+                  backdrop-blur-md border border-white/20 dark:border-gray-700/20
+                `}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <demo.icon className="w-4 h-4" />
+                <span>{demo.label}</span>
+              </motion.button>
             </StaggeredItem>
           ))}
         </StaggeredList>
@@ -518,15 +515,13 @@ export default function EnhancedAdminDashboard() {
                   
                   {!isFormOpen ? (
                     <div className="text-center">
-                      <MagneticButton>
-                        <button
-                          onClick={() => setIsFormOpen(true)}
-                          className="flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-                        >
-                          <Play className="w-5 h-5" />
-                          <span>Démarrer la démo</span>
-                        </button>
-                      </MagneticButton>
+                      <button
+                        onClick={() => setIsFormOpen(true)}
+                        className="flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                      >
+                        <Play className="w-5 h-5" />
+                        <span>Démarrer la démo</span>
+                      </button>
                     </div>
                   ) : (
                     <div className="space-y-4">
