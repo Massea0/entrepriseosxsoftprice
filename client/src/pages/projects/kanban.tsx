@@ -80,23 +80,26 @@ export default function ProjectsKanban() {
   });
 
   // Organize tasks into columns
-  useEffect(() => {
+  const organizedColumns = useMemo(() => {
     if (!tasks || tasks.length === 0) {
-      setColumns(KANBAN_COLUMNS.map(col => ({
+      return KANBAN_COLUMNS.map(col => ({
         id: col.id,
         title: col.title,
         tasks: []
-      })));
-      return;
+      }));
     }
     
-    const organizedColumns = KANBAN_COLUMNS.map(col => ({
+    return KANBAN_COLUMNS.map(col => ({
       id: col.id,
       title: col.title,
       tasks: tasks.filter((task: Task) => task.status === col.id)
     }));
-    setColumns(organizedColumns);
   }, [tasks]);
+  
+  // Update columns only when organized columns change
+  useEffect(() => {
+    setColumns(organizedColumns);
+  }, [organizedColumns]);
 
   // Handle drag end
   const handleDragEnd = (result: any) => {
@@ -133,7 +136,7 @@ export default function ProjectsKanban() {
   const getPriorityColor = (priority?: string) => {
     switch (priority) {
       case 'critical': return 'destructive';
-      case 'high': return 'warning';
+      case 'high': return 'destructive';  // Changed from 'warning' which doesn't exist
       case 'medium': return 'default';
       case 'low': return 'secondary';
       default: return 'outline';
@@ -208,7 +211,7 @@ export default function ProjectsKanban() {
                                   {task.title}
                                 </CardTitle>
                                 <CardDescription className="text-xs mt-1">
-                                  {task.project?.name} • {task.project?.company?.name}
+                                  {task.project?.name || ''} {task.project?.name && task.project?.company?.name ? '•' : ''} {task.project?.company?.name || ''}
                                 </CardDescription>
                               </CardHeader>
                               <CardContent className="p-4 pt-0 space-y-3">
@@ -238,7 +241,7 @@ export default function ProjectsKanban() {
                                 {task.due_date && (
                                   <div className="flex items-center gap-1 text-xs text-muted-foreground">
                                     <Clock className="h-3 w-3" />
-                                    {formatDate(task.due_date)}
+                                    {task.due_date ? formatDate(task.due_date) : ''}
                                   </div>
                                 )}
                               </CardContent>

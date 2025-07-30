@@ -16,8 +16,10 @@ export function formatCurrency(amount: number, currency: string = 'XOF'): string
   return formatter.format(amount);
 }
 
-export function formatDate(date: string | Date): string {
+export function formatDate(date: string | Date | null | undefined): string {
+  if (!date) return '';
   const d = new Date(date);
+  if (isNaN(d.getTime())) return '';
   return d.toLocaleDateString('fr-FR', {
     day: '2-digit',
     month: '2-digit',
@@ -25,8 +27,10 @@ export function formatDate(date: string | Date): string {
   });
 }
 
-export function formatDateTime(date: string | Date): string {
+export function formatDateTime(date: string | Date | null | undefined): string {
+  if (!date) return '';
   const d = new Date(date);
+  if (isNaN(d.getTime())) return '';
   return d.toLocaleString('fr-FR', {
     day: '2-digit',
     month: '2-digit',
