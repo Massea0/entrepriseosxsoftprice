@@ -262,3 +262,16 @@
     transform: scale(1);
   }
 }
+
+@keyframes progress-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 0;
+  }
+}
+
+.animate-progress-stripes {
+  animation: progress-stripes 1s linear infinite;
+}

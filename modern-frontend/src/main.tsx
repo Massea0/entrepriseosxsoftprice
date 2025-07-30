@@ -16,8 +16,11 @@ import { Breadcrumb, BreadcrumbItem } from '@/components/ui/breadcrumb'
 import { Tabs, TabsList, TabsTrigger, TabsContent, TabsBadge } from '@/components/ui/tabs'
 import { Modal, ModalTrigger, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalBody, ModalFooter, ModalClose, Dialog } from '@/components/ui/modal'
 import { ToasterWithInit, toast, useToast } from '@/components/ui/toast'
+import { Alert, AlertTitle, AlertDescription, AlertLink } from '@/components/ui/alert'
+import { Badge, BadgeGroup, Tag, StatusBadge } from '@/components/ui/badge'
+import { Progress, CircularProgress, MultiProgress } from '@/components/ui/progress'
 import { Container, Grid, Stack, Divider } from '@/components/layout'
-import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2, Home, Users, Settings, BarChart3, Package, ShoppingCart, Info, AlertCircle } from 'lucide-react'
+import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2, Home, Users, Settings, BarChart3, Package, ShoppingCart, Info, AlertCircle, Zap, Star, TrendingUp } from 'lucide-react'
 import '@/styles/globals.css'
 
 const App = () => {
@@ -625,6 +628,304 @@ const App = () => {
                       </div>
                     </CardContent>
                   </Card>
+                </div>
+
+                {/* Alert Demo */}
+                <div className="space-y-4">
+                  <Typography variant="h3">Alert Messages</Typography>
+                  
+                  <Stack spacing={3}>
+                    <Alert>
+                      <AlertTitle>Default Alert</AlertTitle>
+                      <AlertDescription>
+                        This is a default alert message. It can be used for general information.
+                      </AlertDescription>
+                    </Alert>
+
+                    <Alert variant="info">
+                      <AlertTitle>Information</AlertTitle>
+                      <AlertDescription>
+                        New features have been added to your dashboard. <AlertLink href="#">Learn more</AlertLink>
+                      </AlertDescription>
+                    </Alert>
+
+                    <Alert variant="success">
+                      <AlertTitle>Success!</AlertTitle>
+                      <AlertDescription>
+                        Your changes have been saved successfully.
+                      </AlertDescription>
+                    </Alert>
+
+                    <Alert variant="warning">
+                      <AlertTitle>Warning</AlertTitle>
+                      <AlertDescription>
+                        Your session will expire in 5 minutes. Please save your work.
+                      </AlertDescription>
+                    </Alert>
+
+                    <Alert variant="error">
+                      <AlertTitle>Error</AlertTitle>
+                      <AlertDescription>
+                        Failed to connect to the server. Please check your internet connection.
+                      </AlertDescription>
+                    </Alert>
+
+                    <Alert variant="info" dismissible onDismiss={() => toast.info('Alert dismissed')}>
+                      <AlertTitle>Dismissible Alert</AlertTitle>
+                      <AlertDescription>
+                        This alert can be dismissed by clicking the X button.
+                      </AlertDescription>
+                    </Alert>
+
+                    <Alert variant="info" size="sm">
+                      <AlertTitle>Small Alert</AlertTitle>
+                      <AlertDescription>
+                        This is a small sized alert.
+                      </AlertDescription>
+                    </Alert>
+
+                    <Alert variant="info" size="lg" icon={<Zap className="h-6 w-6" />}>
+                      <AlertTitle>Custom Icon Alert</AlertTitle>
+                      <AlertDescription>
+                        This alert has a custom icon and large size.
+                      </AlertDescription>
+                    </Alert>
+                  </Stack>
+                </div>
+
+                {/* Badge & Tag Demo */}
+                <div className="space-y-4">
+                  <Typography variant="h3">Badges & Tags</Typography>
+                  
+                  <Grid cols={{ base: 1, md: 2 }} gap={4}>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Badge Variants</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <BadgeGroup>
+                          <Badge>Default</Badge>
+                          <Badge variant="secondary">Secondary</Badge>
+                          <Badge variant="destructive">Destructive</Badge>
+                          <Badge variant="outline">Outline</Badge>
+                          <Badge variant="success">Success</Badge>
+                          <Badge variant="warning">Warning</Badge>
+                          <Badge variant="error">Error</Badge>
+                          <Badge variant="info">Info</Badge>
+                        </BadgeGroup>
+
+                        <Divider className="my-4" />
+
+                        <Typography variant="body2" weight="medium" gutterBottom>
+                          Sizes & Shapes
+                        </Typography>
+                        <BadgeGroup>
+                          <Badge size="sm">Small</Badge>
+                          <Badge size="md">Medium</Badge>
+                          <Badge size="lg">Large</Badge>
+                          <Badge rounded="none">Square</Badge>
+                          <Badge rounded="full">Pill</Badge>
+                        </BadgeGroup>
+
+                        <Divider className="my-4" />
+
+                        <Typography variant="body2" weight="medium" gutterBottom>
+                          With Icons
+                        </Typography>
+                        <BadgeGroup>
+                          <Badge icon={<Star className="h-3 w-3" />}>Featured</Badge>
+                          <Badge variant="success" icon={<TrendingUp className="h-3 w-3" />}>
+                            Trending
+                          </Badge>
+                          <Badge variant="warning" icon={<AlertCircle className="h-3 w-3" />}>
+                            Beta
+                          </Badge>
+                        </BadgeGroup>
+
+                        <Divider className="my-4" />
+
+                        <Typography variant="body2" weight="medium" gutterBottom>
+                          Removable Badges
+                        </Typography>
+                        <BadgeGroup>
+                          <Badge removable onRemove={() => toast.info('Badge removed')}>
+                            JavaScript
+                          </Badge>
+                          <Badge variant="success" removable onRemove={() => toast.info('Badge removed')}>
+                            TypeScript
+                          </Badge>
+                          <Badge variant="info" removable onRemove={() => toast.info('Badge removed')}>
+                            React
+                          </Badge>
+                        </BadgeGroup>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Tags & Status Badges</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Typography variant="body2" weight="medium" gutterBottom>
+                          Colored Tags
+                        </Typography>
+                        <BadgeGroup>
+                          <Tag color="gray">Gray</Tag>
+                          <Tag color="red">Red</Tag>
+                          <Tag color="yellow">Yellow</Tag>
+                          <Tag color="green">Green</Tag>
+                          <Tag color="blue">Blue</Tag>
+                          <Tag color="indigo">Indigo</Tag>
+                          <Tag color="purple">Purple</Tag>
+                          <Tag color="pink">Pink</Tag>
+                        </BadgeGroup>
+
+                        <Divider className="my-4" />
+
+                        <Typography variant="body2" weight="medium" gutterBottom>
+                          Removable Tags
+                        </Typography>
+                        <BadgeGroup>
+                          <Tag color="blue" removable onRemove={() => toast.info('Tag removed')}>
+                            Technology
+                          </Tag>
+                          <Tag color="green" removable onRemove={() => toast.info('Tag removed')}>
+                            Design
+                          </Tag>
+                          <Tag color="purple" removable onRemove={() => toast.info('Tag removed')}>
+                            Marketing
+                          </Tag>
+                        </BadgeGroup>
+
+                        <Divider className="my-4" />
+
+                        <Typography variant="body2" weight="medium" gutterBottom>
+                          Status Badges
+                        </Typography>
+                        <BadgeGroup wrap gap="md">
+                          <StatusBadge status="online">Online</StatusBadge>
+                          <StatusBadge status="offline">Offline</StatusBadge>
+                          <StatusBadge status="away">Away</StatusBadge>
+                          <StatusBadge status="busy">Busy</StatusBadge>
+                          <StatusBadge status="online" pulse>Active Now</StatusBadge>
+                          <StatusBadge status="error" pulse>Error</StatusBadge>
+                        </BadgeGroup>
+
+                        <Divider className="my-4" />
+
+                        <Typography variant="body2" weight="medium" gutterBottom>
+                          Truncated Badges
+                        </Typography>
+                        <BadgeGroup wrap={false}>
+                          <Badge truncate maxWidth="100px">
+                            This is a very long badge text that will be truncated
+                          </Badge>
+                          <Badge variant="info" truncate maxWidth="150px">
+                            Another long text for demonstration
+                          </Badge>
+                        </BadgeGroup>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                </div>
+
+                {/* Progress Demo */}
+                <div className="space-y-4">
+                  <Typography variant="h3">Progress Indicators</Typography>
+                  
+                  <Grid cols={{ base: 1, md: 2 }} gap={4}>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Linear Progress</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={4}>
+                          <Progress value={25} />
+                          <Progress value={50} variant="success" />
+                          <Progress value={75} variant="warning" />
+                          <Progress value={90} variant="error" />
+                          
+                          <Divider />
+
+                          <Typography variant="body2" weight="medium">With Labels</Typography>
+                          <Progress value={60} showLabel />
+                          <Progress value={80} variant="info" showLabel />
+
+                          <Divider />
+
+                          <Typography variant="body2" weight="medium">Sizes</Typography>
+                          <Progress value={40} size="sm" />
+                          <Progress value={40} size="md" />
+                          <Progress value={40} size="lg" />
+
+                          <Divider />
+
+                          <Typography variant="body2" weight="medium">Animated & Striped</Typography>
+                          <Progress value={65} animated />
+                          <Progress value={45} striped variant="success" />
+                          <Progress value={70} animated striped variant="info" />
+                        </Stack>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Circular & Multi Progress</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={4}>
+                          <Typography variant="body2" weight="medium">Circular Progress</Typography>
+                          <div className="flex flex-wrap gap-4">
+                            <CircularProgress value={25} />
+                            <CircularProgress value={50} variant="success" />
+                            <CircularProgress value={75} variant="warning" showLabel />
+                            <CircularProgress value={90} variant="error" showLabel />
+                          </div>
+
+                          <div className="flex flex-wrap gap-4">
+                            <CircularProgress value={60} size={48} strokeWidth={3} showLabel />
+                            <CircularProgress value={80} size={80} strokeWidth={6} variant="info" showLabel />
+                          </div>
+
+                          <Divider />
+
+                          <Typography variant="body2" weight="medium">Multi-Segment Progress</Typography>
+                          <MultiProgress
+                            segments={[
+                              { value: 25, variant: 'success', label: 'Completed' },
+                              { value: 15, variant: 'info', label: 'In Progress' },
+                              { value: 10, variant: 'warning', label: 'Pending' },
+                            ]}
+                            showLabel
+                          />
+
+                          <MultiProgress
+                            segments={[
+                              { value: 30, variant: 'success' },
+                              { value: 20, variant: 'info' },
+                              { value: 15, variant: 'warning' },
+                              { value: 5, variant: 'error' },
+                            ]}
+                            max={100}
+                            size="lg"
+                          />
+
+                          <Typography variant="body2" weight="medium">Storage Usage</Typography>
+                          <MultiProgress
+                            segments={[
+                              { value: 45, variant: 'info', label: 'Documents (45GB)' },
+                              { value: 30, variant: 'success', label: 'Images (30GB)' },
+                              { value: 15, variant: 'warning', label: 'Videos (15GB)' },
+                              { value: 5, variant: 'error', label: 'Other (5GB)' },
+                            ]}
+                            max={100}
+                            showLabel
+                            labelFormat={(value) => `${value}GB / 100GB`}
+                          />
+                        </Stack>
+                      </CardContent>
+                    </Card>
+                  </Grid>
                 </div>
               </section>
 
