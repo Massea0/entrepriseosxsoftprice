@@ -20,6 +20,14 @@
 ### 6. **Boucle Infinie Kanban** ✅
 - Amélioration du `useEffect` dans `ProjectsKanban` pour éviter les re-renders
 
+### 7. **Import Button Dupliqué** ✅
+- Suppression de l'import `Button` dupliqué dans `ClientDashboard.tsx`
+
+### 8. **TypeError dans Invoices** ✅
+- Remplacement de l'appel Supabase par l'API Express
+- Ajout de vérifications pour propriétés undefined avant `.toLowerCase()`
+- Corrections dans `Invoices.tsx`, `ClientInvoices.tsx` et `pipeline.tsx`
+
 ## 📥 Pour Récupérer Toutes les Corrections
 
 Sur votre Mac, exécutez :
