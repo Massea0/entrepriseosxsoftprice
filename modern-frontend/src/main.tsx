@@ -7,6 +7,9 @@ import { Typography } from '@/components/ui/typography'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select } from '@/components/ui/select'
+import { Checkbox } from '@/components/ui/checkbox'
+import { RadioGroup, RadioItem } from '@/components/ui/radio'
+import { Switch } from '@/components/ui/switch'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { Container, Grid, Stack, Divider } from '@/components/layout'
 import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2 } from 'lucide-react'
@@ -307,6 +310,200 @@ const App = () => {
                           { value: 'dairy-cheese', label: 'Cheese', group: 'Dairy' },
                         ]}
                       />
+                    </Grid>
+                  </div>
+
+                  {/* Selection Controls */}
+                  <div className="space-y-2">
+                    <Typography variant="h4" color="muted">Selection Controls</Typography>
+                    <Grid cols={{ base: 1, md: 2 }} gap={6}>
+                      {/* Checkbox Examples */}
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Checkbox</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <Stack spacing={4}>
+                            <Checkbox label="Default checkbox" />
+                            <Checkbox 
+                              label="With description" 
+                              description="This is a helpful description text"
+                            />
+                            <Checkbox 
+                              label="Required field" 
+                              required
+                              errorMessage="This field is required"
+                            />
+                            <Checkbox label="Disabled" disabled />
+                            <Checkbox label="Checked by default" defaultChecked />
+                            <div className="space-y-2">
+                              <Typography variant="caption" color="muted">Variants:</Typography>
+                              <Stack spacing={2}>
+                                <Checkbox variant="outline" label="Outline" defaultChecked />
+                                <Checkbox variant="filled" label="Filled" defaultChecked />
+                                <Checkbox variant="ghost" label="Ghost" defaultChecked />
+                              </Stack>
+                            </div>
+                            <div className="space-y-2">
+                              <Typography variant="caption" color="muted">Colors:</Typography>
+                              <Stack spacing={2}>
+                                <Checkbox color="success" label="Success" defaultChecked />
+                                <Checkbox color="warning" label="Warning" defaultChecked />
+                                <Checkbox color="error" label="Error" defaultChecked />
+                              </Stack>
+                            </div>
+                            <Checkbox 
+                              indeterminate 
+                              label="Indeterminate state"
+                              description="Used for parent checkboxes with mixed children"
+                            />
+                          </Stack>
+                        </CardContent>
+                      </Card>
+
+                      {/* Radio Examples */}
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Radio Group</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <Stack spacing={4}>
+                            <RadioGroup 
+                              label="Select your plan" 
+                              defaultValue="pro"
+                              description="Choose the plan that best fits your needs"
+                            >
+                              <RadioItem value="free" label="Free" description="$0/month" />
+                              <RadioItem value="pro" label="Pro" description="$10/month" />
+                              <RadioItem value="enterprise" label="Enterprise" description="Contact us" />
+                            </RadioGroup>
+
+                            <Divider />
+
+                            <RadioGroup label="Horizontal layout" direction="horizontal" defaultValue="1">
+                              <RadioItem value="1" label="Option 1" />
+                              <RadioItem value="2" label="Option 2" />
+                              <RadioItem value="3" label="Option 3" />
+                            </RadioGroup>
+
+                            <Divider />
+
+                            <RadioGroup label="Different variants" defaultValue="default">
+                              <RadioItem value="default" label="Default" />
+                              <RadioItem value="outline" label="Outline" variant="outline" />
+                              <RadioItem value="filled" label="Filled" variant="filled" />
+                              <RadioItem value="ghost" label="Ghost" variant="ghost" />
+                            </RadioGroup>
+
+                            <Divider />
+
+                            <RadioGroup label="Colors" defaultValue="success">
+                              <RadioItem value="success" label="Success" color="success" />
+                              <RadioItem value="warning" label="Warning" color="warning" />
+                              <RadioItem value="error" label="Error" color="error" />
+                            </RadioGroup>
+                          </Stack>
+                        </CardContent>
+                      </Card>
+
+                      {/* Switch Examples */}
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Switch</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <Stack spacing={4}>
+                            <Switch label="Default switch" />
+                            <Switch 
+                              label="With description" 
+                              description="Enable to receive notifications"
+                            />
+                            <Switch 
+                              label="Error state" 
+                              errorMessage="Something went wrong"
+                            />
+                            <Switch label="Disabled" disabled />
+                            <Switch label="Checked by default" defaultChecked />
+                            
+                            <div className="space-y-2">
+                              <Typography variant="caption" color="muted">Variants:</Typography>
+                              <Stack spacing={2}>
+                                <Switch variant="outline" label="Outline" defaultChecked />
+                                <Switch variant="filled" label="Filled" defaultChecked />
+                                <Switch variant="ghost" label="Ghost" defaultChecked />
+                              </Stack>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Typography variant="caption" color="muted">Sizes:</Typography>
+                              <Stack spacing={2}>
+                                <Switch size="sm" label="Small" />
+                                <Switch size="md" label="Medium" />
+                                <Switch size="lg" label="Large" />
+                              </Stack>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Typography variant="caption" color="muted">Colors:</Typography>
+                              <Stack spacing={2}>
+                                <Switch color="success" label="Success" defaultChecked />
+                                <Switch color="warning" label="Warning" defaultChecked />
+                                <Switch color="error" label="Error" defaultChecked />
+                              </Stack>
+                            </div>
+                          </Stack>
+                        </CardContent>
+                      </Card>
+
+                      {/* Mixed Form Example */}
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Form Example</CardTitle>
+                          <CardDescription>Combining different form controls</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <Stack spacing={4}>
+                            <Input 
+                              label="Project Name" 
+                              placeholder="My awesome project"
+                              required
+                            />
+                            
+                            <Select
+                              label="Project Type"
+                              placeholder="Select a type"
+                              options={[
+                                { value: 'web', label: 'Web Application' },
+                                { value: 'mobile', label: 'Mobile App' },
+                                { value: 'api', label: 'API Service' },
+                                { value: 'other', label: 'Other' },
+                              ]}
+                            />
+
+                            <RadioGroup label="Visibility" defaultValue="private">
+                              <RadioItem value="public" label="Public" description="Anyone can see this project" />
+                              <RadioItem value="private" label="Private" description="Only you can see this project" />
+                            </RadioGroup>
+
+                            <Stack spacing={3}>
+                              <Typography variant="body2" weight="medium">Features</Typography>
+                              <Checkbox label="Enable CI/CD" defaultChecked />
+                              <Checkbox label="Auto-deploy to production" />
+                              <Checkbox label="Enable monitoring" defaultChecked />
+                            </Stack>
+
+                            <Switch 
+                              label="Advanced settings" 
+                              description="Show advanced configuration options"
+                            />
+
+                            <Stack direction="row" spacing={2} className="pt-4">
+                              <Button variant="ghost">Cancel</Button>
+                              <Button>Create Project</Button>
+                            </Stack>
+                          </Stack>
+                        </CardContent>
+                      </Card>
                     </Grid>
                   </div>
                 </div>
