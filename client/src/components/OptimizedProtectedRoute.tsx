@@ -1,23 +1,27 @@
+import React, { memo } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 
-interface ProtectedRouteProps {
+interface OptimizedProtectedRouteProps {
   children: React.ReactNode;
   requiredRole?: string | string[];
 }
 
-export const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
+export const OptimizedProtectedRoute = memo(({ children, requiredRole }: OptimizedProtectedRouteProps) => {
   const { user, loading } = useAuth();
   const location = useLocation();
 
-  // Réduire les logs pour éviter le spam
-  // console.log('ProtectedRoute - Current path:', location.pathname);
-  // console.log('ProtectedRoute - User:', user?.email || 'No user');
-  // console.log('ProtectedRoute - Loading:', loading);
-  // console.log('ProtectedRoute - User role:', user?.role || 'No role');
+  // Utiliser un seul log conditionnel pour debug
+  if (process.env.NODE_ENV === 'development' && Math.random() < 0.01) {
+    console.log('[Auth Debug]', {
+      path: location.pathname,
+      user: user?.email,
+      role: user?.role,
+      loading
+    });
+  }
 
   if (loading) {
-    // console.log('ProtectedRoute - Still loading, showing spinner');
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -26,7 +30,6 @@ export const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) 
   }
 
   if (!user) {
-    // console.log('ProtectedRoute - No user, redirecting to login');
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
@@ -34,7 +37,6 @@ export const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) 
   if (requiredRole) {
     const allowedRoles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];
     if (!user.role || !allowedRoles.includes(user.role)) {
-      // console.log('ProtectedRoute - Access denied, redirecting based on user role');
       // Redirect to appropriate dashboard based on user role
       switch (user.role) {
         case 'admin':
@@ -52,6 +54,13 @@ export const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) 
     }
   }
 
-  // console.log('ProtectedRoute - User authenticated and authorized, rendering children');
   return <>{children}</>;
-};
+}, (prevProps, nextProps) => {
+  // Mémorisation personnalisée : ne re-render que si les props changent vraiment
+  return (
+    prevProps.children === nextProps.children &&
+    JSON.stringify(prevProps.requiredRole) === JSON.stringify(nextProps.requiredRole)
+  );
+});
+
+OptimizedProtectedRoute.displayName = 'OptimizedProtectedRoute';

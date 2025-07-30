@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, ReactNode, useCallback, useMemo } from 'react';
 import { User } from '@shared/schema';
 
 interface AuthContextType {
@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         if (token && userData) {
           const parsedUser = JSON.parse(userData);
           setUser(parsedUser);
-          console.log('Restored user session:', parsedUser.email);
+          // console.log('Restored user session:', parsedUser.email);
         }
       } catch (error) {
         console.error('Error restoring auth state:', error);
@@ -101,7 +101,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     };
   }, []);
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = useCallback(async (email: string, password: string) => {
     try {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
@@ -122,15 +122,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       localStorage.setItem('auth_token', 'authenticated'); // Simple token for now
       setUser(data.user);
       
-      console.log('Login successful:', data.user.email);
+      // console.log('Login successful:', data.user.email);
       return { error: null };
     } catch (error) {
       console.error('Login error:', error);
       return { error: { message: 'Network error during login' } };
     }
-  };
+  }, []);
 
-  const signUp = async (email: string, password: string, firstName: string, lastName: string, role: string = 'client') => {
+  const signUp = useCallback(async (email: string, password: string, firstName: string, lastName: string, role: string = 'client') => {
     try {
       const response = await fetch('/api/auth/register', {
         method: 'POST',
@@ -158,9 +158,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.error('Registration error:', error);
       return { error: { message: 'Network error during registration' } };
     }
-  };
+  }, []);
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
     try {
       // Clear local storage
       localStorage.removeItem('auth_user');
@@ -170,19 +170,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       // Clear state
       setUser(null);
       
-      console.log('User signed out');
+      // console.log('User signed out');
     } catch (error) {
       console.error('Sign out error:', error);
     }
-  };
+  }, []);
 
-  const value: AuthContextType = {
+  const value: AuthContextType = useMemo(() => ({
     user,
     loading,
     signIn,
     signUp,
     signOut,
-  };
+  }), [user, loading, signIn, signUp, signOut]);
 
   return (
     <AuthContext.Provider value={value}>

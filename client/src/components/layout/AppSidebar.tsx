@@ -304,14 +304,14 @@ export function AppSidebar() {
   // Pas besoin de filtrer à nouveau, getMenuItemsByRole retourne déjà les bons items
   const filteredMenuItems = menuItems;
 
-  // Debug: Afficher les informations de debug
-  console.log('AppSidebar Debug:');
-  console.log('  - User:', user);
-  console.log('  - User Role:', userRole);
-  console.log('  - Menu Items Count:', menuItems.length);
-  console.log('  - Menu Items:', menuItems);
-  console.log('  - State:', state);
-  console.log('  - Collapsed:', collapsed);
+  // Debug: Afficher les informations de debug (désactivé pour éviter le spam)
+  // console.log('AppSidebar Debug:');
+  // console.log('  - User:', user);
+  // console.log('  - User Role:', userRole);
+  // console.log('  - Menu Items Count:', menuItems.length);
+  // console.log('  - Menu Items:', menuItems);
+  // console.log('  - State:', state);
+  // console.log('  - Collapsed:', collapsed);
 
   return (
     <Sidebar collapsible="icon" className="border-r">
