@@ -26,6 +26,10 @@ const WorkDashboard = lazy(() => import("./pages/WorkDashboard"));
 const Projects = lazy(() => import("./pages/Projects"));
 const ProjectsList = lazy(() => import("./pages/ProjectsList"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const ProjectsKanban = lazy(() => import("./pages/projects/kanban"));
+const ProjectsTimeline = lazy(() => import("./pages/projects/timeline"));
+const ProjectForm = lazy(() => import("./pages/projects/new"));
+const MyTasks = lazy(() => import("./pages/projects/my-tasks"));
 const TaskDetailGitLab = lazy(() => import("./pages/TaskDetailGitLab"));
 const HRDashboard = lazy(() => import("./pages/hr/HRDashboard"));
 const Employees = lazy(() => import("./pages/hr/Employees"));
@@ -33,9 +37,13 @@ const EmployeeDetail = lazy(() => import("./pages/hr/EmployeeDetail"));
 const Departments = lazy(() => import("./pages/hr/Departments"));
 const Organization = lazy(() => import("./pages/hr/Organization"));
 const Quotes = lazy(() => import("./pages/business/Quotes"));
+const QuotesPage = lazy(() => import("./pages/quotes"));
 const QuoteForm = lazy(() => import("./pages/business/QuoteForm"));
 const QuoteDetail = lazy(() => import("./pages/business/QuoteDetail"));
+const PaymentsPage = lazy(() => import("./pages/payments"));
+const FinancialReports = lazy(() => import("./pages/financial-reports"));
 const Invoices = lazy(() => import("./pages/business/Invoices"));
+const InvoicesPage = lazy(() => import("./pages/invoices"));
 const InvoiceForm = lazy(() => import("./pages/business/InvoiceForm"));
 const InvoiceDetail = lazy(() => import("./pages/business/InvoiceDetail"));
 const Clients = lazy(() => import("./pages/business/Clients"));
@@ -85,6 +93,10 @@ const ClientSupport = lazy(() => import("./pages/client/ClientSupport"));
 const WorkflowDesigner = lazy(() => import("./pages/ai/WorkflowDesigner"));
 const PredictiveDashboard = lazy(() => import("./pages/ai/PredictiveDashboard"));
 const NaturalLanguageInterface = lazy(() => import("./pages/ai/NaturalLanguageInterface"));
+const AIInsights = lazy(() => import("./pages/ai/InsightsPage"));
+const AIPredictions = lazy(() => import("./pages/ai/predictions"));
+const AIAutoAssign = lazy(() => import("./pages/ai/auto-assign"));
+const AIVoice = lazy(() => import("./pages/ai/voice"));
 
 const queryClient = new QueryClient();
 
@@ -166,6 +178,46 @@ function App() {
                     <AppLayout>
                       <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <ProjectDetail />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/projects/kanban" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <ProjectsKanban />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/projects/timeline" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <ProjectsTimeline />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/projects/new" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <ProjectForm />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/projects/my-tasks" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <MyTasks />
                       </Suspense>
                     </AppLayout>
                   </ProtectedRoute>
@@ -785,6 +837,138 @@ function App() {
                     <AppLayout>
                       <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Communication />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+
+                {/* AI Routes */}
+                <Route path="/ai/insights" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <AIInsights />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/ai/predictions" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <AIPredictions />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/ai/auto-assign" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <AIAutoAssign />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/ai/voice" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <AIVoice />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+
+                {/* Direct Business Routes (for sidebar navigation) */}
+                <Route path="/invoices" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <InvoicesPage />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/invoices/new" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <InvoiceForm />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/invoices/:id" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <InvoiceDetail />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+
+                <Route path="/quotes" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <QuotesPage />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/quotes/new" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <QuoteForm />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/quotes/:id" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <QuoteDetail />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+
+                <Route path="/contracts" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <Contracts />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/payments" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <PaymentsPage />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+                
+                <Route path="/financial-reports" element={
+                  <ProtectedRoute requiredRole={['admin', 'super_admin']}>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <FinancialReports />
                       </Suspense>
                     </AppLayout>
                   </ProtectedRoute>

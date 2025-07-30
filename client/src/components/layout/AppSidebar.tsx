@@ -23,7 +23,13 @@ import {
   UserCheck,
   Receipt,
   Sparkles,
-  Link
+  Link,
+  FileCheck,
+  Calculator,
+  CreditCard,
+  Brain,
+  Zap,
+  FolderKanban
 } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router-dom';
 import {
@@ -69,6 +75,40 @@ const getMenuItemsByRole = (userRole: string) => {
         },
         ...baseItems,
         {
+          title: "🏗️ Projets",
+          icon: FolderKanban,
+          roles: ['admin', 'super_admin'],
+          submenu: [
+            { title: "Liste des Projets", url: "/projects", icon: Building2 },
+            { title: "Vue Kanban", url: "/projects/kanban", icon: FolderKanban },
+            { title: "Timeline", url: "/projects/timeline", icon: BarChart3 },
+            { title: "Créer un Projet", url: "/projects/new", icon: FileCheck },
+          ]
+        },
+        {
+          title: "💼 Business",
+          icon: DollarSign,
+          roles: ['admin', 'super_admin'],
+          submenu: [
+            { title: "Factures", url: "/invoices", icon: Receipt },
+            { title: "Devis", url: "/quotes", icon: FileText },
+            { title: "Contrats", url: "/contracts", icon: ScrollText },
+            { title: "Paiements", url: "/payments", icon: CreditCard },
+            { title: "Rapports Financiers", url: "/financial-reports", icon: Calculator },
+          ]
+        },
+        {
+          title: "🤖 Intelligence Artificielle",
+          icon: Brain,
+          roles: ['admin', 'super_admin'],
+          submenu: [
+            { title: "AI Insights", url: "/ai/insights", icon: Brain },
+            { title: "Prédictions", url: "/ai/predictions", icon: TrendingUp },
+            { title: "Assignation Auto", url: "/ai/auto-assign", icon: Zap },
+            { title: "Natural Voice", url: "/ai/voice", icon: Mic },
+          ]
+        },
+        {
           title: "Configuration Système",
           url: "/admin/config",
           icon: Settings,
@@ -96,12 +136,6 @@ const getMenuItemsByRole = (userRole: string) => {
             { title: "Intégrations", url: "/admin/integrations", icon: Link },
             { title: "Quantum OS", url: "/admin/quantum", icon: Sparkles },
           ]
-        },
-        {
-          title: "Projets",
-          url: "/projects",
-          icon: Building2,
-          roles: ['admin', 'super_admin'],
         }
       ];
 
@@ -114,6 +148,27 @@ const getMenuItemsByRole = (userRole: string) => {
           roles: ['manager'],
         },
         ...baseItems,
+        {
+          title: "🏗️ Projets",
+          icon: FolderKanban,
+          roles: ['manager'],
+          submenu: [
+            { title: "Mes Projets", url: "/projects", icon: Building2 },
+            { title: "Vue Kanban", url: "/projects/kanban", icon: FolderKanban },
+            { title: "Timeline", url: "/projects/timeline", icon: BarChart3 },
+            { title: "Créer un Projet", url: "/projects/new", icon: FileCheck },
+          ]
+        },
+        {
+          title: "💼 Business",
+          icon: DollarSign,
+          roles: ['manager'],
+          submenu: [
+            { title: "Factures", url: "/invoices", icon: Receipt },
+            { title: "Devis", url: "/quotes", icon: FileText },
+            { title: "Suivi Paiements", url: "/payments", icon: CreditCard },
+          ]
+        },
         {
           title: "Gestion d'Équipe",
           icon: Users,
@@ -135,12 +190,6 @@ const getMenuItemsByRole = (userRole: string) => {
             { title: "Productivité", url: "/manager/reports/productivity", icon: Activity },
             { title: "Présence", url: "/manager/reports/attendance", icon: UserCheck },
           ]
-        },
-        {
-          title: "Projets",
-          url: "/projects",
-          icon: Building2,
-          roles: ['manager'],
         }
       ];
 
@@ -160,9 +209,19 @@ const getMenuItemsByRole = (userRole: string) => {
           roles: ['client'],
         },
         {
-          title: "Facturation",
-          url: "/client/invoices",
-          icon: Receipt,
+          title: "💼 Documents",
+          icon: FileText,
+          roles: ['client'],
+          submenu: [
+            { title: "Mes Factures", url: "/client/invoices", icon: Receipt },
+            { title: "Mes Devis", url: "/client/quotes", icon: FileText },
+            { title: "Mes Contrats", url: "/client/contracts", icon: ScrollText },
+          ]
+        },
+        {
+          title: "Paiements",
+          url: "/client/payments",
+          icon: CreditCard,
           roles: ['client'],
         }
       ];
@@ -176,6 +235,16 @@ const getMenuItemsByRole = (userRole: string) => {
           roles: ['employee'],
         },
         ...baseItems,
+        {
+          title: "🏗️ Mes Projets",
+          icon: FolderKanban,
+          roles: ['employee'],
+          submenu: [
+            { title: "Projets Assignés", url: "/projects", icon: Building2 },
+            { title: "Mes Tâches", url: "/projects/my-tasks", icon: CheckCircle },
+            { title: "Vue Kanban", url: "/projects/kanban", icon: FolderKanban },
+          ]
+        },
         {
           title: "Ressources Humaines",
           icon: Users,
@@ -194,12 +263,6 @@ const getMenuItemsByRole = (userRole: string) => {
           title: "Mes Assignations",
           url: "/employee/assignments",
           icon: Briefcase,
-          roles: ['employee'],
-        },
-        {
-          title: "Projets",
-          url: "/projects",
-          icon: Building2,
           roles: ['employee'],
         }
       ];
