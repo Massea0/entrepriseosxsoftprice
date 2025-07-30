@@ -369,7 +369,10 @@ export class SupabaseStorage implements IStorage {
   async getInvoices(): Promise<Invoice[]> {
     const { data, error } = await supabase
       .from('invoices')
-      .select('*')
+      .select(`
+        *,
+        company:company_id(id, name)
+      `)
       .order('created_at', { ascending: false });
     
     if (error) throw new Error(`Failed to get invoices: ${error.message}`);
