@@ -359,7 +359,9 @@ export default function RecruitmentPipeline() {
                                   <Avatar className="h-10 w-10">
                                     <AvatarImage src={candidate.avatar_url} />
                                     <AvatarFallback>
-                                      {candidate.name.split(' ').map(n => n[0]).join('')}
+                                                                              {candidate.name 
+                                          ? candidate.name.split(' ').map(n => n[0]).join('')
+                                          : 'U'}
                                     </AvatarFallback>
                                   </Avatar>
                                   <div>

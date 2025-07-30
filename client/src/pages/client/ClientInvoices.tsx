@@ -149,9 +149,9 @@ export default function ClientInvoices() {
   };
 
   const filteredInvoices = invoices.filter(invoice => {
-    const matchesSearch = invoice.number.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         invoice.project.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         invoice.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = (invoice.number || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (invoice.project || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (invoice.description || '').toLowerCase().includes(searchTerm.toLowerCase());
     const matchesTab = selectedTab === 'all' || invoice.status === selectedTab;
     return matchesSearch && matchesTab;
   });

@@ -64,15 +64,13 @@ export default function Invoices() {
   const loadInvoices = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from('invoices')
-        .select(`
-          *,
-          company:company_id(name)
-        `)
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
+      const response = await fetch('/api/invoices');
+      
+      if (!response.ok) {
+        throw new Error('Failed to load invoices');
+      }
+      
+      const data = await response.json();
       setInvoices(data || []);
     } catch (error) {
       console.error('Error loading invoices:', error);
@@ -87,9 +85,9 @@ export default function Invoices() {
   };
 
   const filteredInvoices = invoices.filter(invoice => {
-    const matchesSearch = invoice.number.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         invoice.object?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         invoice.company?.name?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = (invoice.number || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (invoice.object || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (invoice.company?.name || '').toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === 'all' || invoice.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
@@ -120,7 +118,7 @@ export default function Invoices() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className=" rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
   }
