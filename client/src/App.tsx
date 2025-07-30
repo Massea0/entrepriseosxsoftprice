@@ -36,6 +36,9 @@ const Employees = lazy(() => import("./pages/hr/Employees"));
 const EmployeeDetail = lazy(() => import("./pages/hr/EmployeeDetail"));
 const Departments = lazy(() => import("./pages/hr/Departments"));
 const Organization = lazy(() => import("./pages/hr/Organization"));
+const Recruitment = lazy(() => import("./pages/hr/recruitment"));
+const RecruitmentPipeline = lazy(() => import("./pages/hr/recruitment/pipeline"));
+const NewJobPosting = lazy(() => import("./pages/hr/recruitment/new-job"));
 const Quotes = lazy(() => import("./pages/business/Quotes"));
 const QuotesPage = lazy(() => import("./pages/quotes"));
 const QuoteForm = lazy(() => import("./pages/business/QuoteForm"));
@@ -322,6 +325,36 @@ function App() {
                     <AppLayout>
                       <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <Organization />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+
+                <Route path="/hr/recruitment" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <Recruitment />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+
+                <Route path="/hr/recruitment/pipeline" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <RecruitmentPipeline />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+
+                <Route path="/hr/recruitment/new" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <NewJobPosting />
                       </Suspense>
                     </AppLayout>
                   </ProtectedRoute>

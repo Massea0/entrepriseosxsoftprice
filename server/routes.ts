@@ -1628,6 +1628,175 @@ LIMIT 10;`,
   });
 
   // =====================================
+  // RECRUITMENT ROUTES
+  // =====================================
+
+  // Get job postings
+  app.get('/api/recruitment/jobs', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      const { status, department } = req.query;
+
+      let query = supabase
+        .from('job_postings')
+        .select(`
+          *,
+          applications:job_applications(count)
+        `);
+
+      if (status && status !== 'all') {
+        query = query.eq('status', status);
+      }
+      
+      if (department && department !== 'all') {
+        query = query.eq('department', department);
+      }
+
+      const { data, error } = await query.order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      // Transform data to include counts
+      const jobsWithStats = (data || []).map(job => ({
+        ...job,
+        applications_count: job.applications?.[0]?.count || 0,
+        views_count: Math.floor(Math.random() * 200) + 50, // Mock for now
+        shortlisted_count: Math.floor(Math.random() * 20) + 5 // Mock for now
+      }));
+
+      res.json(jobsWithStats);
+    } catch (error) {
+      console.error('Error fetching job postings:', error);
+      res.status(500).json({ error: 'Failed to fetch job postings' });
+    }
+  });
+
+  // Create job posting
+  app.post('/api/recruitment/jobs', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      
+      const jobData = {
+        ...req.body,
+        status: 'draft',
+        created_at: new Date().toISOString()
+      };
+
+      const { data, error } = await supabase
+        .from('job_postings')
+        .insert(jobData)
+        .select()
+        .single();
+
+      if (error) throw error;
+      res.json(data);
+    } catch (error) {
+      console.error('Error creating job posting:', error);
+      res.status(500).json({ error: 'Failed to create job posting' });
+    }
+  });
+
+  // Update job status
+  app.patch('/api/recruitment/jobs/:id/status', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      const { id } = req.params;
+      const { status } = req.body;
+
+      const updateData: any = { status };
+      if (status === 'published' && !req.body.published_at) {
+        updateData.published_at = new Date().toISOString();
+      }
+
+      const { data, error } = await supabase
+        .from('job_postings')
+        .update(updateData)
+        .eq('id', id)
+        .select()
+        .single();
+
+      if (error) throw error;
+      res.json(data);
+    } catch (error) {
+      console.error('Error updating job status:', error);
+      res.status(500).json({ error: 'Failed to update job status' });
+    }
+  });
+
+  // Get candidates
+  app.get('/api/recruitment/candidates', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      const { job_id } = req.query;
+
+      let query = supabase
+        .from('job_applications')
+        .select(`
+          *,
+          job:job_postings(title, department),
+          interviews:recruitment_interviews(*)
+        `);
+
+      if (job_id && job_id !== 'all') {
+        query = query.eq('job_id', job_id);
+      }
+
+      const { data, error } = await query.order('application_date', { ascending: false });
+
+      if (error) throw error;
+
+      // Transform data to match expected format
+      const candidates = (data || []).map(app => ({
+        id: app.id,
+        name: app.candidate_name,
+        email: app.candidate_email,
+        phone: app.candidate_phone,
+        avatar_url: app.avatar_url,
+        job_id: app.job_id,
+        job_title: app.job?.title || 'N/A',
+        application_date: app.application_date,
+        status: app.status,
+        rating: app.rating,
+        notes_count: app.notes?.length || 0,
+        attachments_count: 1, // CV always present
+        experience_years: app.experience_years || 0,
+        skills_match: app.skills_match_score || 75,
+        next_interview: app.interviews?.[0] ? {
+          date: app.interviews[0].scheduled_date,
+          type: app.interviews[0].interview_type
+        } : null
+      }));
+
+      res.json(candidates);
+    } catch (error) {
+      console.error('Error fetching candidates:', error);
+      res.status(500).json({ error: 'Failed to fetch candidates' });
+    }
+  });
+
+  // Update candidate status
+  app.patch('/api/recruitment/candidates/:id/status', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      const { id } = req.params;
+      const { status } = req.body;
+
+      const { data, error } = await supabase
+        .from('job_applications')
+        .update({ status, updated_at: new Date().toISOString() })
+        .eq('id', id)
+        .select()
+        .single();
+
+      if (error) throw error;
+      res.json(data);
+    } catch (error) {
+      console.error('Error updating candidate status:', error);
+      res.status(500).json({ error: 'Failed to update candidate status' });
+    }
+  });
+
+  // =====================================
   // ONBOARDING ROUTES
   // =====================================
   

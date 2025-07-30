@@ -98,6 +98,18 @@ const getMenuItemsByRole = (userRole: string) => {
           ]
         },
         {
+          title: "👥 Gestion RH",
+          icon: Users,
+          roles: ['admin', 'super_admin', 'hr_manager'],
+          submenu: [
+            { title: "Tableau de Bord", url: "/hr", icon: BarChart3 },
+            { title: "Employés", url: "/hr/employees", icon: Users },
+            { title: "Recrutement", url: "/hr/recruitment", icon: Briefcase },
+            { title: "Départements", url: "/hr/departments", icon: Building2 },
+            { title: "Organisation", url: "/hr/organization", icon: Network },
+          ]
+        },
+        {
           title: "🤖 Intelligence Artificielle",
           icon: Brain,
           roles: ['admin', 'super_admin'],
