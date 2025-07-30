@@ -228,11 +228,15 @@ export default function WorkflowDesigner() {
                   {generatedWorkflow.name}
                 </div>
                 <div className="flex items-center gap-2">
-                  <Badge className={getComplexityColor(generatedWorkflow.complexity)}>
-                    {generatedWorkflow.complexity}
+                  <Badge>
+                    <span className={getComplexityColor(generatedWorkflow.complexity)}>
+                      {generatedWorkflow.complexity}
+                    </span>
                   </Badge>
-                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                    {generatedWorkflow.confidence}% confiance
+                  <Badge variant="outline">
+                    <span className="bg-blue-50 text-blue-700 border-blue-200 px-1 rounded">
+                      {generatedWorkflow.confidence}% confiance
+                    </span>
                   </Badge>
                 </div>
               </CardTitle>
@@ -329,11 +333,13 @@ export default function WorkflowDesigner() {
                     </CardHeader>
                     <CardContent className="pt-0">
                       <div className="flex justify-between items-center">
-                        <Badge className={getComplexityColor(workflow.complexity)}>
-                          {workflow.complexity}
+                        <Badge>
+                          <span className={getComplexityColor(workflow.complexity)}>
+                            {workflow.complexity}
+                          </span>
                         </Badge>
-                        <Badge variant="outline" className="text-xs">
-                          {workflow.steps.length} étapes
+                        <Badge variant="outline">
+                          <span className="text-xs">{workflow.steps.length} étapes</span>
                         </Badge>
                       </div>
                     </CardContent>

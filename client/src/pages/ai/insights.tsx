@@ -242,8 +242,8 @@ export default function AIInsights() {
                 <TrendingUp className="h-4 w-4" />
                 Croissance CA
               </span>
-              <Badge variant="outline" className="text-xs">
-                {insights?.keyMetrics.revenueGrowth.confidence}% confiance
+              <Badge variant="outline">
+                <span className="text-xs">{insights?.keyMetrics.revenueGrowth.confidence}% confiance</span>
               </Badge>
             </CardTitle>
           </CardHeader>
@@ -262,8 +262,8 @@ export default function AIInsights() {
                 <Target className="h-4 w-4" />
                 Succès Projets
               </span>
-              <Badge variant="outline" className="text-xs">
-                {insights?.keyMetrics.projectSuccess.confidence}% confiance
+              <Badge variant="outline">
+                <span className="text-xs">{insights?.keyMetrics.projectSuccess.confidence}% confiance</span>
               </Badge>
             </CardTitle>
           </CardHeader>
@@ -282,8 +282,8 @@ export default function AIInsights() {
                 <Users className="h-4 w-4" />
                 Utilisation Équipe
               </span>
-              <Badge variant="outline" className="text-xs">
-                {insights?.keyMetrics.teamUtilization.confidence}% confiance
+              <Badge variant="outline">
+                <span className="text-xs">{insights?.keyMetrics.teamUtilization.confidence}% confiance</span>
               </Badge>
             </CardTitle>
           </CardHeader>
@@ -302,8 +302,8 @@ export default function AIInsights() {
                 <Activity className="h-4 w-4" />
                 Satisfaction Client
               </span>
-              <Badge variant="outline" className="text-xs">
-                {insights?.keyMetrics.customerSatisfaction.confidence}% confiance
+              <Badge variant="outline">
+                <span className="text-xs">{insights?.keyMetrics.customerSatisfaction.confidence}% confiance</span>
               </Badge>
             </CardTitle>
           </CardHeader>
@@ -489,9 +489,11 @@ export default function AIInsights() {
                         <Clock className="h-4 w-4 text-muted-foreground" />
                         <span>{prediction.timeframe}</span>
                       </div>
-                      <Badge className={cn("text-xs", getImpactColor(prediction.impact))}>
-                        Impact {prediction.impact === 'high' ? 'élevé' : 
-                               prediction.impact === 'medium' ? 'moyen' : 'faible'}
+                      <Badge>
+                        <span className={cn("text-xs", getImpactColor(prediction.impact))}>
+                          Impact {prediction.impact === 'high' ? 'élevé' : 
+                                 prediction.impact === 'medium' ? 'moyen' : 'faible'}
+                        </span>
                       </Badge>
                     </div>
                   </div>

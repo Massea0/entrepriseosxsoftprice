@@ -318,8 +318,10 @@ export default function PredictiveDashboard() {
                         <div className="flex items-center gap-3">
                           <AlertTriangle className="h-5 w-5 text-red-500" />
                           <h3 className="font-semibold">{anomaly.metric}</h3>
-                          <Badge className={getSeverityColor(anomaly.severity)}>
-                            {anomaly.severity}
+                          <Badge>
+                            <span className={getSeverityColor(anomaly.severity)}>
+                              {anomaly.severity}
+                            </span>
                           </Badge>
                         </div>
                         
@@ -398,12 +400,16 @@ export default function PredictiveDashboard() {
                         </div>
                         <div className="flex items-center gap-2">
                           {data.actual && (
-                            <Badge variant="outline" className="bg-green-50 text-green-700">
-                              Réel: {formatValue(data.actual, '€')}
+                            <Badge variant="outline">
+                              <span className="bg-green-50 text-green-700 px-1 rounded">
+                                Réel: {formatValue(data.actual, '€')}
+                              </span>
                             </Badge>
                           )}
-                          <Badge variant="outline" className="bg-blue-50 text-blue-700">
-                            Prédit: {formatValue(data.predicted, '€')}
+                          <Badge variant="outline">
+                            <span className="bg-blue-50 text-blue-700 px-1 rounded">
+                              Prédit: {formatValue(data.predicted, '€')}
+                            </span>
                           </Badge>
                         </div>
                       </div>
