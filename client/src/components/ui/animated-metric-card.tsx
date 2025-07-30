@@ -9,7 +9,7 @@ interface AnimatedMetricCardProps {
   previousValue?: string | number;
   icon: LucideIcon;
   gradient?: string;
-  trend?: 'up' | 'down' | 'neutral';
+  trend?: 'up' | 'down' | 'neutral' | string;
   trendValue?: string;
   description?: string;
   delay?: number;
