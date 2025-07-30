@@ -1467,6 +1467,75 @@ LIMIT 10;`,
     }
   });
 
+  // AI Auto-Assignment routes
+  app.get('/api/ai/auto-assign/recommendations/:projectId', async (req, res) => {
+    try {
+      const { projectId } = req.params;
+      const { autoAssignmentService } = await import('./services/ai/auto-assignment');
+      
+      const recommendations = await autoAssignmentService.getAssignmentRecommendations(projectId);
+      
+      res.json({ recommendations });
+    } catch (error) {
+      console.error('Error getting assignment recommendations:', error);
+      res.status(500).json({ error: 'Failed to get recommendations' });
+    }
+  });
+  
+  app.post('/api/ai/auto-assign/assign/:projectId', async (req, res) => {
+    try {
+      const { projectId } = req.params;
+      const { autoAssignmentService } = await import('./services/ai/auto-assignment');
+      
+      const result = await autoAssignmentService.autoAssignProject(projectId);
+      
+      if (result.success) {
+        res.json({
+          success: true,
+          message: `Projet assigné à ${result.employeeName}`,
+          assignedTo: result.assignedTo,
+          reasons: result.reasons
+        });
+      } else {
+        res.status(400).json({
+          success: false,
+          message: 'Impossible d\'assigner automatiquement',
+          reasons: result.reasons
+        });
+      }
+    } catch (error) {
+      console.error('Error auto-assigning project:', error);
+      res.status(500).json({ error: 'Failed to auto-assign project' });
+    }
+  });
+  
+  app.get('/api/ai/auto-assign/ai-recommendations/:projectId', async (req, res) => {
+    try {
+      const { projectId } = req.params;
+      const { autoAssignmentService } = await import('./services/ai/auto-assignment');
+      
+      const recommendation = await autoAssignmentService.getAIRecommendations(projectId);
+      
+      res.json({ recommendation });
+    } catch (error) {
+      console.error('Error getting AI recommendations:', error);
+      res.status(500).json({ error: 'Failed to get AI recommendations' });
+    }
+  });
+  
+  app.get('/api/ai/auto-assign/employee-capacity', async (req, res) => {
+    try {
+      const { autoAssignmentService } = await import('./services/ai/auto-assignment');
+      
+      const capacity = await autoAssignmentService.analyzeEmployeeCapacity();
+      
+      res.json({ employees: capacity });
+    } catch (error) {
+      console.error('Error analyzing employee capacity:', error);
+      res.status(500).json({ error: 'Failed to analyze employee capacity' });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
