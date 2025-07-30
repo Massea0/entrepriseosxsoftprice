@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -17,7 +17,24 @@ import {
   MessageSquare,
   Bell,
   Search,
-  Command
+  Command,
+  Building2,
+  FileText,
+  Receipt,
+  ScrollText,
+  CreditCard,
+  Calculator,
+  Briefcase,
+  Network,
+  Brain,
+  TrendingUp,
+  Mic,
+  Workflow,
+  Shield,
+  Link,
+  DollarSign,
+  FolderKanban,
+  FileCheck
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -36,32 +53,116 @@ interface NavItem {
   description?: string;
   isNew?: boolean;
   subItems?: NavItem[];
+  isSection?: boolean;
+  isSubItem?: boolean;
 }
 
 // Navigation structure for different roles
 const getNavigationItems = (userRole: string): NavItem[] => {
   const adminItems: NavItem[] = [
     { 
-      title: 'Configuration', 
-      path: '/admin/config', 
-      icon: Settings, 
-      gradient: 'from-purple-500 to-violet-600',
-      description: 'Système & paramètres'
-    },
-    { 
-      title: 'Vue Globale', 
+      title: 'Dashboard Admin', 
       path: '/admin/dashboard', 
-      icon: BarChart3, 
+      icon: Shield, 
       gradient: 'from-blue-500 to-cyan-500',
-      description: 'Métriques entreprise'
+      description: 'Vue d\'ensemble'
     },
     { 
-      title: 'Synapse IA', 
-      path: '/synapse', 
+      title: '⚡ Phase 2 Demo', 
+      path: '/admin/enhanced', 
       icon: Sparkles, 
+      gradient: 'from-yellow-500 to-orange-500',
+      description: 'Nouvelles fonctionnalités',
+      isNew: true
+    },
+    { 
+      title: '🧠 Synapse Live', 
+      path: '/synapse', 
+      icon: Mic, 
       gradient: 'from-pink-500 to-rose-500',
       description: 'Assistant vocal IA',
       isNew: true
+    },
+    // Projets
+    { 
+      title: '🏗️ Projets', 
+      path: '/projects', 
+      icon: FolderKanban, 
+      gradient: 'from-indigo-500 to-purple-600',
+      description: 'Gestion de projets',
+      subItems: [
+        { title: 'Liste des Projets', path: '/projects', icon: Building2 },
+        { title: 'Vue Kanban', path: '/projects/kanban', icon: FolderKanban },
+        { title: 'Timeline', path: '/projects/timeline', icon: BarChart3 },
+        { title: 'Créer un Projet', path: '/projects/new', icon: FileCheck },
+      ]
+    },
+    // Business
+    { 
+      title: '💼 Business', 
+      path: '/invoices', 
+      icon: DollarSign, 
+      gradient: 'from-green-500 to-emerald-600',
+      description: 'Finance & Facturation',
+      subItems: [
+        { title: 'Factures', path: '/invoices', icon: Receipt },
+        { title: 'Devis', path: '/quotes', icon: FileText },
+        { title: 'Contrats', path: '/contracts', icon: ScrollText },
+        { title: 'Paiements', path: '/payments', icon: CreditCard },
+        { title: 'Rapports Financiers', path: '/financial-reports', icon: Calculator },
+      ]
+    },
+    // RH
+    { 
+      title: '👥 Gestion RH', 
+      path: '/hr', 
+      icon: Users, 
+      gradient: 'from-purple-500 to-pink-600',
+      description: 'Ressources Humaines',
+      subItems: [
+        { title: 'Tableau de Bord', path: '/hr', icon: BarChart3 },
+        { title: 'Employés', path: '/hr/employees', icon: Users },
+        { title: 'Recrutement', path: '/hr/recruitment', icon: Briefcase },
+        { title: 'Départements', path: '/hr/departments', icon: Building2 },
+        { title: 'Organisation', path: '/hr/organization', icon: Network },
+      ]
+    },
+    // IA
+    { 
+      title: '🤖 Intelligence Artificielle', 
+      path: '/ai/insights', 
+      icon: Brain, 
+      gradient: 'from-cyan-500 to-blue-600',
+      description: 'Outils IA avancés',
+      subItems: [
+        { title: 'AI Insights', path: '/ai/insights', icon: Brain },
+        { title: 'Prédictions', path: '/ai/predictions', icon: TrendingUp },
+        { title: 'Assignation Auto', path: '/ai/auto-assign', icon: Zap },
+        { title: 'Natural Voice', path: '/ai/voice', icon: Mic },
+      ]
+    },
+    // Administration
+    { 
+      title: '🛡️ Administration', 
+      path: '/admin/overview', 
+      icon: Shield, 
+      gradient: 'from-red-500 to-rose-600',
+      description: 'Gestion système',
+      subItems: [
+        { title: 'Vue Globale', path: '/admin/overview', icon: BarChart3 },
+        { title: 'Gestion Utilisateurs', path: '/admin/users', icon: Users },
+        { title: 'Workflows', path: '/admin/workflows', icon: Workflow },
+        { title: 'Support', path: '/admin/support', icon: MessageSquare },
+        { title: 'Sécurité', path: '/admin/security', icon: Shield },
+      ]
+    },
+    // Config
+    { 
+      title: 'Configuration', 
+      path: '/admin/config', 
+      icon: Settings, 
+      gradient: 'from-gray-500 to-gray-600',
+      description: 'Paramètres système'
     }
   ];
 
@@ -193,7 +294,32 @@ export default function FloatingSidebar() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [showCommandPalette, setShowCommandPalette] = useState(false);
 
-  const navigationItems = getNavigationItems(user?.role || '');
+  const rawNavigationItems = getNavigationItems(user?.role || '');
+  
+  // Aplatir les items avec sous-menus pour l'instant
+  const navigationItems = rawNavigationItems.reduce<NavItem[]>((acc, item) => {
+    if (item.subItems) {
+      // Ajouter l'item parent comme section
+      acc.push({
+        ...item,
+        path: item.subItems[0]?.path || item.path, // Utiliser le path du premier sous-item
+        gradient: item.gradient,
+        isSection: true
+      });
+      // Ajouter tous les sous-items
+      item.subItems.forEach(subItem => {
+        acc.push({
+          ...subItem,
+          gradient: undefined, // Pas de gradient pour les sous-items
+          description: undefined,
+          isSubItem: true
+        });
+      });
+    } else {
+      acc.push(item);
+    }
+    return acc;
+  }, []);
 
   // Keyboard shortcut for command palette
   useEffect(() => {
@@ -335,12 +461,17 @@ export default function FloatingSidebar() {
           {navigationItems.map((item, index) => {
             const isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/');
             const Icon = item.icon;
+            const prevItem = index > 0 ? navigationItems[index - 1] : null;
+            const showSeparator = item.isSection && prevItem && !prevItem.isSection;
 
             return (
-              <motion.div
-                key={item.path}
-                custom={index}
-                variants={itemVariants}
+              <React.Fragment key={item.path}>
+                {showSeparator && (
+                  <Separator className="bg-white/10 my-3" />
+                                )}
+                <motion.div
+                  custom={index}
+                  variants={itemVariants}
                 initial="hidden"
                 animate="visible"
                 whileHover="hover"
@@ -366,13 +497,22 @@ export default function FloatingSidebar() {
                       />
                     )}
 
-                    <div className="flex items-center p-3 relative">
+                    <div className={cn(
+                      "flex items-center p-3 relative",
+                      item.isSubItem && "pl-6"
+                    )}>
                       <div className={cn(
                         "relative p-2 rounded-lg transition-all duration-300",
                         item.gradient ? `bg-gradient-to-br ${item.gradient}` : "bg-white/10",
-                        hoveredItem === item.path && "scale-110 shadow-lg"
+                        hoveredItem === item.path && "scale-110 shadow-lg",
+                        item.isSection && "p-1.5",
+                        item.isSubItem && "p-1.5 bg-white/5"
                       )}>
-                        <Icon className="h-4 w-4 text-white" />
+                        <Icon className={cn(
+                          "text-white",
+                          item.isSection ? "h-5 w-5" : "h-4 w-4",
+                          item.isSubItem && "h-3.5 w-3.5"
+                        )} />
                         {item.isNew && (
                           <motion.div
                             className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full"
@@ -388,7 +528,12 @@ export default function FloatingSidebar() {
                         transition={{ duration: 0.2, delay: collapsed ? 0 : 0.1 }}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-white group-hover:text-white/90 transition-colors">
+                          <span className={cn(
+                            "transition-colors",
+                            item.isSection ? "text-sm font-semibold text-white" : 
+                            item.isSubItem ? "text-xs text-white/70 group-hover:text-white/90" : 
+                            "text-sm font-medium text-white group-hover:text-white/90"
+                          )}>
                             {item.title}
                           </span>
                           {item.badge && (
@@ -416,6 +561,7 @@ export default function FloatingSidebar() {
                   </div>
                 </Link>
               </motion.div>
+              </React.Fragment>
             );
           })}
         </div>
