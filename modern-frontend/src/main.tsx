@@ -19,8 +19,11 @@ import { ToasterWithInit, toast, useToast } from '@/components/ui/toast'
 import { Alert, AlertTitle, AlertDescription, AlertLink } from '@/components/ui/alert'
 import { Badge, BadgeGroup, Tag, StatusBadge } from '@/components/ui/badge'
 import { Progress, CircularProgress, MultiProgress } from '@/components/ui/progress'
+import { Skeleton, SkeletonText, SkeletonAvatar, SkeletonButton, SkeletonCard, SkeletonTable } from '@/components/ui/skeleton'
+import { Spinner, SpinnerOverlay, LoadingButton, LoadingDots } from '@/components/ui/spinner'
+import { Avatar, AvatarGroup, AvatarWithText } from '@/components/ui/avatar'
 import { Container, Grid, Stack, Divider } from '@/components/layout'
-import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2, Home, Users, Settings, BarChart3, Package, ShoppingCart, Info, AlertCircle, Zap, Star, TrendingUp } from 'lucide-react'
+import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2, Home, Users, Settings, BarChart3, Package, ShoppingCart, Info, AlertCircle, Zap, Star, TrendingUp, Activity } from 'lucide-react'
 import '@/styles/globals.css'
 
 const App = () => {
@@ -922,6 +925,423 @@ const App = () => {
                             showLabel
                             labelFormat={(value) => `${value}GB / 100GB`}
                           />
+                        </Stack>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                </div>
+
+                {/* Skeleton & Loading States Demo */}
+                <div className="space-y-4">
+                  <Typography variant="h3">Skeleton & Loading States</Typography>
+                  
+                  <Grid cols={{ base: 1, md: 2 }} gap={4}>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Skeleton Variants</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={4}>
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Text Skeleton
+                            </Typography>
+                            <SkeletonText lines={3} />
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Avatar Skeletons
+                            </Typography>
+                            <div className="flex gap-2">
+                              <SkeletonAvatar size="xs" />
+                              <SkeletonAvatar size="sm" />
+                              <SkeletonAvatar size="md" />
+                              <SkeletonAvatar size="lg" />
+                              <SkeletonAvatar size="xl" />
+                            </div>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Button Skeletons
+                            </Typography>
+                            <div className="flex flex-wrap gap-2">
+                              <SkeletonButton size="sm" />
+                              <SkeletonButton size="md" />
+                              <SkeletonButton size="lg" />
+                              <SkeletonButton fullWidth />
+                            </div>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Custom Skeletons
+                            </Typography>
+                            <Stack spacing={2}>
+                              <Skeleton variant="rectangular" width="100%" height={60} />
+                              <div className="flex gap-2">
+                                <Skeleton variant="circular" width={40} height={40} />
+                                <div className="flex-1">
+                                  <Skeleton variant="text" width="60%" />
+                                  <Skeleton variant="text" width="40%" />
+                                </div>
+                              </div>
+                            </Stack>
+                          </div>
+                        </Stack>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Skeleton Presets</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={4}>
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Card Skeleton
+                            </Typography>
+                            <SkeletonCard />
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Table Skeleton
+                            </Typography>
+                            <SkeletonTable rows={3} columns={4} />
+                          </div>
+                        </Stack>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                </div>
+
+                {/* Spinner Demo */}
+                <div className="space-y-4">
+                  <Typography variant="h3">Spinners & Loading Indicators</Typography>
+                  
+                  <Grid cols={{ base: 1, md: 2 }} gap={4}>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Spinner Types</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={4}>
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Icon Types
+                            </Typography>
+                            <div className="flex items-center gap-4">
+                              <Spinner type="loader" />
+                              <Spinner type="loader2" />
+                              <Spinner type="refresh" />
+                              <Spinner type="circular" />
+                              <Spinner type="dots" />
+                            </div>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Sizes
+                            </Typography>
+                            <div className="flex items-center gap-4">
+                              <Spinner size="xs" />
+                              <Spinner size="sm" />
+                              <Spinner size="md" />
+                              <Spinner size="lg" />
+                              <Spinner size="xl" />
+                            </div>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Colors
+                            </Typography>
+                            <div className="flex items-center gap-4">
+                              <Spinner color="primary" />
+                              <Spinner color="secondary" />
+                              <Spinner color="success" />
+                              <Spinner color="warning" />
+                              <Spinner color="error" />
+                              <Spinner color="info" />
+                            </div>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Speeds
+                            </Typography>
+                            <div className="flex items-center gap-4">
+                              <Spinner speed="slow" showLabel label="Slow" />
+                              <Spinner speed="normal" showLabel label="Normal" />
+                              <Spinner speed="fast" showLabel label="Fast" />
+                            </div>
+                          </div>
+                        </Stack>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Loading Components</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={4}>
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Loading Button
+                            </Typography>
+                            <div className="flex gap-2">
+                              <LoadingButton
+                                loading={false}
+                                className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
+                              >
+                                Not Loading
+                              </LoadingButton>
+                              <LoadingButton
+                                loading={true}
+                                className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
+                              >
+                                Loading
+                              </LoadingButton>
+                              <LoadingButton
+                                loading={true}
+                                loadingText="Saving..."
+                                className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
+                              >
+                                Save
+                              </LoadingButton>
+                            </div>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Loading Dots
+                            </Typography>
+                            <div className="flex items-center gap-2">
+                              <Typography variant="body2">Processing</Typography>
+                              <LoadingDots />
+                            </div>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Spinner with Label
+                            </Typography>
+                            <Stack spacing={2}>
+                              <Spinner showLabel label="Loading data..." />
+                              <Spinner showLabel label="Please wait" labelPosition="bottom" />
+                              <Spinner type="circular" size="lg" showLabel label="Uploading files..." labelPosition="right" />
+                            </Stack>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Inline Loading
+                            </Typography>
+                            <Typography variant="body2">
+                              The data is <Spinner size="xs" className="inline mx-1" /> being processed.
+                            </Typography>
+                          </div>
+                        </Stack>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                </div>
+
+                {/* Avatar Demo */}
+                <div className="space-y-4">
+                  <Typography variant="h3">Avatar Components</Typography>
+                  
+                  <Grid cols={{ base: 1, md: 2 }} gap={4}>
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Avatar Variants</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={4}>
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Sizes
+                            </Typography>
+                            <div className="flex items-center gap-2">
+                              <Avatar size="xs" name="John Doe" />
+                              <Avatar size="sm" name="John Doe" />
+                              <Avatar size="md" name="John Doe" />
+                              <Avatar size="lg" name="John Doe" />
+                              <Avatar size="xl" name="John Doe" />
+                              <Avatar size="2xl" name="John Doe" />
+                            </div>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              With Images
+                            </Typography>
+                            <div className="flex items-center gap-2">
+                              <Avatar src="https://github.com/shadcn.png" alt="User" />
+                              <Avatar src="https://github.com/vercel.png" alt="Vercel" shape="square" />
+                              <Avatar src="https://github.com/invalid.png" name="Fallback User" />
+                            </div>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Colors
+                            </Typography>
+                            <div className="flex items-center gap-2">
+                              <Avatar name="Default" />
+                              <Avatar name="Primary" color="primary" />
+                              <Avatar name="Success" color="success" />
+                              <Avatar name="Warning" color="warning" />
+                              <Avatar name="Error" color="error" />
+                              <Avatar name="Info" color="info" />
+                            </div>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              With Status
+                            </Typography>
+                            <div className="flex items-center gap-2">
+                              <Avatar name="Online" status="online" />
+                              <Avatar name="Away" status="away" />
+                              <Avatar name="Busy" status="busy" />
+                              <Avatar name="Offline" status="offline" />
+                              <Avatar name="DND" status="dnd" />
+                            </div>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Custom Icons
+                            </Typography>
+                            <div className="flex items-center gap-2">
+                              <Avatar fallbackIcon={<Users className="h-5 w-5" />} />
+                              <Avatar fallbackIcon={<Activity className="h-5 w-5" />} color="success" />
+                              <Avatar fallbackIcon={<Settings className="h-5 w-5" />} color="primary" />
+                            </div>
+                          </div>
+                        </Stack>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Avatar Groups & Compositions</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={4}>
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Avatar Group
+                            </Typography>
+                            <AvatarGroup max={4}>
+                              <Avatar name="John Doe" />
+                              <Avatar name="Jane Smith" color="primary" />
+                              <Avatar name="Bob Johnson" color="success" />
+                              <Avatar name="Alice Brown" color="warning" />
+                              <Avatar name="Charlie Wilson" color="error" />
+                              <Avatar name="Diana Prince" color="info" />
+                            </AvatarGroup>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Different Sizes
+                            </Typography>
+                            <Stack spacing={2}>
+                              <AvatarGroup size="sm" max={5}>
+                                <Avatar name="User 1" />
+                                <Avatar name="User 2" />
+                                <Avatar name="User 3" />
+                                <Avatar name="User 4" />
+                                <Avatar name="User 5" />
+                                <Avatar name="User 6" />
+                              </AvatarGroup>
+                              <AvatarGroup size="lg" max={3}>
+                                <Avatar src="https://github.com/shadcn.png" />
+                                <Avatar src="https://github.com/vercel.png" />
+                                <Avatar name="Third User" />
+                                <Avatar name="Fourth User" />
+                              </AvatarGroup>
+                            </Stack>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Avatar with Text
+                            </Typography>
+                            <Stack spacing={3}>
+                              <AvatarWithText
+                                name="Sarah Connor"
+                                primaryText="Sarah Connor"
+                                secondaryText="Project Manager"
+                                status="online"
+                              />
+                              <AvatarWithText
+                                src="https://github.com/shadcn.png"
+                                primaryText="John Smith"
+                                secondaryText="Software Engineer"
+                                status="busy"
+                              />
+                              <AvatarWithText
+                                name="AI Assistant"
+                                primaryText="AI Assistant"
+                                secondaryText="Always here to help"
+                                color="primary"
+                                textPosition="bottom"
+                              />
+                            </Stack>
+                          </div>
+
+                          <Divider />
+
+                          <div>
+                            <Typography variant="body2" weight="medium" gutterBottom>
+                              Square Avatars
+                            </Typography>
+                            <AvatarGroup shape="square" spacing={-12}>
+                              <Avatar name="App 1" shape="square" color="primary" />
+                              <Avatar name="App 2" shape="square" color="success" />
+                              <Avatar name="App 3" shape="square" color="warning" />
+                              <Avatar name="App 4" shape="square" color="error" />
+                            </AvatarGroup>
+                          </div>
                         </Stack>
                       </CardContent>
                     </Card>
