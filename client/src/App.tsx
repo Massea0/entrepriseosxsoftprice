@@ -105,6 +105,9 @@ const OnboardingSuccess = lazy(() => import("./pages/onboarding/OnboardingSucces
 // Landing page
 const Landing = lazy(() => import("./pages/Landing"));
 
+// Planning pages
+const ProjectPlanning = lazy(() => import("./pages/projects/planning"));
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -248,6 +251,16 @@ function App() {
                     <AppLayout>
                       <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <MyTasks />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+
+                <Route path="/projects/:id/planning" element={
+                  <ProtectedRoute>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <ProjectPlanning />
                       </Suspense>
                     </AppLayout>
                   </ProtectedRoute>

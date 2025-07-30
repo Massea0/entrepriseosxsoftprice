@@ -163,6 +163,97 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get project by ID with planning details
+  app.get("/api/projects/:id/planning", async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      
+      // Get project with all related data
+      const { data: project, error: projectError } = await supabase
+        .from('projects')
+        .select(`
+          *,
+          company:companies(*),
+          tasks(
+            *,
+            assignee:employees(id, full_name)
+          )
+        `)
+        .eq('id', req.params.id)
+        .single();
+
+      if (projectError || !project) {
+        return res.status(404).json({ error: 'Project not found' });
+      }
+
+      // Get team members with their current workload
+      const { data: teamMembers, error: teamError } = await supabase
+        .from('employees')
+        .select(`
+          id,
+          full_name as name,
+          position as role,
+          avatar_url,
+          skills:skills[]->>0
+        `)
+        .in('id', project.tasks.map((t: any) => t.assigned_to).filter(Boolean));
+
+      // Calculate team member workload and tasks
+      const enrichedTeamMembers = (teamMembers || []).map((member: any) => {
+        const memberTasks = project.tasks.filter((t: any) => t.assigned_to === member.id);
+        const totalHours = memberTasks.reduce((sum: number, t: any) => sum + (t.estimated_hours || 0), 0);
+        const availability = 1; // 100% by default
+        const workload = (totalHours / (availability * 40)) * 100; // 40h per week
+
+        return {
+          ...member,
+          skills: Array.isArray(member.skills) ? member.skills : [],
+          availability,
+          current_workload: Math.round(workload),
+          tasks: memberTasks.map((t: any) => ({
+            id: t.id,
+            title: t.title,
+            hours: t.estimated_hours || 0,
+            priority: t.priority,
+            due_date: t.due_date
+          }))
+        };
+      });
+
+      // Enrich tasks with dependencies and progress
+      const enrichedTasks = project.tasks.map((task: any) => ({
+        ...task,
+        dependencies: task.dependencies || [],
+        progress: task.status === 'done' ? 100 : task.status === 'in_progress' ? 50 : 0,
+        actual_hours: task.actual_hours || null
+      }));
+
+      // Calculate project progress
+      const totalTasks = enrichedTasks.length;
+      const completedTasks = enrichedTasks.filter((t: any) => t.status === 'done').length;
+      const progress = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
+      // AI recommendation (mock for now)
+      const ai_recommendation = progress < 30 && totalTasks > 10 
+        ? "Le projet présente un risque de retard. Considérez l'ajout de ressources ou la révision du planning."
+        : progress > 70 
+        ? "Le projet progresse bien. Maintenez le rythme actuel."
+        : null;
+
+      res.json({
+        ...project,
+        tasks: enrichedTasks,
+        team_members: enrichedTeamMembers,
+        progress,
+        ai_recommendation,
+        budget_spent: 0 // Mock for now
+      });
+    } catch (error) {
+      console.error('Error fetching project planning:', error);
+      res.status(500).json({ error: 'Failed to fetch project planning' });
+    }
+  });
+
   // Task routes
   app.get("/api/tasks", async (req, res) => {
     try {
