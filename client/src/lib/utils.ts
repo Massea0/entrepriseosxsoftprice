@@ -5,7 +5,16 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatCurrency(amount: number, currency: string = 'XOF'): string {
+export function formatCurrency(amount: number | null | undefined, currency: string = 'XOF'): string {
+  if (amount === null || amount === undefined || isNaN(amount)) {
+    return new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: currency,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(0);
+  }
+  
   const formatter = new Intl.NumberFormat('fr-FR', {
     style: 'currency',
     currency: currency,

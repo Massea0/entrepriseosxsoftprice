@@ -116,14 +116,14 @@ export function InvoicesPage() {
             </thead>
             <tbody>
               <tr>
-                <td style="padding: 10px; border-bottom: 1px solid #eee;">${invoice.object}</td>
-                <td style="padding: 10px; text-align: right; border-bottom: 1px solid #eee;">${formatCurrency(invoice.amount, invoice.currency)}</td>
+                              <td style="padding: 10px; border-bottom: 1px solid #eee;">${invoice.object || ''}</td>
+              <td style="padding: 10px; text-align: right; border-bottom: 1px solid #eee;">${formatCurrency(invoice.amount || 0, invoice.currency || 'XOF')}</td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
                 <td style="padding: 10px; text-align: right; font-weight: bold;">Total:</td>
-                <td style="padding: 10px; text-align: right; font-weight: bold; font-size: 1.2em;">${formatCurrency(invoice.amount, invoice.currency)}</td>
+                <td style="padding: 10px; text-align: right; font-weight: bold; font-size: 1.2em;">${formatCurrency(invoice.amount || 0, invoice.currency || 'XOF')}</td>
               </tr>
             </tfoot>
           </table>
@@ -154,9 +154,10 @@ export function InvoicesPage() {
   };
 
   // Filter invoices
-  const filteredInvoices = invoices.filter((invoice: Invoice) => {
-    const matchesSearch = invoice.number.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         invoice.object.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  const filteredInvoices = (invoices || []).filter((invoice: Invoice) => {
+    const matchesSearch = !searchTerm || 
+                         invoice.number?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         invoice.object?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          invoice.company?.name?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === 'all' || invoice.status === statusFilter;
     return matchesSearch && matchesStatus;
@@ -184,11 +185,11 @@ export function InvoicesPage() {
 
   // Calculate stats
   const stats = {
-    total: invoices.length,
-    totalAmount: invoices.reduce((sum: number, inv: Invoice) => sum + inv.amount, 0),
-    paid: invoices.filter((inv: Invoice) => inv.status === 'paid').length,
-    pending: invoices.filter((inv: Invoice) => inv.status === 'sent').length,
-    overdue: invoices.filter((inv: Invoice) => inv.status === 'overdue').length,
+    total: invoices?.length || 0,
+    totalAmount: invoices?.reduce((sum: number, inv: Invoice) => sum + inv.amount, 0) || 0,
+    paid: invoices?.filter((inv: Invoice) => inv.status === 'paid').length || 0,
+    pending: invoices?.filter((inv: Invoice) => inv.status === 'sent').length || 0,
+    overdue: invoices?.filter((inv: Invoice) => inv.status === 'overdue').length || 0,
   };
 
   return (
@@ -306,15 +307,15 @@ export function InvoicesPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredInvoices.map((invoice: Invoice) => (
-                  <TableRow key={invoice.id}>
-                    <TableCell className="font-medium">{invoice.number}</TableCell>
-                    <TableCell>{invoice.company?.name || 'N/A'}</TableCell>
-                    <TableCell className="max-w-[200px] truncate">{invoice.object}</TableCell>
-                    <TableCell>{formatCurrency(invoice.amount, invoice.currency)}</TableCell>
-                    <TableCell>{formatDate(invoice.created_at)}</TableCell>
-                    <TableCell>{formatDate(invoice.due_date)}</TableCell>
-                    <TableCell>{getStatusBadge(invoice.status)}</TableCell>
+                            {filteredInvoices.map((invoice: Invoice) => (
+              <TableRow key={invoice.id}>
+                <TableCell className="font-medium">{invoice.number || ''}</TableCell>
+                <TableCell>{invoice.company?.name || 'N/A'}</TableCell>
+                <TableCell className="max-w-[200px] truncate">{invoice.object || ''}</TableCell>
+                <TableCell>{formatCurrency(invoice.amount || 0, invoice.currency || 'XOF')}</TableCell>
+                <TableCell>{formatDate(invoice.created_at)}</TableCell>
+                <TableCell>{formatDate(invoice.due_date)}</TableCell>
+                <TableCell>{getStatusBadge(invoice.status || 'draft')}</TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
