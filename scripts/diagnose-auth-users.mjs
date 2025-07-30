@@ -13,7 +13,10 @@ async function diagnoseAuthUsers() {
   try {
     // 1. Lister tous les utilisateurs
     console.log(chalk.yellow('1. Analyse des utilisateurs dans auth.users...\n'));
-    const { data: { users }, error } = await supabase.auth.admin.listUsers();
+    const { data: { users }, error } = await supabase.auth.admin.listUsers({
+      page: 1,
+      perPage: 1000 // Récupérer jusqu'à 1000 utilisateurs
+    });
     
     if (error) {
       console.error(chalk.red('Erreur:'), error);
