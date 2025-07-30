@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development tsx --env-file=.env server/index.ts",
     "dev:win": "set NODE_ENV=development && tsx --env-file=.env server/index.ts",
+    "dev:ps": "tsx --env-file=.env server/index.ts",
     "build": "npm run typecheck && vite build",
     "preview": "cross-env NODE_ENV=production tsx server/index.ts",
     "typecheck": "tsc --noEmit",
@@ -60,6 +61,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/socket.io": "^3.0.1",
     "bcrypt": "^6.0.0",
+    "canvas-confetti": "^1.6.0",
     "chalk": "^5.3.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -73,7 +75,6 @@
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "framer-motion": "^11.13.1",
-    "canvas-confetti": "^1.6.0",
     "html2canvas": "^1.4.1",
     "input-otp": "^1.4.2",
     "jsonwebtoken": "^9.0.2",
