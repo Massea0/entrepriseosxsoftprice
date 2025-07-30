@@ -97,7 +97,7 @@ const ClientSupport = lazy(() => import("./pages/client/ClientSupport"));
 const WorkflowDesigner = lazy(() => import("./pages/ai/WorkflowDesigner"));
 const PredictiveDashboard = lazy(() => import("./pages/ai/PredictiveDashboard"));
 const NaturalLanguageInterface = lazy(() => import("./pages/ai/NaturalLanguageInterface"));
-const AIInsights = lazy(() => import("./pages/ai/InsightsPage"));
+const AIInsights = lazy(() => import("./pages/ai/insights"));
 const AIPredictions = lazy(() => import("./pages/ai/predictions"));
 const AIAutoAssign = lazy(() => import("./pages/ai/auto-assign"));
 const AIVoice = lazy(() => import("./pages/ai/voice"));

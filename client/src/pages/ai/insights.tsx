@@ -243,13 +243,13 @@ export default function AIInsights() {
                 Croissance CA
               </span>
               <Badge variant="outline">
-                <span className="text-xs">{insights?.keyMetrics.revenueGrowth.confidence}% confiance</span>
+                <span className="text-xs">{insights?.keyMetrics?.revenueGrowth?.confidence || 0}% confiance</span>
               </Badge>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              +{insights?.keyMetrics.revenueGrowth.value}%
+              +{insights?.keyMetrics?.revenueGrowth?.value || 0}%
             </div>
             <p className="text-xs text-muted-foreground">vs période précédente</p>
           </CardContent>
@@ -263,15 +263,15 @@ export default function AIInsights() {
                 Succès Projets
               </span>
               <Badge variant="outline">
-                <span className="text-xs">{insights?.keyMetrics.projectSuccess.confidence}% confiance</span>
+                <span className="text-xs">{insights?.keyMetrics?.projectSuccess?.confidence || 0}% confiance</span>
               </Badge>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {insights?.keyMetrics.projectSuccess.value}%
+              {insights?.keyMetrics?.projectSuccess?.value || 0}%
             </div>
-            <Progress value={insights?.keyMetrics.projectSuccess.value} className="mt-2 h-2" />
+            <Progress value={insights?.keyMetrics?.projectSuccess?.value || 0} className="mt-2 h-2" />
           </CardContent>
         </Card>
 
@@ -283,15 +283,15 @@ export default function AIInsights() {
                 Utilisation Équipe
               </span>
               <Badge variant="outline">
-                <span className="text-xs">{insights?.keyMetrics.teamUtilization.confidence}% confiance</span>
+                <span className="text-xs">{insights?.keyMetrics?.teamUtilization?.confidence || 0}% confiance</span>
               </Badge>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {insights?.keyMetrics.teamUtilization.value}%
+              {insights?.keyMetrics?.teamUtilization?.value || 0}%
             </div>
-            <Progress value={insights?.keyMetrics.teamUtilization.value} className="mt-2 h-2" />
+            <Progress value={insights?.keyMetrics?.teamUtilization?.value || 0} className="mt-2 h-2" />
           </CardContent>
         </Card>
 
@@ -303,13 +303,13 @@ export default function AIInsights() {
                 Satisfaction Client
               </span>
               <Badge variant="outline">
-                <span className="text-xs">{insights?.keyMetrics.customerSatisfaction.confidence}% confiance</span>
+                <span className="text-xs">{insights?.keyMetrics?.customerSatisfaction?.confidence || 0}% confiance</span>
               </Badge>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {insights?.keyMetrics.customerSatisfaction.value}/5
+              {insights?.keyMetrics?.customerSatisfaction?.value || 0}/5
             </div>
             <div className="flex gap-0.5 mt-1">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -317,7 +317,7 @@ export default function AIInsights() {
                   key={star}
                   className={cn(
                     "w-4 h-4 rounded-sm",
-                    star <= Math.floor(insights?.keyMetrics.customerSatisfaction.value || 0)
+                    star <= Math.floor(insights?.keyMetrics?.customerSatisfaction?.value || 0)
                       ? "bg-yellow-400"
                       : "bg-gray-200"
                   )}
@@ -470,7 +470,7 @@ export default function AIInsights() {
         </TabsContent>
 
         <TabsContent value="predictions" className="space-y-4 mt-6">
-          {insights?.predictions.map((prediction) => (
+          {(insights?.predictions || []).map((prediction) => (
             <Card key={prediction.id} className="hover:shadow-md transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between">
@@ -601,13 +601,13 @@ export default function AIInsights() {
               <Zap className="h-4 w-4 text-purple-600" />
               <AlertDescription>
                 <p className="font-medium text-purple-900">
-                  {insights?.recommendations.length} recommandations actives basées sur l'analyse IA
+                  {insights?.recommendations?.length || 0} recommandations actives basées sur l'analyse IA
                 </p>
               </AlertDescription>
             </Alert>
           </div>
 
-          {insights?.recommendations.map((rec) => (
+                      {(insights?.recommendations || []).map((rec) => (
             <Card key={rec.id} className="hover:shadow-md transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between">
