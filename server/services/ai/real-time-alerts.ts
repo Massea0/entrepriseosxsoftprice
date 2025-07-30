@@ -138,7 +138,7 @@ export class RealTimeAlertService extends EventEmitter {
       severity: 'medium',
       template: {
         title: 'Tâches en Retard',
-        message: `${data.overdueTasks} tâches sont en retard`
+        message: (data: any) => `${data.overdueTasks} tâches sont en retard`
       },
       cooldown: 7200,
       ttl: 86400

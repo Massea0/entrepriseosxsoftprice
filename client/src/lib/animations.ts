@@ -47,30 +47,12 @@ export const staggerChildren = (delay = 50) => ({
   })
 });
 
-// Replace motion.div with animated div
-export const AnimatedDiv = ({ 
-  children, 
-  animation = 'fadeIn', 
-  delay = 0,
-  className = '',
-  ...props 
-}: {
-  children: React.ReactNode;
-  animation?: keyof typeof animations;
-  delay?: number;
-  className?: string;
-  [key: string]: any;
-}) => {
-  const animationClass = animations[animation] || animation;
-  const style = delay > 0 ? { animationDelay: `${delay}ms` } : {};
-  
-  return (
-    <div 
-      className={`${animationClass} ${className}`} 
-      style={style}
-      {...props}
-    >
-      {children}
-    </div>
-  );
+// Helper function to get animation class
+export const getAnimationClass = (animation: keyof typeof animations | string) => {
+  return animations[animation as keyof typeof animations] || animation;
+};
+
+// Helper to create animated style with delay
+export const getAnimatedStyle = (delay: number = 0) => {
+  return delay > 0 ? { animationDelay: `${delay}ms` } : {};
 };
