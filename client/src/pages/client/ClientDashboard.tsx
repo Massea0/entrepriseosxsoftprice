@@ -32,7 +32,6 @@ import {
   EnhancedCard
 } from '@/components/ui/simple-animations';
 import { AnimatedMetricCard } from '@/components/ui/animated-metric-card';
-import { Button } from '@/components/ui/button';
 
 export default function ClientDashboard() {
   const { user } = useAuth();
