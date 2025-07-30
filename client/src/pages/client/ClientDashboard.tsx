@@ -28,10 +28,11 @@ import {
   StaggeredList,
   StaggeredItem,
   HoverZone,
-  MagneticButton,
+
   EnhancedCard
 } from '@/components/ui/simple-animations';
 import { AnimatedMetricCard } from '@/components/ui/animated-metric-card';
+import { Button } from '@/components/ui/button';
 
 export default function ClientDashboard() {
   const { user } = useAuth();
@@ -126,14 +127,14 @@ export default function ClientDashboard() {
             </GlowText>
           </div>
           <div className="flex gap-2">
-            <MagneticButton className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3">
-              <RefreshCw className="h-4 w-4 mr-2" />
+            <Button variant="outline" size="sm" className="gap-2">
+              <RefreshCw className="h-4 w-4" />
               Actualiser
-            </MagneticButton>
-            <MagneticButton className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3">
-              <Settings className="h-4 w-4 mr-2" />
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2">
+              <Settings className="h-4 w-4" />
               Préférences
-            </MagneticButton>
+            </Button>
           </div>
         </div>
 
@@ -316,45 +317,45 @@ export default function ClientDashboard() {
             <StaggeredList className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               <StaggeredItem>
                 <Link to="/client/projects">
-                  <MagneticButton className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-auto p-4 flex-col gap-2">
+                  <Button>
                     <Building2 className="h-6 w-6" />
                     <span className="text-xs">Projets</span>
-                  </MagneticButton>
+                  </Button>
                 </Link>
               </StaggeredItem>
               <StaggeredItem>
                 <Link to="/client/invoices">
-                  <MagneticButton className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-auto p-4 flex-col gap-2">
+                  <Button>
                     <FileText className="h-6 w-6" />
                     <span className="text-xs">Factures</span>
-                  </MagneticButton>
+                  </Button>
                 </Link>
               </StaggeredItem>
               <StaggeredItem>
                 <Link to="/client/calendar">
-                  <MagneticButton className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-auto p-4 flex-col gap-2">
+                  <Button>
                     <Calendar className="h-6 w-6" />
                     <span className="text-xs">Planning</span>
-                  </MagneticButton>
+                  </Button>
                 </Link>
               </StaggeredItem>
               <StaggeredItem>
-                <MagneticButton className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-auto p-4 flex-col gap-2">
+                <Button>
                   <MessageSquare className="h-6 w-6" />
                   <span className="text-xs">Messages</span>
-                </MagneticButton>
+                </Button>
               </StaggeredItem>
               <StaggeredItem>
-                <MagneticButton className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-auto p-4 flex-col gap-2">
+                <Button>
                   <DollarSign className="h-6 w-6" />
                   <span className="text-xs">Budget</span>
-                </MagneticButton>
+                </Button>
               </StaggeredItem>
               <StaggeredItem>
-                <MagneticButton className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-auto p-4 flex-col gap-2">
+                <Button>
                   <User className="h-6 w-6" />
                   <span className="text-xs">Profil</span>
-                </MagneticButton>
+                </Button>
               </StaggeredItem>
             </StaggeredList>
           </div>

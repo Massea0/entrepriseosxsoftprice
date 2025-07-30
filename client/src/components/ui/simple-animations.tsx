@@ -38,7 +38,8 @@ export const SimpleButton: React.FC<{
   className?: string;
   onClick?: () => void;
   variant?: 'primary' | 'secondary' | 'ghost';
-}> = ({ children, className, onClick, variant = 'primary' }) => {
+  [key: string]: any; // Pour accepter toutes les props
+}> = ({ children, className, onClick, variant = 'primary', ...props }) => {
   const variants = {
     primary: "bg-primary text-primary-foreground hover:bg-primary/90",
     secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
@@ -53,6 +54,7 @@ export const SimpleButton: React.FC<{
         variants[variant],
         className
       )}
+      {...props}
     >
       {children}
     </button>

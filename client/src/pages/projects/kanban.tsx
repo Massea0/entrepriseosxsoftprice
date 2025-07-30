@@ -218,7 +218,9 @@ export default function ProjectsKanban() {
                                     <Avatar className="h-6 w-6">
                                       <AvatarImage src={task.assignee.avatar_url} />
                                       <AvatarFallback className="text-xs">
-                                        {task.assignee.full_name.split(' ').map(n => n[0]).join('')}
+                                        {task.assignee.full_name 
+                                          ? task.assignee.full_name.split(' ').map(n => n[0]).join('')
+                                          : 'U'}
                                       </AvatarFallback>
                                     </Avatar>
                                   )}
