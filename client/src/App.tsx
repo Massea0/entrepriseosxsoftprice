@@ -112,6 +112,9 @@ const Landing = lazy(() => import("./pages/Landing"));
 // Planning pages
 const ProjectPlanning = lazy(() => import("./pages/projects/planning"));
 
+// Debug pages
+const DebugSidebar = lazy(() => import("./pages/admin/DebugSidebar"));
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -659,6 +662,16 @@ function App() {
                     <AppLayout>
                       <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <UserManagement />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+
+                <Route path="/admin/debug-sidebar" element={
+                  <ProtectedRoute requiredRole={['super_admin', 'admin']}>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <DebugSidebar />
                       </Suspense>
                     </AppLayout>
                   </ProtectedRoute>

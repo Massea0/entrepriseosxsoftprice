@@ -29,7 +29,8 @@ import {
   CreditCard,
   Brain,
   Zap,
-  FolderKanban
+  FolderKanban,
+  Network
 } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router-dom';
 import {
@@ -47,7 +48,7 @@ import {
 } from '@/components/ui/sidebar';
 import { useAuth } from '@/contexts/AuthContext';
 
-const getMenuItemsByRole = (userRole: string) => {
+export const getMenuItemsByRole = (userRole: string) => {
   const baseItems = [
     {
       title: "🧠 Synapse Live",
@@ -300,15 +301,17 @@ export function AppSidebar() {
 
   // Get menu items based on user role
   const menuItems = getMenuItemsByRole(userRole);
-  const filteredMenuItems = menuItems.filter(item => 
-    item.roles.includes(userRole)
-  );
+  // Pas besoin de filtrer à nouveau, getMenuItemsByRole retourne déjà les bons items
+  const filteredMenuItems = menuItems;
 
   // Debug: Afficher les informations de debug
   console.log('AppSidebar Debug:');
+  console.log('  - User:', user);
   console.log('  - User Role:', userRole);
+  console.log('  - Menu Items Count:', menuItems.length);
   console.log('  - Menu Items:', menuItems);
-  console.log('  - Filtered Menu Items:', filteredMenuItems);
+  console.log('  - State:', state);
+  console.log('  - Collapsed:', collapsed);
 
   return (
     <Sidebar collapsible="icon" className="border-r">
