@@ -12,7 +12,12 @@
 - **Problème**: Plusieurs éléments du menu avaient la même clé (basée sur `path`)
 - **Solution**: Changé la clé de `key={item.path}` à `key={${item.title}-${item.path}-${index}}`
 
-### 3. **Avertissements Restants (Non Critiques)**
+### 3. **Boutons Imbriqués**
+- **Fichier**: `client/src/pages/admin/EnhancedAdminDashboard.tsx`
+- **Problème**: `<button>` imbriqué dans `<MagneticButton>` (qui est aussi un bouton)
+- **Solution**: Suppression de `MagneticButton` pour garder seulement le bouton intérieur
+
+### 4. **Avertissements Restants (Non Critiques)**
 
 #### Erreurs CSS Ignorables:
 - `-webkit-text-size-adjust` : Propriété vendor-specific
