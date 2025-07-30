@@ -93,13 +93,34 @@ SELECT * FROM public.audit_logs LIMIT 1;
 
 Les logs seront créés automatiquement par l'application lors des actions administratives.
 
-Exemple d'utilisation manuelle :
+Exemples d'utilisation :
+
 ```sql
+-- Exemple 1 : Log d'un changement de rôle (remplacez l'UUID par un vrai)
 SELECT log_admin_action(
     'user.role_changed', 
     'user', 
-    'user-uuid-here', 
+    '0c0e93e3-46ff-435c-916e-8b1c74dbe421', -- UUID réel d'un utilisateur
     '{"old_role": "employee", "new_role": "manager"}'
+);
+
+-- Exemple 2 : Log d'une action sans cible spécifique
+SELECT log_admin_action(
+    'security.settings_changed',
+    NULL,
+    NULL,
+    '{"mfa_enabled": true, "password_expiry": 90}'
+);
+
+-- Exemple 3 : Trouver l'UUID d'un utilisateur par email
+WITH user_info AS (
+    SELECT id FROM auth.users WHERE email = 'ddjily60@gmail.com'
+)
+SELECT log_admin_action(
+    'user.password_reset',
+    'user',
+    (SELECT id FROM user_info),
+    '{"reason": "requested_by_admin"}'
 );
 ```
 
