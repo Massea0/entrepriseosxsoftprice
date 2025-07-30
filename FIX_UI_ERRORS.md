@@ -17,7 +17,22 @@
 - **Problème**: `<button>` imbriqué dans `<MagneticButton>` (qui est aussi un bouton)
 - **Solution**: Suppression de `MagneticButton` pour garder seulement le bouton intérieur
 
-### 4. **Avertissements Restants (Non Critiques)**
+### 4. **TypeError dans Kanban**
+- **Fichier**: `client/src/pages/projects/kanban.tsx`
+- **Problème**: `task.assignee.full_name` était undefined, causant une erreur lors du `.split()`
+- **Solution**: Ajout d'une vérification de l'existence de `full_name` avant le split
+
+### 5. **MagneticButton dans ClientDashboard**
+- **Fichier**: `client/src/pages/client/ClientDashboard.tsx`
+- **Problème**: Utilisation de `MagneticButton` qui pourrait causer des problèmes
+- **Solution**: Remplacement de tous les `MagneticButton` par des `Button` standards
+
+### 6. **SimpleButton Props**
+- **Fichier**: `client/src/components/ui/simple-animations.tsx`
+- **Problème**: SimpleButton ne passait pas toutes les props nécessaires
+- **Solution**: Ajout de `...props` pour transmettre toutes les propriétés
+
+### 7. **Avertissements Restants (Non Critiques)**
 
 #### Erreurs CSS Ignorables:
 - `-webkit-text-size-adjust` : Propriété vendor-specific
