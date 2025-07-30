@@ -1,99 +1,36 @@
-# 🚀 Enterprise SaaS Frontend - Modern CRM/ERP Platform
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## 📋 Overview
+## Getting Started
 
-A modern, stable, and beautiful SaaS CRM/ERP platform built with cutting-edge technologies and best practices. Inspired by industry leaders like Linear, Vercel, and Microsoft, but unique in its execution.
-
-## 🎯 Key Features
-
-- **Modern Design System**: Clean, professional UI with subtle animations
-- **Multi-tenant Architecture**: Secure data isolation and role-based access
-- **Real-time Collaboration**: Live updates and notifications
-- **AI-Powered Insights**: Smart predictions and automation
-- **Mobile-First**: Fully responsive PWA support
-- **Dark/Light Mode**: Perfect theme switching
-- **Accessibility**: WCAG AAA compliant
-
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript 5.3+
-- **Styling**: Tailwind CSS 3.4
-- **State Management**: Zustand + React Query
-- **Forms**: React Hook Form + Zod
-- **Charts**: Recharts
-- **Animation**: Framer Motion (minimal)
-- **Testing**: Vitest + Playwright
-
-## 📁 Project Structure
-
-```
-enterprise-saas-frontend/
-├── app/                    # Next.js App Router
-│   ├── (auth)/            # Authentication routes
-│   ├── (dashboard)/       # Dashboard routes
-│   ├── api/               # API routes
-│   └── layout.tsx         # Root layout
-├── components/
-│   ├── ui/                # Primitive components
-│   ├── features/          # Business components
-│   └── layouts/           # Layout components
-├── lib/
-│   ├── api/               # API client
-│   ├── hooks/             # Custom hooks
-│   └── utils/             # Utilities
-├── styles/
-│   ├── globals.css        # Global styles
-│   └── tokens.css         # Design tokens
-└── types/                 # TypeScript types
-```
-
-## 🚀 Getting Started
+First, run the development server:
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Setup environment variables
-cp .env.example .env.local
-
-# Run development server
+npm run dev
+# or
+yarn dev
+# or
 pnpm dev
-
-# Build for production
-pnpm build
-
-# Run tests
-pnpm test
+# or
+bun dev
 ```
 
-## 🎨 Design Principles
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-1. **Clarity**: Clear visual hierarchy
-2. **Consistency**: Reusable patterns
-3. **Performance**: Lightweight animations
-4. **Accessibility**: High contrast, visible focus
-5. **Responsive**: Mobile-first approach
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## 📊 Performance Targets
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- Initial bundle: < 200KB
-- First Contentful Paint: < 1.5s
-- Time to Interactive: < 3s
-- Lighthouse Score: > 95
+## Learn More
 
-## 🔒 Security
+To learn more about Next.js, take a look at the following resources:
 
-- Supabase Row Level Security
-- JWT token authentication
-- CSRF protection
-- XSS prevention
-- Rate limiting
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 📝 License
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Proprietary - All rights reserved
+## Deploy on Vercel
 
----
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Built with ❤️ for modern enterprises
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
