@@ -138,7 +138,7 @@ export default function ClientDashboard() {
         </div>
 
         {/* Métriques Révolutionnaires */}
-        <EnhancedCard 
+        <EnhancedCard>
           <div className="p-6">
             <div className="flex items-center gap-2 mb-4">
               <Activity className="h-5 w-5" />
