@@ -76,6 +76,7 @@ const AdminOverview = lazy(() => import("./pages/admin/AdminOverview"));
 const PerformanceDashboard = lazy(() => import("./pages/admin/PerformanceDashboard"));
 const IntegrationsHub = lazy(() => import("./pages/admin/IntegrationsHub"));
 const QuantumAdminDashboard = lazy(() => import("./pages/admin/QuantumAdminDashboard"));
+const UserManagement = lazy(() => import("./pages/admin/UserManagement"));
 const ClientDashboard = lazy(() => import("./pages/client/ClientDashboard"));
 const WorkflowAdmin = lazy(() => import("./pages/admin/WorkflowAdmin"));
 const SecurityAdmin = lazy(() => import("./pages/SecurityAdmin"));
@@ -648,6 +649,16 @@ function App() {
                     <AppLayout>
                       <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
                         <SecurityAdmin />
+                      </Suspense>
+                    </AppLayout>
+                  </ProtectedRoute>
+                } />
+
+                <Route path="/admin/users" element={
+                  <ProtectedRoute requiredRole={['super_admin', 'admin']}>
+                    <AppLayout>
+                      <Suspense fallback={<div className="flex items-center justify-center h-screen"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>}>
+                        <UserManagement />
                       </Suspense>
                     </AppLayout>
                   </ProtectedRoute>

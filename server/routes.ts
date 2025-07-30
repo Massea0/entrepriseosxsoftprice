@@ -1796,10 +1796,314 @@ LIMIT 10;`,
     }
   });
 
+    // =====================================
+  // ADMIN USER MANAGEMENT ROUTES
+  // =====================================
+
+  // Get all users with filters
+  app.get('/api/admin/users', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      const { search, role, status } = req.query;
+
+      // First get auth users
+      const { data: { users: authUsers }, error: authError } = await supabase.auth.admin.listUsers();
+      if (authError) throw authError;
+
+      // Then get profiles
+      let profilesQuery = supabase.from('profiles').select('*');
+      
+      if (role && role !== 'all') {
+        profilesQuery = profilesQuery.eq('role', role);
+      }
+
+      const { data: profiles, error: profilesError } = await profilesQuery;
+      if (profilesError) throw profilesError;
+
+      // Merge auth users with profiles
+      const mergedUsers = authUsers.map(authUser => {
+        const profile = profiles?.find(p => p.id === authUser.id);
+        return {
+          id: authUser.id,
+          email: authUser.email,
+          email_confirmed: !!authUser.email_confirmed_at,
+          last_sign_in_at: authUser.last_sign_in_at,
+          created_at: authUser.created_at,
+          updated_at: authUser.updated_at,
+          is_active: profile?.is_active ?? true,
+          first_name: profile?.first_name || '',
+          last_name: profile?.last_name || '',
+          role: profile?.role || 'client',
+          phone: profile?.phone || '',
+          avatar_url: profile?.avatar_url || '',
+          company_id: profile?.company_id || null,
+          mfa_enabled: authUser.app_metadata?.mfa_enabled || false,
+          locked_until: authUser.app_metadata?.locked_until || null,
+          failed_login_attempts: authUser.app_metadata?.failed_login_attempts || 0
+        };
+      });
+
+      // Apply search filter
+      let filteredUsers = mergedUsers;
+      if (search) {
+        const searchLower = search.toString().toLowerCase();
+        filteredUsers = filteredUsers.filter(user => 
+          user.email.toLowerCase().includes(searchLower) ||
+          user.first_name.toLowerCase().includes(searchLower) ||
+          user.last_name.toLowerCase().includes(searchLower)
+        );
+      }
+
+      // Apply status filter
+      if (status && status !== 'all') {
+        switch (status) {
+          case 'active':
+            filteredUsers = filteredUsers.filter(u => u.is_active && !u.locked_until);
+            break;
+          case 'inactive':
+            filteredUsers = filteredUsers.filter(u => !u.is_active);
+            break;
+          case 'locked':
+            filteredUsers = filteredUsers.filter(u => u.locked_until);
+            break;
+          case 'pending':
+            filteredUsers = filteredUsers.filter(u => !u.email_confirmed);
+            break;
+        }
+      }
+
+      res.json(filteredUsers);
+    } catch (error) {
+      console.error('Error fetching admin users:', error);
+      res.status(500).json({ error: 'Failed to fetch users' });
+    }
+  });
+
+  // Create new user
+  app.post('/api/admin/users', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      const { email, first_name, last_name, role, is_active, phone, department, send_invitation } = req.body;
+
+      // Create auth user
+      const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+        email,
+        email_confirm: !send_invitation,
+        password: send_invitation ? undefined : Math.random().toString(36).slice(-12)
+      });
+
+      if (authError) throw authError;
+
+      // Create profile
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .insert({
+          id: authData.user.id,
+          email,
+          first_name,
+          last_name,
+          role,
+          is_active,
+          phone,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        })
+        .select()
+        .single();
+
+      if (profileError) {
+        // Rollback auth user creation
+        await supabase.auth.admin.deleteUser(authData.user.id);
+        throw profileError;
+      }
+
+      // Send invitation email if requested
+      if (send_invitation) {
+        await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/reset-password`
+        });
+      }
+
+      res.json({ user: { ...authData.user, ...profile } });
+    } catch (error) {
+      console.error('Error creating user:', error);
+      res.status(500).json({ error: 'Failed to create user' });
+    }
+  });
+
+  // Update user
+  app.patch('/api/admin/users/:id', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      const { id } = req.params;
+      const updates = req.body;
+
+      // Update profile
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .update({
+          ...updates,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', id)
+        .select()
+        .single();
+
+      if (profileError) throw profileError;
+
+      // If email changed, update auth user
+      if (updates.email) {
+        const { error: authError } = await supabase.auth.admin.updateUserById(id, {
+          email: updates.email
+        });
+        if (authError) throw authError;
+      }
+
+      res.json(profile);
+    } catch (error) {
+      console.error('Error updating user:', error);
+      res.status(500).json({ error: 'Failed to update user' });
+    }
+  });
+
+  // Reset user password
+  app.post('/api/admin/users/:id/reset-password', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      const { id } = req.params;
+
+      // Get user email
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('email')
+        .eq('id', id)
+        .single();
+
+      if (!profile) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+
+      // Send reset password email
+      const { error } = await supabase.auth.resetPasswordForEmail(profile.email, {
+        redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/reset-password`
+      });
+
+      if (error) throw error;
+
+      res.json({ message: 'Password reset email sent' });
+    } catch (error) {
+      console.error('Error resetting password:', error);
+      res.status(500).json({ error: 'Failed to reset password' });
+    }
+  });
+
+  // Bulk user actions
+  app.post('/api/admin/users/bulk-action', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      const { action, userIds } = req.body;
+
+      const results = [];
+
+      for (const userId of userIds) {
+        try {
+          switch (action) {
+            case 'activate':
+              await supabase.from('profiles').update({ is_active: true }).eq('id', userId);
+              break;
+            case 'deactivate':
+              await supabase.from('profiles').update({ is_active: false }).eq('id', userId);
+              break;
+            case 'reset-password':
+              const { data: profile } = await supabase
+                .from('profiles')
+                .select('email')
+                .eq('id', userId)
+                .single();
+              if (profile) {
+                await supabase.auth.resetPasswordForEmail(profile.email);
+              }
+              break;
+            case 'delete':
+              await supabase.auth.admin.deleteUser(userId);
+              await supabase.from('profiles').delete().eq('id', userId);
+              break;
+          }
+          results.push({ userId, success: true });
+        } catch (error) {
+          results.push({ userId, success: false, error: error.message });
+        }
+      }
+
+      res.json({ results });
+    } catch (error) {
+      console.error('Error performing bulk action:', error);
+      res.status(500).json({ error: 'Failed to perform bulk action' });
+    }
+  });
+
+  // Get audit logs
+  app.get('/api/admin/audit-logs', async (req, res) => {
+    try {
+      const { supabase } = await import('./supabase-admin.mjs');
+      
+      // For now, return mock data. In production, you'd query an audit_logs table
+      const mockLogs = [
+        {
+          id: '1',
+          user_id: '0c0e93e3-46ff-435c-916e-8b1c74dbe421',
+          action: 'user.created',
+          target_type: 'user',
+          target_id: '767ab373-b0c8-44b5-9697-9d4eda5d498a',
+          created_at: new Date().toISOString(),
+          ip_address: '192.168.1.1'
+        },
+        {
+          id: '2',
+          user_id: '05abd360-84e0-44a9-b708-1537ec50b6cc',
+          action: 'user.role_changed',
+          target_type: 'user',
+          target_id: '0c0e93e3-46ff-435c-916e-8b1c74dbe421',
+          created_at: new Date(Date.now() - 3600000).toISOString(),
+          ip_address: '192.168.1.2'
+        }
+      ];
+
+      res.json(mockLogs);
+    } catch (error) {
+      console.error('Error fetching audit logs:', error);
+      res.status(500).json({ error: 'Failed to fetch audit logs' });
+    }
+  });
+
+  // Get security settings
+  app.get('/api/admin/security-settings', async (req, res) => {
+    try {
+      // Return mock settings for now
+      res.json({
+        mfa_required: false,
+        password_expiry_days: 90,
+        max_login_attempts: 5,
+        session_timeout_minutes: 60,
+        ip_whitelist: [],
+        password_complexity: {
+          min_length: 8,
+          require_uppercase: true,
+          require_lowercase: true,
+          require_numbers: true,
+          require_special_chars: true
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching security settings:', error);
+      res.status(500).json({ error: 'Failed to fetch security settings' });
+    }
+  });
+
   // =====================================
   // ONBOARDING ROUTES
   // =====================================
-  
+
   // Submit onboarding
   app.post('/api/onboarding/submit', async (req, res) => {
     try {

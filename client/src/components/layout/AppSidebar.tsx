@@ -132,6 +132,7 @@ const getMenuItemsByRole = (userRole: string) => {
           roles: ['admin', 'super_admin'],
           submenu: [
             { title: "Vue Globale", url: "/admin/overview", icon: BarChart3 },
+            { title: "Gestion Utilisateurs", url: "/admin/users", icon: Users },
             { title: "Workflows", url: "/admin/workflows", icon: Workflow },
             { title: "Support", url: "/admin/support", icon: MessageSquare },
             { title: "Sécurité", url: "/admin/security", icon: Shield },
