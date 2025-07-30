@@ -11,38 +11,301 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { RadioGroup, RadioItem } from '@/components/ui/radio'
 import { Switch } from '@/components/ui/switch'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarActions } from '@/components/ui/navbar'
+import { Breadcrumb, BreadcrumbItem } from '@/components/ui/breadcrumb'
+import { Tabs, TabsList, TabsTrigger, TabsContent, TabsBadge } from '@/components/ui/tabs'
 import { Container, Grid, Stack, Divider } from '@/components/layout'
-import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2 } from 'lucide-react'
+import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2, Home, Users, Settings, BarChart3, Package, ShoppingCart } from 'lucide-react'
 import '@/styles/globals.css'
 
 const App = () => {
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-background transition-colors">
-        {/* Header */}
-        <header className="border-b">
-          <Container size="content" padding="md">
-            <Stack direction="row" justify="between" align="center" className="h-16">
-              <Typography variant="h5" weight="semibold">
-                Enterprise OS
-              </Typography>
-              <ThemeToggle />
-            </Stack>
-          </Container>
-        </header>
+        {/* Navbar Demo */}
+        <Navbar variant="blur">
+          <NavbarBrand href="/">
+            <Typography variant="h5" weight="semibold">
+              Enterprise OS
+            </Typography>
+          </NavbarBrand>
+          <NavbarContent>
+            <NavbarItem href="#" active>Dashboard</NavbarItem>
+            <NavbarItem href="#">Products</NavbarItem>
+            <NavbarItem href="#">Customers</NavbarItem>
+            <NavbarItem href="#">Analytics</NavbarItem>
+          </NavbarContent>
+          <NavbarActions>
+            <Button variant="ghost" size="sm" iconOnly>
+              <Search className="h-4 w-4" />
+            </Button>
+            <ThemeToggle />
+            <Button size="sm">Sign In</Button>
+          </NavbarActions>
+        </Navbar>
 
-        {/* Main Content */}
+                {/* Main Content */}
         <main className="py-12">
           <Container size="narrow">
             <Stack spacing={8}>
-            <div className="text-center space-y-4">
-              <Typography variant="h1" className="gradient-text">
-                Modern Frontend Architecture
-              </Typography>
-              <Typography variant="subtitle1" color="muted">
-                Un SaaS CRM/ERP stable, performant et moderne
-              </Typography>
-            </div>
+              <div className="text-center space-y-4">
+                <Typography variant="h1" className="gradient-text">
+                  Modern Frontend Architecture
+                </Typography>
+                <Typography variant="subtitle1" color="muted">
+                  Un SaaS CRM/ERP stable, performant et moderne
+                </Typography>
+              </div>
+
+              {/* Navigation Components Demo */}
+              <section className="space-y-6">
+                <Typography variant="h2">Navigation Components</Typography>
+
+                {/* Breadcrumb Demo */}
+                <div className="space-y-4">
+                  <Typography variant="h3">Breadcrumb</Typography>
+                  
+                  <Card>
+                    <CardContent>
+                      <Stack spacing={4}>
+                        <div>
+                          <Typography variant="caption" color="muted" gutterBottom>
+                            Basic Breadcrumb
+                          </Typography>
+                          <Breadcrumb>
+                            <BreadcrumbItem href="/">Home</BreadcrumbItem>
+                            <BreadcrumbItem href="/products">Products</BreadcrumbItem>
+                            <BreadcrumbItem href="/products/electronics">Electronics</BreadcrumbItem>
+                            <BreadcrumbItem current>Smartphones</BreadcrumbItem>
+                          </Breadcrumb>
+                        </div>
+
+                        <div>
+                          <Typography variant="caption" color="muted" gutterBottom>
+                            With Home Icon
+                          </Typography>
+                          <Breadcrumb showHome>
+                            <BreadcrumbItem href="/">Dashboard</BreadcrumbItem>
+                            <BreadcrumbItem href="/analytics">Analytics</BreadcrumbItem>
+                            <BreadcrumbItem current>Revenue Report</BreadcrumbItem>
+                          </Breadcrumb>
+                        </div>
+
+                        <div>
+                          <Typography variant="caption" color="muted" gutterBottom>
+                            Custom Separator & Icons
+                          </Typography>
+                          <Breadcrumb separator="/">
+                            <BreadcrumbItem href="/" icon={<Home className="h-4 w-4" />}>
+                              Home
+                            </BreadcrumbItem>
+                            <BreadcrumbItem href="/users" icon={<Users className="h-4 w-4" />}>
+                              Users
+                            </BreadcrumbItem>
+                            <BreadcrumbItem icon={<Settings className="h-4 w-4" />} current>
+                              Settings
+                            </BreadcrumbItem>
+                          </Breadcrumb>
+                        </div>
+
+                        <div>
+                          <Typography variant="caption" color="muted" gutterBottom>
+                            Long Path (Responsive)
+                          </Typography>
+                          <Breadcrumb maxItemsMobile={2}>
+                            <BreadcrumbItem href="/">Enterprise OS</BreadcrumbItem>
+                            <BreadcrumbItem href="/crm">CRM</BreadcrumbItem>
+                            <BreadcrumbItem href="/crm/customers">Customers</BreadcrumbItem>
+                            <BreadcrumbItem href="/crm/customers/segments">Segments</BreadcrumbItem>
+                            <BreadcrumbItem href="/crm/customers/segments/vip">VIP</BreadcrumbItem>
+                            <BreadcrumbItem current>John Doe</BreadcrumbItem>
+                          </Breadcrumb>
+                        </div>
+                      </Stack>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Tabs Demo */}
+                <div className="space-y-4">
+                  <Typography variant="h3">Tabs</Typography>
+                  
+                  <Grid cols={{ base: 1, md: 2 }} gap={4}>
+                    {/* Default Tabs */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Default Tabs</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Tabs defaultValue="overview">
+                          <TabsList>
+                            <TabsTrigger value="overview">Overview</TabsTrigger>
+                            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+                            <TabsTrigger value="reports">Reports</TabsTrigger>
+                            <TabsTrigger value="notifications">Notifications</TabsTrigger>
+                          </TabsList>
+                          <TabsContent value="overview">
+                            <Typography variant="body2">
+                              Overview content - View your dashboard summary and key metrics.
+                            </Typography>
+                          </TabsContent>
+                          <TabsContent value="analytics">
+                            <Typography variant="body2">
+                              Analytics content - Dive deep into your data and insights.
+                            </Typography>
+                          </TabsContent>
+                          <TabsContent value="reports">
+                            <Typography variant="body2">
+                              Reports content - Generate and download custom reports.
+                            </Typography>
+                          </TabsContent>
+                          <TabsContent value="notifications">
+                            <Typography variant="body2">
+                              Notifications content - Manage your alerts and notifications.
+                            </Typography>
+                          </TabsContent>
+                        </Tabs>
+                      </CardContent>
+                    </Card>
+
+                    {/* Pills Tabs */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Pills Variant</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Tabs defaultValue="profile">
+                          <TabsList variant="pills">
+                            <TabsTrigger value="profile">Profile</TabsTrigger>
+                            <TabsTrigger value="password">Password</TabsTrigger>
+                            <TabsTrigger value="team">Team</TabsTrigger>
+                            <TabsTrigger value="billing">Billing</TabsTrigger>
+                          </TabsList>
+                          <TabsContent value="profile">
+                            <Typography variant="body2">
+                              Update your profile information and preferences.
+                            </Typography>
+                          </TabsContent>
+                          <TabsContent value="password">
+                            <Typography variant="body2">
+                              Change your password and security settings.
+                            </Typography>
+                          </TabsContent>
+                          <TabsContent value="team">
+                            <Typography variant="body2">
+                              Manage your team members and permissions.
+                            </Typography>
+                          </TabsContent>
+                          <TabsContent value="billing">
+                            <Typography variant="body2">
+                              View and manage your billing information.
+                            </Typography>
+                          </TabsContent>
+                        </Tabs>
+                      </CardContent>
+                    </Card>
+
+                    {/* Underline Tabs */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Underline Variant</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Tabs defaultValue="products">
+                          <TabsList variant="underline">
+                            <TabsTrigger value="products">
+                              Products
+                            </TabsTrigger>
+                            <TabsTrigger value="inventory">
+                              Inventory
+                            </TabsTrigger>
+                            <TabsTrigger value="orders">
+                              Orders
+                            </TabsTrigger>
+                          </TabsList>
+                          <TabsContent value="products">
+                            <Typography variant="body2">
+                              Manage your product catalog and listings.
+                            </Typography>
+                          </TabsContent>
+                          <TabsContent value="inventory">
+                            <Typography variant="body2">
+                              Track inventory levels and stock movements.
+                            </Typography>
+                          </TabsContent>
+                          <TabsContent value="orders">
+                            <Typography variant="body2">
+                              View and process customer orders.
+                            </Typography>
+                          </TabsContent>
+                        </Tabs>
+                      </CardContent>
+                    </Card>
+
+                    {/* Tabs with Icons and Badges */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>With Icons & Badges</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Tabs defaultValue="dashboard">
+                          <TabsList>
+                            <TabsTrigger 
+                              value="dashboard"
+                              icon={<BarChart3 className="h-4 w-4" />}
+                            >
+                              Dashboard
+                            </TabsTrigger>
+                            <TabsTrigger 
+                              value="orders"
+                              icon={<ShoppingCart className="h-4 w-4" />}
+                              badge={<TabsBadge variant="destructive">12</TabsBadge>}
+                            >
+                              Orders
+                            </TabsTrigger>
+                            <TabsTrigger 
+                              value="products"
+                              icon={<Package className="h-4 w-4" />}
+                              badge={<TabsBadge>New</TabsBadge>}
+                            >
+                              Products
+                            </TabsTrigger>
+                          </TabsList>
+                          <TabsContent value="dashboard">
+                            <Typography variant="body2">
+                              Dashboard with real-time metrics and KPIs.
+                            </Typography>
+                          </TabsContent>
+                          <TabsContent value="orders">
+                            <Typography variant="body2">
+                              You have 12 pending orders to process.
+                            </Typography>
+                          </TabsContent>
+                          <TabsContent value="products">
+                            <Typography variant="body2">
+                              Check out the new product features!
+                            </Typography>
+                          </TabsContent>
+                        </Tabs>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                </div>
+
+                {/* Navbar Variants */}
+                <div className="space-y-4">
+                  <Typography variant="h3">Navbar Variants</Typography>
+                  <Typography variant="body2" color="muted">
+                    The navbar at the top of the page demonstrates the blur variant. Other variants include:
+                  </Typography>
+                  <Stack spacing={2}>
+                    <Typography variant="body2">• <strong>Default:</strong> Standard background with border</Typography>
+                    <Typography variant="body2">• <strong>Transparent:</strong> No background (for hero sections)</Typography>
+                    <Typography variant="body2">• <strong>Blur:</strong> Glassmorphism effect (current demo)</Typography>
+                    <Typography variant="body2">• <strong>Filled:</strong> Card background color</Typography>
+                  </Stack>
+                </div>
+              </section>
 
                           {/* Demo Section */}
               <section className="space-y-6">
