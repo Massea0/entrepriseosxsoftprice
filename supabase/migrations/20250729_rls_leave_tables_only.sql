@@ -1,7 +1,7 @@
 -- =====================================================
--- POLICIES RLS POUR LES NOUVELLES TABLES SEULEMENT
+-- POLICIES RLS POUR LES TABLES LEAVE UNIQUEMENT
 -- Date: 2025-07-29
--- Description: Ajoute des policies SEULEMENT pour les tables RH
+-- Description: Ajoute des policies pour leave_types, leave_requests, leave_balances
 -- =====================================================
 
 -- =====================================================
@@ -123,6 +123,5 @@ CREATE POLICY "Managers can view team leave balances" ON leave_balances
   );
 
 -- =====================================================
--- Note: Les tables existantes ont déjà des policies
--- très complètes, on n'y touche pas
+-- FIN - Les tables RH ont maintenant des policies !
 -- =====================================================
