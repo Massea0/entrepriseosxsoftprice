@@ -14,14 +14,17 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarActions } from '@/components/ui/navbar'
 import { Breadcrumb, BreadcrumbItem } from '@/components/ui/breadcrumb'
 import { Tabs, TabsList, TabsTrigger, TabsContent, TabsBadge } from '@/components/ui/tabs'
+import { Modal, ModalTrigger, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalBody, ModalFooter, ModalClose, Dialog } from '@/components/ui/modal'
+import { ToasterWithInit, toast, useToast } from '@/components/ui/toast'
 import { Container, Grid, Stack, Divider } from '@/components/layout'
-import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2, Home, Users, Settings, BarChart3, Package, ShoppingCart } from 'lucide-react'
+import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2, Home, Users, Settings, BarChart3, Package, ShoppingCart, Info, AlertCircle } from 'lucide-react'
 import '@/styles/globals.css'
 
 const App = () => {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background transition-colors">
+      <ToasterWithInit position="bottom-right" duration={5000}>
+        <div className="min-h-screen bg-background transition-colors">
         {/* Navbar Demo */}
         <Navbar variant="blur">
           <NavbarBrand href="/">
@@ -303,11 +306,329 @@ const App = () => {
                     <Typography variant="body2">• <strong>Transparent:</strong> No background (for hero sections)</Typography>
                     <Typography variant="body2">• <strong>Blur:</strong> Glassmorphism effect (current demo)</Typography>
                     <Typography variant="body2">• <strong>Filled:</strong> Card background color</Typography>
-                  </Stack>
+                                    </Stack>
                 </div>
               </section>
 
-                          {/* Demo Section */}
+              {/* Feedback Components Demo */}
+              <section className="space-y-6">
+                <Typography variant="h2">Feedback Components</Typography>
+
+                {/* Modal/Dialog Demo */}
+                <div className="space-y-4">
+                  <Typography variant="h3">Modal & Dialog</Typography>
+                  
+                  <Grid cols={{ base: 1, md: 2 }} gap={4}>
+                    {/* Basic Modal */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Basic Modal</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={2}>
+                          <Modal>
+                            <ModalTrigger asChild>
+                              <Button>Open Modal</Button>
+                            </ModalTrigger>
+                            <ModalContent>
+                              <ModalHeader>
+                                <ModalTitle>Modal Title</ModalTitle>
+                                <ModalDescription>
+                                  This is a basic modal with header, body, and footer.
+                                </ModalDescription>
+                              </ModalHeader>
+                              <ModalBody>
+                                <Typography variant="body2">
+                                  Modal content goes here. You can put any content inside the modal body.
+                                  The modal is fully accessible and keyboard navigable.
+                                </Typography>
+                              </ModalBody>
+                              <ModalFooter>
+                                <ModalClose asChild>
+                                  <Button variant="outline">Cancel</Button>
+                                </ModalClose>
+                                <Button>Save changes</Button>
+                              </ModalFooter>
+                            </ModalContent>
+                          </Modal>
+
+                          <Modal>
+                            <ModalTrigger asChild>
+                              <Button variant="outline">Large Modal</Button>
+                            </ModalTrigger>
+                            <ModalContent size="2xl">
+                              <ModalHeader>
+                                <ModalTitle>Large Modal</ModalTitle>
+                              </ModalHeader>
+                              <ModalBody>
+                                <Typography variant="body2">
+                                  This is a larger modal with more space for content.
+                                </Typography>
+                              </ModalBody>
+                            </ModalContent>
+                          </Modal>
+                        </Stack>
+                      </CardContent>
+                    </Card>
+
+                    {/* Dialog Component */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Pre-configured Dialog</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={2}>
+                          <Dialog
+                            trigger={<Button variant="danger">Delete Item</Button>}
+                            title="Confirm Deletion"
+                            description="Are you sure you want to delete this item?"
+                            actions={
+                              <>
+                                <ModalClose asChild>
+                                  <Button variant="outline">Cancel</Button>
+                                </ModalClose>
+                                <Button variant="danger">Delete</Button>
+                              </>
+                            }
+                          >
+                            <Typography variant="body2" color="muted">
+                              This action cannot be undone. This will permanently delete the item
+                              and remove all associated data.
+                            </Typography>
+                          </Dialog>
+
+                          <Dialog
+                            trigger={<Button variant="success">Save Changes</Button>}
+                            title="Save Changes?"
+                            description="You have unsaved changes."
+                            actions={
+                              <>
+                                <ModalClose asChild>
+                                  <Button variant="ghost">Discard</Button>
+                                </ModalClose>
+                                <ModalClose asChild>
+                                  <Button variant="success">Save</Button>
+                                </ModalClose>
+                              </>
+                            }
+                          >
+                            <Typography variant="body2">
+                              Do you want to save your changes before leaving?
+                            </Typography>
+                          </Dialog>
+                        </Stack>
+                      </CardContent>
+                    </Card>
+
+                    {/* Modal Positions */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Modal Positions</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={2}>
+                          <Modal>
+                            <ModalTrigger asChild>
+                              <Button variant="outline" size="sm">Bottom Sheet</Button>
+                            </ModalTrigger>
+                            <ModalContent position="bottom" size="full">
+                              <ModalHeader>
+                                <ModalTitle>Bottom Sheet Modal</ModalTitle>
+                              </ModalHeader>
+                              <ModalBody>
+                                <Typography variant="body2">
+                                  This modal slides up from the bottom, perfect for mobile interfaces.
+                                </Typography>
+                              </ModalBody>
+                            </ModalContent>
+                          </Modal>
+
+                          <Modal>
+                            <ModalTrigger asChild>
+                              <Button variant="outline" size="sm">Side Panel</Button>
+                            </ModalTrigger>
+                            <ModalContent position="right">
+                              <ModalHeader>
+                                <ModalTitle>Side Panel</ModalTitle>
+                                <ModalDescription>
+                                  A slide-in panel from the right
+                                </ModalDescription>
+                              </ModalHeader>
+                              <ModalBody>
+                                <Typography variant="body2">
+                                  Side panels are great for settings, filters, or additional information.
+                                </Typography>
+                              </ModalBody>
+                            </ModalContent>
+                          </Modal>
+                        </Stack>
+                      </CardContent>
+                    </Card>
+
+                    {/* Advanced Modal Features */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Advanced Features</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Stack spacing={2}>
+                          <Modal>
+                            <ModalTrigger asChild>
+                              <Button variant="outline" size="sm">No Overlay Blur</Button>
+                            </ModalTrigger>
+                            <ModalContent overlayBlur="none">
+                              <ModalHeader>
+                                <ModalTitle>No Blur Effect</ModalTitle>
+                              </ModalHeader>
+                              <ModalBody>
+                                <Typography variant="body2">
+                                  This modal has no backdrop blur effect.
+                                </Typography>
+                              </ModalBody>
+                            </ModalContent>
+                          </Modal>
+
+                          <Modal>
+                            <ModalTrigger asChild>
+                              <Button variant="outline" size="sm">No Close Button</Button>
+                            </ModalTrigger>
+                            <ModalContent showCloseButton={false}>
+                              <ModalHeader>
+                                <ModalTitle>Forced Action</ModalTitle>
+                              </ModalHeader>
+                              <ModalBody>
+                                <Typography variant="body2">
+                                  This modal can only be closed by clicking the action buttons.
+                                </Typography>
+                              </ModalBody>
+                              <ModalFooter>
+                                <ModalClose asChild>
+                                  <Button>I Understand</Button>
+                                </ModalClose>
+                              </ModalFooter>
+                            </ModalContent>
+                          </Modal>
+                        </Stack>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                </div>
+
+                {/* Toast Demo */}
+                <div className="space-y-4">
+                  <Typography variant="h3">Toast Notifications</Typography>
+                  
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Toast Examples</CardTitle>
+                      <CardDescription>Click the buttons to trigger different toast notifications</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Grid cols={{ base: 2, md: 4 }} gap={2}>
+                        <Button
+                          variant="success"
+                          size="sm"
+                          onClick={() => toast.success('Success!', 'Your changes have been saved.')}
+                        >
+                          Success Toast
+                        </Button>
+                        
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          onClick={() => toast.error('Error!', 'Something went wrong. Please try again.')}
+                        >
+                          Error Toast
+                        </Button>
+                        
+                        <Button
+                          variant="warning"
+                          size="sm"
+                          onClick={() => toast.warning('Warning!', 'Please check your input.')}
+                        >
+                          Warning Toast
+                        </Button>
+                        
+                        <Button
+                          variant="info"
+                          size="sm"
+                          onClick={() => toast.info('Info', 'New update available!')}
+                        >
+                          Info Toast
+                        </Button>
+
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => toast.default('Default Toast', 'This is a default notification.')}
+                        >
+                          Default Toast
+                        </Button>
+
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            toast.success('Quick Toast')
+                          }}
+                        >
+                          Title Only
+                        </Button>
+
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            toast.info('Long Duration', 'This toast will stay for 10 seconds', 10000)
+                          }}
+                        >
+                          Long Duration
+                        </Button>
+
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => {
+                            toast({
+                              title: 'Custom Toast',
+                              description: 'With custom content and icon',
+                              variant: 'default',
+                              duration: 3000,
+                            })
+                          }}
+                        >
+                          Custom Toast
+                        </Button>
+                      </Grid>
+
+                      <div className="mt-4 p-4 bg-muted rounded-lg">
+                        <Stack spacing={2}>
+                          <Typography variant="body2" weight="medium">
+                            Toast Features:
+                          </Typography>
+                          <Typography variant="caption" color="muted">
+                            • Auto-dismiss after 5 seconds (configurable)
+                          </Typography>
+                          <Typography variant="caption" color="muted">
+                            • Swipe to dismiss on mobile
+                          </Typography>
+                          <Typography variant="caption" color="muted">
+                            • Maximum 3 toasts at once (older ones are removed)
+                          </Typography>
+                          <Typography variant="caption" color="muted">
+                            • Positioned at bottom-right by default
+                          </Typography>
+                          <Typography variant="caption" color="muted">
+                            • Accessible with screen readers
+                          </Typography>
+                        </Stack>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </section>
+
+              {/* Demo Section */}
               <section className="space-y-6">
                 <Typography variant="h2">Design System Demo</Typography>
               
@@ -964,9 +1285,10 @@ const App = () => {
                 </Card>
                           </section>
             </Stack>
-          </Container>
-        </main>
-      </div>
+                      </Container>
+          </main>
+        </div>
+      </ToasterWithInit>
     </ThemeProvider>
   )
 }
