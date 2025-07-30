@@ -1823,6 +1823,7 @@ LIMIT 10;`,
       // Merge auth users with profiles
       const mergedUsers = authUsers.map(authUser => {
         const profile = profiles?.find(p => p.id === authUser.id);
+        // Priorité aux métadonnées Supabase Auth si disponibles
         return {
           id: authUser.id,
           email: authUser.email,
@@ -1830,13 +1831,13 @@ LIMIT 10;`,
           last_sign_in_at: authUser.last_sign_in_at,
           created_at: authUser.created_at,
           updated_at: authUser.updated_at,
-          is_active: profile?.is_active ?? true,
-          first_name: profile?.first_name || '',
-          last_name: profile?.last_name || '',
-          role: profile?.role || 'client',
-          phone: profile?.phone || '',
-          avatar_url: profile?.avatar_url || '',
-          company_id: profile?.company_id || null,
+          is_active: authUser.app_metadata?.is_active ?? profile?.is_active ?? true,
+          first_name: authUser.user_metadata?.first_name || profile?.first_name || '',
+          last_name: authUser.user_metadata?.last_name || profile?.last_name || '',
+          role: authUser.app_metadata?.role || profile?.role || 'client',
+          phone: authUser.user_metadata?.phone || profile?.phone || '',
+          avatar_url: authUser.user_metadata?.avatar_url || profile?.avatar_url || '',
+          company_id: authUser.app_metadata?.company_id || profile?.company_id || null,
           mfa_enabled: authUser.app_metadata?.mfa_enabled || false,
           locked_until: authUser.app_metadata?.locked_until || null,
           failed_login_attempts: authUser.app_metadata?.failed_login_attempts || 0
@@ -1885,16 +1886,27 @@ LIMIT 10;`,
       const { supabase } = await import('./supabase-admin.mjs');
       const { email, first_name, last_name, role, is_active, phone, department, send_invitation } = req.body;
 
-      // Create auth user
+      // Create auth user with metadata
       const { data: authData, error: authError } = await supabase.auth.admin.createUser({
         email,
         email_confirm: !send_invitation,
-        password: send_invitation ? undefined : Math.random().toString(36).slice(-12)
+        password: send_invitation ? undefined : Math.random().toString(36).slice(-12),
+        user_metadata: {
+          first_name,
+          last_name,
+          phone
+        },
+        app_metadata: {
+          role,
+          is_active,
+          department,
+          company_id: null
+        }
       });
 
       if (authError) throw authError;
 
-      // Create profile
+      // Create profile (for backward compatibility)
       const { data: profile, error: profileError } = await supabase
         .from('profiles')
         .insert({
@@ -1912,9 +1924,8 @@ LIMIT 10;`,
         .single();
 
       if (profileError) {
-        // Rollback auth user creation
-        await supabase.auth.admin.deleteUser(authData.user.id);
-        throw profileError;
+        console.warn('Profile creation failed, but user exists in auth:', profileError);
+        // Don't rollback - user exists in auth which is the source of truth
       }
 
       // Send invitation email if requested
@@ -1938,7 +1949,31 @@ LIMIT 10;`,
       const { id } = req.params;
       const updates = req.body;
 
-      // Update profile
+      // Update auth metadata
+      const userMetadataUpdates: any = {};
+      const appMetadataUpdates: any = {};
+      
+      // Sort updates into appropriate metadata
+      if (updates.first_name !== undefined) userMetadataUpdates.first_name = updates.first_name;
+      if (updates.last_name !== undefined) userMetadataUpdates.last_name = updates.last_name;
+      if (updates.phone !== undefined) userMetadataUpdates.phone = updates.phone;
+      
+      if (updates.role !== undefined) appMetadataUpdates.role = updates.role;
+      if (updates.is_active !== undefined) appMetadataUpdates.is_active = updates.is_active;
+      if (updates.department !== undefined) appMetadataUpdates.department = updates.department;
+      
+      // Update auth user
+      const authUpdateData: any = {};
+      if (updates.email) authUpdateData.email = updates.email;
+      if (Object.keys(userMetadataUpdates).length > 0) authUpdateData.user_metadata = userMetadataUpdates;
+      if (Object.keys(appMetadataUpdates).length > 0) authUpdateData.app_metadata = appMetadataUpdates;
+      
+      if (Object.keys(authUpdateData).length > 0) {
+        const { error: authError } = await supabase.auth.admin.updateUserById(id, authUpdateData);
+        if (authError) throw authError;
+      }
+      
+      // Update profile (for backward compatibility)
       const { data: profile, error: profileError } = await supabase
         .from('profiles')
         .update({
@@ -1949,14 +1984,8 @@ LIMIT 10;`,
         .select()
         .single();
 
-      if (profileError) throw profileError;
-
-      // If email changed, update auth user
-      if (updates.email) {
-        const { error: authError } = await supabase.auth.admin.updateUserById(id, {
-          email: updates.email
-        });
-        if (authError) throw authError;
+      if (profileError) {
+        console.warn('Profile update failed, but auth metadata updated:', profileError);
       }
 
       res.json(profile);
