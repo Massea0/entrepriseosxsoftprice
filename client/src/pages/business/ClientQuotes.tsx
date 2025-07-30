@@ -310,9 +310,11 @@ export default function ClientQuotes() {
                     <TableCell>{quote.object}</TableCell>
                     <TableCell className="font-medium">{formatCurrency(quote.amount)}</TableCell>
                     <TableCell>
-                      <Badge variant="secondary" className="gap-2">
-                        <StatusIcon className="h-3 w-3" />
-                        {statusConfig.label}
+                      <Badge variant="secondary">
+                        <div className="flex items-center gap-2">
+                          <StatusIcon className="h-3 w-3" />
+                          {statusConfig.label}
+                        </div>
                       </Badge>
                     </TableCell>
                     <TableCell>

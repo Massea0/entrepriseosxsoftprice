@@ -361,11 +361,11 @@ const ThirdPartyIntegrations: React.FC = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'connected':
-        return <Badge className="bg-green-100 text-green-700"><CheckCircle className="h-3 w-3 mr-1" />Connecté</Badge>;
+        return <Badge className="bg-green-100 text-green-700"><div className="flex items-center"><CheckCircle className="h-3 w-3 mr-1" />Connecté</div></Badge>;
       case 'error':
-        return <Badge className="bg-red-100 text-red-700"><XCircle className="h-3 w-3 mr-1" />Erreur</Badge>;
+        return <Badge className="bg-red-100 text-red-700"><div className="flex items-center"><XCircle className="h-3 w-3 mr-1" />Erreur</div></Badge>;
       case 'pending':
-        return <Badge className="bg-yellow-100 text-yellow-700"><AlertTriangle className="h-3 w-3 mr-1" />En attente</Badge>;
+        return <Badge className="bg-yellow-100 text-yellow-700"><div className="flex items-center"><AlertTriangle className="h-3 w-3 mr-1" />En attente</div></Badge>;
       default:
         return <Badge variant="outline">Inconnu</Badge>;
     }

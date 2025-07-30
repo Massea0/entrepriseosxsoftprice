@@ -204,13 +204,17 @@ export default function HRDashboardPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Badge className="bg-white/10 backdrop-blur-sm border-white/20 text-white gap-1">
-                    <Sparkles className="h-3 w-3" />
-                    IA Active
+                  <Badge className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+                    <div className="flex items-center gap-1">
+                      <Sparkles className="h-3 w-3" />
+                      IA Active
+                    </div>
                   </Badge>
-                  <Badge className="bg-white/10 backdrop-blur-sm border-white/20 text-white gap-1">
-                    <Clock className="h-3 w-3" />
-                    Temps Réel
+                  <Badge className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      Temps Réel
+                    </div>
                   </Badge>
                   <WaveformVisualizer className="w-32 h-12" />
                 </div>

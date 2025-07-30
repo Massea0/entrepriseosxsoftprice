@@ -363,9 +363,11 @@ export default function AdminQuotes() {
                     <TableCell className="font-medium">{formatCurrency(quote.amount)}</TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
-                        <Badge variant="secondary" className="gap-1">
-                          <div className={`w-2 h-2 rounded-full ${statusConfig.color}`} />
-                          {statusConfig.label}
+                        <Badge variant="secondary">
+                          <div className="flex items-center gap-1">
+                            <div className={`w-2 h-2 rounded-full ${statusConfig.color}`} />
+                            {statusConfig.label}
+                          </div>
                         </Badge>
                         {quote.status === 'sent' && (
                           <Select onValueChange={(value) => updateQuoteStatus(quote.id, value)}>
