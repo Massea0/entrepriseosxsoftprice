@@ -282,10 +282,21 @@ export class RealTimeAlertService extends EventEmitter {
   }
 
   // Interpoler le template
-  private interpolateTemplate(template: string, data: any): string {
-    return template.replace(/\${(\w+)}/g, (match, key) => {
-      return data[key] !== undefined ? data[key] : match;
-    });
+  private interpolateTemplate(template: string | ((data: any) => string), data: any): string {
+    // Si c'est une fonction, l'exécuter
+    if (typeof template === 'function') {
+      return template(data);
+    }
+    
+    // Si c'est une string, interpoler les variables
+    if (typeof template === 'string') {
+      return template.replace(/\${(\w+)}/g, (match, key) => {
+        return data[key] !== undefined ? data[key] : match;
+      });
+    }
+    
+    // Fallback
+    return String(template);
   }
 
   // Déclencher une alerte

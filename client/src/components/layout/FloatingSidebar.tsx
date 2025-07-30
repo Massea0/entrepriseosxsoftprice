@@ -353,30 +353,10 @@ export default function FloatingSidebar() {
   };
 
   const itemVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: -20,
-      scale: 0.95
-    },
-    visible: (i: number) => ({
+    hidden: { opacity: 0 },
+    visible: { 
       opacity: 1,
-      x: 0,
-      scale: 1,
-      transition: {
-        delay: i * 0.1,
-        type: "spring",
-        stiffness: 300,
-        damping: 25
-      }
-    }),
-    hover: {
-      x: 8,
-      scale: 1.05,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 20
-      }
+      transition: { duration: 0.2 }
     }
   };
 
@@ -414,7 +394,7 @@ export default function FloatingSidebar() {
                 <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
                   <Zap className="h-4 w-4 text-white" />
                 </div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full" />
               </div>
               <div>
                 <h2 className="text-sm font-semibold text-white">Arcadis OS</h2>
@@ -468,15 +448,11 @@ export default function FloatingSidebar() {
                 {showSeparator && (
                   <Separator className="bg-white/10 my-3" />
                                 )}
-                <motion.div
-                  custom={index}
+                                <motion.div
                   variants={itemVariants}
-                initial="hidden"
-                animate="visible"
-                whileHover="hover"
-                onHoverStart={() => setHoveredItem(item.path)}
-                onHoverEnd={() => setHoveredItem(null)}
-              >
+                  initial="hidden"
+                  animate="visible"
+                >
                 <Link to={item.path} className="block">
                   <div
                     className={cn(
@@ -500,26 +476,21 @@ export default function FloatingSidebar() {
                       "flex items-center p-3 relative",
                       item.isSubItem && "pl-6"
                     )}>
-                      <div className={cn(
-                        "relative p-2 rounded-lg transition-all duration-300",
-                        item.gradient ? `bg-gradient-to-br ${item.gradient}` : "bg-white/10",
-                        hoveredItem === item.path && "scale-110 shadow-lg",
-                        item.isSection && "p-1.5",
-                        item.isSubItem && "p-1.5 bg-white/5"
-                      )}>
-                        <Icon className={cn(
-                          "text-white",
-                          item.isSection ? "h-5 w-5" : "h-4 w-4",
-                          item.isSubItem && "h-3.5 w-3.5"
-                        )} />
-                        {item.isNew && (
-                          <motion.div
-                            className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full"
-                            animate={{ scale: [1, 1.2, 1] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                          />
-                        )}
-                      </div>
+                                              <div className={cn(
+                          "relative p-2 rounded-lg transition-colors duration-200",
+                          item.gradient ? `bg-gradient-to-br ${item.gradient}` : "bg-white/10",
+                          item.isSection && "p-1.5",
+                          item.isSubItem && "p-1.5 bg-white/5"
+                        )}>
+                          <Icon className={cn(
+                            "text-white",
+                            item.isSection ? "h-5 w-5" : "h-4 w-4",
+                            item.isSubItem && "h-3.5 w-3.5"
+                          )} />
+                          {item.isNew && (
+                            <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full" />
+                          )}
+                        </div>
 
                       <motion.div
                         className="ml-3 flex-1"
@@ -549,14 +520,7 @@ export default function FloatingSidebar() {
                       </motion.div>
                     </div>
 
-                    {/* Hover Glow Effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      animate={{
-                        x: hoveredItem === item.path ? ['0%', '100%'] : '0%'
-                      }}
-                      transition={{ duration: 0.6, ease: "easeInOut" }}
-                    />
+                    
                   </div>
                 </Link>
               </motion.div>
