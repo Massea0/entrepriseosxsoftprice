@@ -53,7 +53,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
     register,
     handleSubmit,
     formState: { errors },
-    watch,
     setError,
     clearErrors
   } = useForm<LoginFormData>({
@@ -151,7 +150,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
                   {...register('email')}
                   type="email"
                   placeholder="Email"
-                  icon={<MailIcon className="h-4 w-4" />}
+                  leftElement={<MailIcon className="h-4 w-4" />}
                   error={!!errors.email}
                   disabled={isLoading}
                 />
@@ -166,8 +165,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({
                   {...register('password')}
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Mot de passe"
-                  icon={<LockIcon className="h-4 w-4" />}
-                  endAdornment={
+                  leftElement={<LockIcon className="h-4 w-4" />}
+                  rightElement={
                     <Button
                       type="button"
                       variant="ghost"
@@ -213,7 +212,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
                   {...register('twoFactorCode')}
                   type="text"
                   placeholder="Code de vérification (6 chiffres)"
-                  icon={<ShieldIcon className="h-4 w-4" />}
+                  leftElement={<ShieldIcon className="h-4 w-4" />}
                   maxLength={6}
                   className="text-center text-lg tracking-widest"
                   error={!!errors.twoFactorCode}
@@ -242,7 +241,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           <Button
             type="submit"
             className="w-full"
-            loading={isLoading}
+            isLoading={isLoading}
             disabled={isLoading}
           >
             {requiresTwoFactor ? 'Vérifier le code' : 'Se connecter'}

@@ -23,7 +23,7 @@ import { Skeleton, SkeletonText, SkeletonAvatar, SkeletonButton, SkeletonCard, S
 import { Spinner, SpinnerOverlay, LoadingButton, LoadingDots } from '@/components/ui/spinner'
 import { Avatar, AvatarGroup, AvatarWithText } from '@/components/ui/avatar'
 import { Container, Grid, Stack, Divider } from '@/components/layout'
-import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2, Home, Users, Settings, BarChart3, Package, ShoppingCart, Info, AlertCircle, Zap, Star, TrendingUp, Activity } from 'lucide-react'
+import { Search, Mail, Lock, ArrowRight, Heart, MessageCircle, Share2, Home, Users, Settings, BarChart3, Package, ShoppingCart, Info, AlertCircle, Zap, Star, TrendingUp, Activity, UsersIcon } from 'lucide-react'
 import '@/styles/globals.css'
 import { 
   Table, 
